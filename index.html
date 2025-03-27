@@ -205,6 +205,26 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/date.js"></script>
+			<script>
+				function updateDateTime() {
+				  const dateElements = document.querySelectorAll('.current-date');
+				  const options = { 
+					year: 'numeric', 
+					month: 'long', 
+					day: 'numeric',
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit',
+					hour12: true
+				  };
+			
+				  dateElements.forEach(element => {
+					element.textContent = new Date().toLocaleDateString('en-US', options);
+				  });
+				}
+			
+				updateDateTime();
+				setInterval(updateDateTime, 1000);
+			  </script>
 	</body>
 </html>
