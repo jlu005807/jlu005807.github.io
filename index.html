@@ -62,51 +62,50 @@
 							<section class="posts">
 								<article>
 									<header class="major">
-										<span class="date current-date"></span>
-										<h2><a href="#">And this is a<br>Page for Study</a></h2>
+										<span>My game</span>										
+										<h2><a>This is </a><a href="https://github.com/jlu005807/Tictactoe">Tic-Tac-Toe</a></h2>
 									  </header>
-									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+									<a href="#" class="image fit"><img src="images/pic02.png" alt="" /></a>
+									<p>You can play this game with your friends or against the computer.<br>you can install it on /Tictactoe_Setup/Release/Tictactoe_Setup.msi </p>
 									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
+										<li><a href="https://github.com/jlu005807/Tictactoe" class="button">Start Game</a></li>
 									</ul>
 								</article>
 								<article>
 									<header class="major">
-										<span class="date current-date"></span>
-										<h2><a href="#">And this is a<br>Page for Study</a></h2>
+										<span>My game</span>
+										<h2><a>This is game</a><a href="https://github.com/jlu005807/Survivor-of-Teyvat">Survivor-of-Teyvat</a></h2>
 									  </header>
-									<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+									<a href="#" class="image fit"><img src="images/pic03.png" alt="" /></a>
+									<p>This is a game for learning<br>but you can operate the setup.exe install the game where Survivor-of-Teyvat_Setup/Release</p>
 									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
+										<li><a href="https://github.com/jlu005807/Survivor-of-Teyvat" class="button">Start Game</a></li>
 									</ul>
 								</article>
 								<article>
 									<header class="major">
-										<span class="date current-date"></span>
-										<h2><a href="#">And this is a<br>Page for Study</a></h2>
+										<span>My Study</span>
+										<h2><a>This is Study for </a><a href="https://github.com/jlu005807/Data_Structure_and_Algorithm">Data_Structure_and_Algorithm</a></h2>
 									  </header>
-									<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+									<a href="#" class="image fit"><img src="images/pic04.png" alt="" /></a>
+									<p>This is a repor for notes and books about Data Structure and Algorithm.<br>you can download the pdf file and study it.</p>
 									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
+										<li><a href="https://github.com/jlu005807/Data_Structure_and_Algorithm" class="button">Start Study</a></li>
 									</ul>
 								</article>
 								<article>
 									<header class="major">
-										<span class="date current-date"></span>
-										<h2><a href="#">And this is a<br>Page for Study</a></h2>
+										<span>My Study</span>
+										<h2><a>This is Study for </a><a href="https://github.com/jlu005807/Cpp">Cpp</a></h2>
 									  </header>
-									<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+									<a href="#" class="image fit"><img src="images/pic05.png" alt="" /></a>
 									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
 									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
+										<li><a href="https://github.com/jlu005807/Cpp" class="button">Start Study</a></li>
 									</ul>
 								</article>
 								<article>
 									<header class="major">
-										<span class="date current-date"></span>
 										<h2><a href="#">And this is a<br>Page for Study</a></h2>
 									  </header>
 									<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
@@ -117,7 +116,6 @@
 								</article>
 								<article>
 									<header class="major">
-										<span class="date current-date"></span>
 										<h2><a href="#">And this is a<br>Page for Study</a></h2>
 									  </header>
 									<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
@@ -205,26 +203,26 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script>
-				function updateDateTime() {
-				  const dateElements = document.querySelectorAll('.current-date');
-				  const options = { 
-					year: 'numeric', 
-					month: 'long', 
-					day: 'numeric',
-					hour: '2-digit',
-					minute: '2-digit',
-					second: '2-digit',
-					hour12: true
-				  };
-			
-				  dateElements.forEach(element => {
-					element.textContent = new Date().toLocaleDateString('en-US', options);
-				  });
-				}
-			
-				updateDateTime();
-				setInterval(updateDateTime, 1000);
-			  </script>
+			 <script>
+    function updateDateTime() {
+      const dateElements = document.querySelectorAll('.current-date');
+      const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      };
+
+      dateElements.forEach(element => {
+        element.textContent = new Date().toLocaleDateString('en-US', options);
+      });
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  </script>
 	</body>
 </html>
