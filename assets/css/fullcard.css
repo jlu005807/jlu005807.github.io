@@ -1,0 +1,284 @@
+*{
+  margin: 0;
+  padding: 0;
+ 
+}
+body {
+  background: #f3f4f4;
+  font-family: 'Roboto Condensed', sans-serif;
+  overflow: auto; 
+  scroll-behavior: smooth;
+}
+
+.book:not(.book--expanded) {
+  position: static !important;
+  /* 其他原始样式 */
+  background: #f3f4f4;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+
+/* 当 .book--expanded 存在时，固定 body 位置，防止滚动 */
+body:has(.book--expanded) {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+
+
+.mr2 {
+  margin-right: 1rem;
+}
+.ml2 {
+  margin-left: 1rem;
+}
+.article-title {
+  font-size: 2.5rem;
+  line-height: 1;
+ font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  letter-spacing: 0.025em;
+  transition: font-size 0.45s ease-in-out, color 0.3s ease-out;
+}
+.header-image {
+  height: 220px;
+  background-image: var(--bg-image, url(../../images/pic01.jpg)); /* 默认图片 */
+  background-size: cover; /* 确保图片覆盖整个容器 */
+  background-position: center; /* 图片居中 */
+  margin-bottom: 3rem;
+  position: relative;
+  display: flex; /* 使用 flexbox 居中对齐 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  transition: all 0.45s ease-in-out;
+}
+.overlay {
+  transition: all 0.3s ease-in-out;
+  background:center;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.title-wrap {
+  transform: translateY(0);
+  transition: transform 0.45s ease-in;
+}
+.drop-cap {
+  font-size: 55px;
+  line-height: 28px;
+}
+
+.fullcard-wrapper {
+  height: 75vh;  /* 调整为视口高度的80%，缩小显示区域 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem; /* 减少上下边距，并保持左右内边距 */
+  max-width: 90vw;  /* 限制最大宽度，防止卡片太宽 */
+  margin: 0 auto;  
+}
+
+
+.book__cover-exerpt {
+  position: relative;
+  color: #6a6a6a;
+  padding: 1rem 1.5rem;
+  line-height: 1.6;
+  text-align: center;
+  opacity: 1;
+  max-width: 360px;
+  margin: 0 auto;
+  display: block;
+  transition: all 0.25s ease-in-out;
+}
+ 
+.book__cover {
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease-in-out; /* 图片平滑过渡 */
+}
+.book__content {
+  text-align: justify;
+  word-wrap: break-word;
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: all 1.5s ease-in-out;
+  max-width: 750px;
+  margin: 0 auto 6rem;
+  padding: 0 2rem;
+}
+.book__content p {
+  line-height: 1.8;
+  color: #3a3a3a;
+  margin-bottom: 2.5rem;
+}
+.book {
+  position: absolute;
+  scroll-snap-align: start;
+  overflow: hidden;
+  background: white;
+  height: 580px;
+  width: 400px;
+  box-shadow: 0 20px 30px -10px #ccc;
+  transition: 
+    width 0.3s ease,
+    height 0.3s ease,
+    transform 0.3s ease !important; /* 强制覆盖 */
+}
+.book:hover {
+  box-shadow: 0 6px 50px 10px #cfcfcf;
+}
+.book--expanded {
+  position: fixed; /* 让它全屏覆盖 */
+  top: 0;  /* 顶部对齐 */
+  left: 0;  /* 左侧对齐 */
+  width: 100vw;  /* 100% 视口宽度 */
+  height: 100vh;  /* 100% 视口高度 */
+  z-index: 999;  /* 置于最上层 */
+  overflow-y: auto; /* 允许滚动 */
+  padding: 2rem; /* 添加内边距 */
+  background: white; /* 背景填充 */
+  transition: all 0.5s ease-in-out;
+  transform: translate3d(0, 0, 0); /* 启用硬件加速 */
+  transition: 
+  transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+  opacity 0.3s ease;
+}
+.book--expanded .overlay {
+  opacity: 0.95;
+}
+.book--expanded .article-title {
+  color: white;
+  font-size: 64px;
+  letter-spacing: 0.05em;
+}
+.book--expanded .title-wrap {
+  transform: translateY(-300px);
+  color: white;
+}
+.book--expanded .book__cover-exerpt {
+  opacity: 0;
+}
+.book--expanded .book__cover {
+  height: 460px;
+  margin-bottom: 6rem;
+}
+.book--expanded .book__content {
+  opacity: 1;
+}
+.book--expanded .header-image {
+  background-position: center; /* 图片保持居中 */
+  background-repeat: no-repeat; /* 防止背景图片重复 */
+  width: 100%; /* 设置宽度为 100% */
+  height: 100%; /* 保持图片高度占据一定比例 */
+  max-width: 100%; /* 防止超出容器宽度 */
+  max-height: 100%; /* 防止超出容器高度 */
+}
+
+/* 处理小屏幕 */
+@media screen and (max-width:1080px){
+
+  .fullcard-wrapper {
+    height: 90vh;  /* 调整为视口高度的80%，缩小显示区域 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem; /* 减少上下边距，并保持左右内边距 */
+    max-width: 90vw;  /* 限制最大宽度，防止卡片太宽 */
+    margin: 0 auto;  
+  }
+
+  .book--expanded .title-wrap {
+    transform: translateY(-185px);
+    color: white;
+  }
+
+.header-image {
+  height: 150px;
+  background-image: var(--bg-image, url(../../images/pic01.jpg)); /* 默认图片 */
+  background-size: cover; /* 确保图片覆盖整个容器 */
+  background-position: center; /* 图片居中 */
+  margin-bottom: 3rem;
+  position: relative;
+  display: flex; /* 使用 flexbox 居中对齐 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  transition: background-size 0.2s ease, transform 0.3s ease;
+}
+  .book--expanded .header-image {
+  background-size: contain; /* 使图片按比例缩放 */
+  background-position: center; /* 图片保持居中 */
+  background-repeat: no-repeat; /* 防止背景图片重复 */
+  width: 100%; /* 设置宽度为 100% */
+  height: 60%; /* 保持图片高度占据一定比例 */
+  max-width: 100%; /* 防止超出容器宽度 */
+  max-height: 100%; /* 防止超出容器高度 */
+
+  
+}
+
+/*处理横屏*/
+@media screen and (orientation:landscape){
+  .fullcard-wrapper {
+    height: 80%;  /* 调整为视口高度的80%，缩小显示区域 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem; /* 减少上下边距，并保持左右内边距 */
+   
+    margin: 0 auto;  
+  }
+  
+  .book--expanded .title-wrap {
+    transform: translateY(-185px);
+    color: white;
+  }
+
+.header-image {
+  height: 120px;
+  background-image: var(--bg-image, url(../../images/pic01.jpg)); /* 默认图片 */
+  background-size: cover; /* 确保图片覆盖整个容器 */
+  background-position: center; /* 图片居中 */
+  margin-bottom: 3rem;
+  position: relative;
+  display: flex; /* 使用 flexbox 居中对齐 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  transition: background-size 0.2s ease, transform 0.3s ease;
+}
+  .book--expanded .header-image {
+  background-size: contain; /* 使图片按比例缩放 */
+  background-position: center; /* 图片保持居中 */
+  background-repeat: no-repeat; /* 防止背景图片重复 */
+  width: 100%; /* 设置宽度为 100% */
+  height: 60%; /* 保持图片高度占据一定比例 */
+  max-width: 100%; /* 防止超出容器宽度 */
+  max-height: 100%; /* 防止超出容器高度 */
+
+  
+}
+}
+.book--expanded .article-title {
+  color: white;
+  font-size: 32px;
+  letter-spacing: 0.05em;
+}
+}
+
+span{
+   margin-left: -35px;
+}
+span .fa {
+   font-size: 17px;
+   margin-left: 20px;
+}
+
