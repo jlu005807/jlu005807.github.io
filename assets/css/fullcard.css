@@ -10,11 +10,13 @@ body {
   scroll-behavior: smooth;
 }
 
+
 .book:not(.book--expanded) {
   position: static !important;
   /* 其他原始样式 */
   background: #f3f4f4;
   font-family: 'Roboto Condensed', sans-serif;
+  
 }
 
 
@@ -185,10 +187,10 @@ body:has(.book--expanded) {
 }
 
 /* 处理小屏幕 */
-@media screen and (max-width:1080px){
+@media screen and (max-width: 480px){
 
   .fullcard-wrapper {
-    height: 90vh;  /* 调整为视口高度的80%，缩小显示区域 */
+    height: 70vh;  /* 调整为视口高度的80%，缩小显示区域 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,10 +229,20 @@ body:has(.book--expanded) {
     height: 400px;
     margin-bottom: 0rem;
    }
+   
+   .book:not(.book--expanded) {
+    height: 60vh;
+    position: static !important;
+    /* 其他原始样式 */
+    background: #f3f4f4;
+    font-family: 'Roboto Condensed', sans-serif;
+    
+  }
+
 }
 
 /*处理横屏*/
-@media screen and (orientation:landscape){
+@media screen and  (max-width: 900px) and (orientation: landscape){
   .fullcard-wrapper {
     height: 60%;  /* 调整为视口高度的80%，缩小显示区域 */
     display: flex;
@@ -269,17 +281,18 @@ body:has(.book--expanded) {
   }
 
   .book--expanded .book__cover {
-    height: 400px;
-    margin-bottom: 0rem;
+    height: 460px;
+    margin-bottom: 1rem;
    }
 }
 
 .book--expanded .article-title {
   color: white;
   font-size: 32px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.0em;
 }
-}
+
+
 
 span{
    margin-left: -35px;
