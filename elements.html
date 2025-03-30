@@ -40,6 +40,7 @@
 						<!-- Post -->
 							<section class="post">
 								<header class="major">
+									<span class="date current-date"></span>
 									<h1>Other</h1>
 								</header>
 
@@ -452,7 +453,7 @@ int main() {
 				<!-- Footer -->
 					<footer id="footer">
 						<section>
-							<a class="image fit"><img src="images/other/5.png" alt="" /></a>
+							<a href="elements.html" class="image fit"><img src="images/other/5.png" alt="" /></a>
 						</section>
 						<section class="split contact">
 							<section class="alt">
@@ -491,6 +492,22 @@ int main() {
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script>
+				function updateDateTime() {
+				  const dateElements = document.querySelectorAll('.current-date');
+				  const options = { 
+					year: 'numeric', 
+					month: 'long', 
+					day: 'numeric',
+				  };
+			
+				  dateElements.forEach(element => {
+					element.textContent = new Date().toLocaleDateString('en-US', options);
+				  });
+				}
+			
+				updateDateTime();
+				setInterval(updateDateTime, 1000);
+			  </script>
 	</body>
 </html>

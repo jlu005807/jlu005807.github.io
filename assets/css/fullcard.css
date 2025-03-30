@@ -198,7 +198,7 @@ body:has(.book--expanded) {
   }
 
   .book--expanded .title-wrap {
-    transform: translateY(-185px);
+    transform: translateY(-175px);
     color: white;
   }
 
@@ -222,19 +222,21 @@ body:has(.book--expanded) {
   height: 60%; /* 保持图片高度占据一定比例 */
   max-width: 100%; /* 防止超出容器宽度 */
   max-height: 100%; /* 防止超出容器高度 */
-
-  
+  }
+   .book--expanded .book__cover {
+    height: 400px;
+    margin-bottom: 0rem;
+   }
 }
 
 /*处理横屏*/
 @media screen and (orientation:landscape){
   .fullcard-wrapper {
-    height: 80%;  /* 调整为视口高度的80%，缩小显示区域 */
+    height: 60%;  /* 调整为视口高度的80%，缩小显示区域 */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem 1rem; /* 减少上下边距，并保持左右内边距 */
-   
     margin: 0 auto;  
   }
   
@@ -243,7 +245,7 @@ body:has(.book--expanded) {
     color: white;
   }
 
-.header-image {
+  .header-image {
   height: 120px;
   background-image: var(--bg-image, url(../../images/pic01.jpg)); /* 默认图片 */
   background-size: cover; /* 确保图片覆盖整个容器 */
@@ -254,7 +256,8 @@ body:has(.book--expanded) {
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   transition: background-size 0.2s ease, transform 0.3s ease;
-}
+  }
+
   .book--expanded .header-image {
   background-size: contain; /* 使图片按比例缩放 */
   background-position: center; /* 图片保持居中 */
@@ -263,10 +266,14 @@ body:has(.book--expanded) {
   height: 60%; /* 保持图片高度占据一定比例 */
   max-width: 100%; /* 防止超出容器宽度 */
   max-height: 100%; /* 防止超出容器高度 */
+  }
 
-  
+  .book--expanded .book__cover {
+    height: 400px;
+    margin-bottom: 0rem;
+   }
 }
-}
+
 .book--expanded .article-title {
   color: white;
   font-size: 32px;
