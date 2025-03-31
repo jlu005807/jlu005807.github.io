@@ -225,6 +225,8 @@ body:has(.book--expanded) {
   max-width: 100%; /* 防止超出容器宽度 */
   max-height: 100%; /* 防止超出容器高度 */
   }
+
+  
    .book--expanded .book__cover {
     height: 400px;
     margin-bottom: 0rem;
@@ -235,10 +237,9 @@ body:has(.book--expanded) {
     position: static !important;
     /* 其他原始样式 */
     background: #f3f4f4;
-    font-family: 'Roboto Condensed', sans-serif;
-    
+    font-family: 'Roboto Condensed', sans-serif; 
   }
-
+ 
 }
 
 /*处理横屏*/
@@ -288,8 +289,9 @@ body:has(.book--expanded) {
 
 .book--expanded .article-title {
   color: white;
-  font-size: 32px;
+  font-size: 45px;
   letter-spacing: 0.0em;
+  opacity: 0.75;
 }
 
 
