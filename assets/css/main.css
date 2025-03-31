@@ -3290,12 +3290,12 @@ input, select, textarea {
 
 			#wrapper > .bg {
 				background-size: 
-				90% auto,   /* 前景图宽度限制 */
+			    250% auto,   /* 前景图宽度限制 */
 				auto,
 				cover;  /* 背景图放大避免留白 */
 			
 			background-position: 
-				right bottom calc(10vh),  /* 底部上浮20px */
+				calc(100% + 70vw) bottom ,  /* 底部上浮20px */
 				center,
 				50% 30%;    /* 背景图上移 */
 			}
@@ -3354,6 +3354,7 @@ input, select, textarea {
 
 		#intro h1, #intro h2, #intro h3, #intro h4, #intro h5, #intro h6 {
 			color: #ffffff;
+			opacity: 0.6;
 		}
 
 		#intro blockquote {
@@ -3416,6 +3417,7 @@ input, select, textarea {
 			font-style: italic;
 			margin-top: -0.25rem;
 			text-align: center;
+			opacity: 0.5;
 		}
 
 		#intro + #header {
