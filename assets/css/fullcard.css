@@ -138,7 +138,11 @@ body:has(.book--expanded) {
 }
 .book:hover {
   box-shadow: 0 6px 50px 10px #cfcfcf;
+  transform: scale(1.05) translateZ(10px); /* 放大5%并提升层级 */
 }
+
+
+
 .book--expanded {
   position: fixed; /* 让它全屏覆盖 */
   top: 0;  /* 顶部对齐 */
@@ -289,9 +293,23 @@ body:has(.book--expanded) {
 
 .book--expanded .article-title {
   color: white;
-  font-size: 45px;
+  font-size: 64px; /* 基础响应式 */
   letter-spacing: 0.0em;
   opacity: 0.75;
+
+  /* 断点控制 */
+  @media screen and (min-width: 1920px) {
+    font-size: 45px; /* 最大限制 */
+  }
+  
+  @media screen and(max-width: 768px) {
+    font-size: 36px; /* 平板尺寸 */
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 32px; /* 手机尺寸 */
+    opacity: 0.9;    /* 提升小屏可读性 */
+  }
 }
 
 
