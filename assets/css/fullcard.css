@@ -136,6 +136,7 @@ body:has(.book--expanded) {
     height 0.3s ease,
     transform 0.3s ease !important; /* 强制覆盖 */
 }
+
 .book:hover {
   box-shadow: 0 6px 50px 10px #cfcfcf;
   transform: scale(1.05) translateZ(10px); /* 放大5%并提升层级 */
