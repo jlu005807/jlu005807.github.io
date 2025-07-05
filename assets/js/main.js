@@ -255,4 +255,113 @@
 
 		}
 
+	// Parallax 视差控制器
+	(function(){
+		// 检测是否为移动端
+		var isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone|Mobile/i.test(navigator.userAgent);
+		if (isMobile) {
+			document.body.classList.add('parallax-inactive');
+			return;
+		}
+		const config = {
+			range: 5,
+			bgOffset: 1,
+			fgOffset: 6,
+			rotationFactor: 0.2
+		};
+		const wrapper = document.getElementById('parallax_wrapper');
+		const bg = document.getElementById('parallax_bg');
+		const fg = document.getElementById('parallax_foreground');
+		if (!wrapper || !bg || !fg) return;
+		function calculateTransform(h, v, offset, isBackground) {
+			if (isBackground) {
+				return `translate3d(${h * offset}px, ${v * offset}px, 0) rotateX(${-v * config.rotationFactor}deg) rotateY(${h * config.rotationFactor}deg)`;
+			} else {
+				return `translate3d(${h * -offset}px, ${v * -offset}px, 0) rotateX(${v * config.rotationFactor}deg) rotateY(${h * -config.rotationFactor}deg)`;
+			}
+		}
+		function handleMouseMove(e) {
+			const width = wrapper.offsetWidth;
+			const height = wrapper.offsetHeight;
+			const horizontal = (e.clientX / width - 0.5) * config.range;
+			const vertical = (e.clientY / height - 0.5) * config.range;
+			const maxOffset = config.range * 0.8;
+			const clampedHorizontal = Math.max(Math.min(horizontal, maxOffset), -maxOffset);
+			const clampedVertical = Math.max(Math.min(vertical, maxOffset), -maxOffset);
+			bg.style.transform = calculateTransform(clampedHorizontal, clampedVertical, config.bgOffset, true);
+			fg.style.transform = calculateTransform(clampedHorizontal, clampedVertical, config.fgOffset, false);
+		}
+		function throttle(func, limit) {
+			let lastFunc;
+			let lastRan;
+			return function () {
+				const context = this;
+				const args = arguments;
+				if (!lastRan) {
+					func.apply(context, args);
+					lastRan = Date.now();
+				} else {
+					clearTimeout(lastFunc);
+					lastFunc = setTimeout(function () {
+						if (Date.now() - lastRan >= limit) {
+							func.apply(context, args);
+							lastRan = Date.now();
+						}
+					}, limit - (Date.now() - lastRan));
+				}
+			};
+		}
+		wrapper.addEventListener('mousemove', throttle(handleMouseMove, 10));
+		wrapper.addEventListener('mouseleave', function(){
+			bg.style.transform = 'translate3d(0,0,0) rotateX(0deg) rotateY(0deg)';
+			fg.style.transform = 'translate3d(0,0,0) rotateX(0deg) rotateY(0deg)';
+		});
+
+		function hideParallax() {
+			var pw = document.getElementById('parallax_wrapper');
+			if (!pw) return;
+			// 防止多次绑定
+			pw.removeEventListener('transitionend', pw._parallaxHideHandler || (()=>{}));
+			// 已经隐藏则不再处理
+			if (pw.classList.contains('parallax-hide')) return;
+			pw.classList.add('parallax-hide');
+			pw._parallaxHideHandler = function handler(e) {
+				// 只处理自身的opacity动画
+				if (e.target !== pw) return;
+				pw.style.display = 'none';
+				pw.removeEventListener('transitionend', handler);
+			};
+			pw.addEventListener('transitionend', pw._parallaxHideHandler);
+			document.body.classList.add('parallax-inactive');
+		}
+		function showParallax() {
+			var pw = document.getElementById('parallax_wrapper');
+			if (!pw) return;
+			// 防止多次绑定
+			pw.removeEventListener('transitionend', pw._parallaxHideHandler || (()=>{}));
+			// 已经显示则不再处理
+			if (!pw.classList.contains('parallax-hide') && pw.style.display === 'block') return;
+			pw.style.display = 'block';
+			// 触发重绘，确保动画生效
+			void pw.offsetWidth;
+			pw.classList.remove('parallax-hide');
+			document.body.classList.remove('parallax-inactive');
+		}
+		function checkParallax() {
+			if (window.scrollY === 0) {
+				showParallax();
+			} else {
+				hideParallax();
+			}
+		}
+		window.addEventListener('scroll', checkParallax);
+		window.addEventListener('wheel', hideParallax, {passive: true});
+		window.addEventListener('touchmove', hideParallax, {passive: true});
+		window.addEventListener('keydown', function(e) {
+			if ([32,33,34,35,36,38,40].includes(e.keyCode)) {
+				hideParallax();
+			}
+		});
+	})();
+
 })(jQuery);

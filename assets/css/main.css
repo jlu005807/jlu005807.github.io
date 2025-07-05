@@ -3301,6 +3301,13 @@ input, select, textarea {
 
 		}
 
+		@media screen and (max-width: 980px) {
+			#wrapper > .bg {
+				background-size: 250% auto, auto, cover;
+				background-position: calc(100% + 70vw) bottom, center, 50% 30%;
+			}
+		}
+
 /* Intro */
 
 	#intro {
@@ -4709,3 +4716,74 @@ input, select, textarea {
 		}
 
 	}
+
+/* Parallax 视差背景样式 */
+#parallax_wrapper {
+    position: absolute;
+    z-index: 0;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: auto;
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+    transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+#parallax_wrapper.parallax-hide {
+  opacity: 0;
+  transform: translateY(-40px);
+  pointer-events: none;
+}
+#parallax_bg {
+    position: absolute;
+	background-size: 100% auto, auto, contains;
+    width: 150%;
+    height: 150%;
+    left: -25%;
+    top: -25%;
+    background: url('../../images/home/long-bg.png') center/contain no-repeat !important;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+#parallax_foreground {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 1%;
+    top: 1%;
+    background: url('../../images/home/foreground.png') right bottom/contain no-repeat !important;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#intro > *:not(#parallax_wrapper) {
+    position: relative;
+    z-index: 1;
+}
+/* 当添加.parallax-inactive类时，恢复原样式 */
+.parallax-inactive #parallax_wrapper {
+    opacity: 0;
+    pointer-events: none;
+    filter: blur(10px);
+    transform: scale(1.03);
+    transition: opacity 1.5s cubic-bezier(.77,0,.175,1), filter 1.5s cubic-bezier(.77,0,.175,1), transform 1.5s cubic-bezier(.77,0,.175,1);
+}
+.parallax-inactive #intro > *:not(#parallax_wrapper) {
+    position: static;
+    z-index: auto;
+}
+
+@media screen and (max-width: 980px), screen and (orientation: portrait) {
+  #parallax_bg {
+    background-size: cover !important;
+    background-position: center !important;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+  }
+}

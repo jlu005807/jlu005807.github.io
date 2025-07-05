@@ -1,12 +1,18 @@
 <!DOCTYPE HTML>
-<link rel="preload" href="images/home/long-bg.png" as="image">
-<link rel="preload" href="images/home/foreground.png" as="image">
 <html>
 
 <head>
 	<title>Ozy's Website</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+	<!-- 添加资源提示 -->
+	<link rel="preconnect" href="https://code.jquery.com">
+	<link rel="preload" href="assets/css/main.css" as="style">
+	<link rel="preload" href="assets/js/jquery.min.js" as="script">
+	<link rel="preload" href="images/home/long-bg.png" as="image">
+	<link rel="preload" href="images/home/foreground.png" as="image">
+
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
@@ -23,6 +29,10 @@
 
 		<!-- Intro -->
 		<div id="intro">
+			<div id="parallax_wrapper">
+				<div id="parallax_bg"></div>
+				<div id="parallax_foreground"></div>
+			</div>
 			<h1>Hello!<br />
 				Ozy's Website</h1>
 			<p>A Computer-Science student from <a href="https://www.jlu.edu.cn">JiLin University</a></p>
@@ -58,7 +68,7 @@
 					<span class="date current-date"></span>
 					<h2><a href="#">Welcome to My Website🎈 </a></h2>
 				</header>
-				<a class="image main"><img src="images/home/1.jpg" alt="" /></a>
+				<a class="image main "><img src="images/home/1.jpg" alt="" /></a>
 				<ul class="actions special">
 					<li><a href="#about" class="button large">✨Start My Story✨</a></li>
 				</ul>
@@ -82,28 +92,25 @@
 									<h1 class="article-title">Tic-Tac-Toe</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									You can play game with<br>your friends or against the computer.<br>you can install
-									it on<br>/Tictactoe_Setup<br>/Release/Tictactoe_Setup.msi
+									Play with friends or challenge the computer.<br>Install
+									from:<br>/Tictactoe_Setup/Release/Tictactoe_Setup.msi
 								</p>
 							</div>
 							<div class="book__content">
-								<p><span class="drop-cap"></span>TicTacToe is a simple game that can be played by two
-									players on a 3x3 grid. The player who succeeds in placing three of their marks in a
-									horizontal, vertical, or diagonal row is the winner. The game ends in a tie if all 9
-									squares are filled and no one has won. When you install the game ,and open the
-									TicTacToe,you will see the game window,you can begin the game by clicking on the
-									squares. </p>
-								</p>
+								<p><span class="drop-cap"></span>Tic-Tac-Toe is a classic two-player game played on a
+									3x3 grid. The first player to align three marks horizontally, vertically, or
+									diagonally wins. If all 9 squares are filled with no winner, the game ends in a
+									draw. After installing and launching the game, simply click on the squares to start
+									playing.</p>
 								<a class="image fit"><img src="images/home/card11.png" alt="" /></a>
-								<p> And then you can choose against your friend or computer. If you choose against the
-									computer, you can choose the difficulty level.
-								</p>
+								<p>You can choose to play against a friend or the computer. When playing against the
+									computer, you can select the difficulty level.</p>
 								<a class="image fit"><img src="images/home/card12.png" alt="" /></a>
-								<p>different level are easy,hard.</p>
+								<p>Available difficulty levels: Easy and Hard.</p>
 								<a class="image fit"><img src="images/home/card13.png" alt="" /></a>
-								<p>the Beginning of the game.</p>
+								<p>Game start screen.</p>
 								<a class="image fit"><img src="images/home/card14.png" alt="" /></a>
-								<p>the End of the game. you can choose to play again or exit the game.</p>
+								<p>Game over screen. You can choose to play again or exit.</p>
 								<a class="image fit"><img src="images/home/card15.png" alt="" /></a>
 								<a class="image fit"><img src="images/home/card16.png" alt="" /></a>
 							</div>
@@ -130,26 +137,23 @@
 									<h1 class="article-title">Teyvat</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									A game for learning<br>but you can to install <br>the game where
-									<br>Survivor-of-Teyvat_Setup/Release
+									An educational roguelike game.<br>Install from:<br>/Survivor-of-Teyvat_Setup/Release
 								</p>
 							</div>
 							<div class="book__content">
-								<p><span class="drop-cap"></span>Survivor-of-Teyvat is a Roguelike,Your goal is to score
-									more points by defeating enemy creatures, where the number of energy orbs around you
-									is your current health. Note that each monster has different characteristics, so
-									please explore it yourself.This is the Beginning window of game you can choose play
-									the game or exit</p>
+								<p><span class="drop-cap"></span>Survivor-of-Teyvat is a roguelike game where your goal
+									is to score points by defeating enemies. The number of energy orbs around you
+									represents your health. Each monster has unique characteristics—explore and discover
+									them! On the start screen, you can choose to play or exit.</p>
 								<a class="image fit"><img src="images/home/card21.png" alt="" /></a>
 								<a class="image fit"><img src="images/home/card22.png" alt="" /></a>
-								<p>In the window ,you can choose the character you like</p>
+								<p>Select your favorite character from the character selection screen.</p>
 								<a class="image fit"><img src="images/home/card23.png" alt="" /></a>
-								<p> In the game, you can move your character by using arrow keys or WASD. You can attack
-									the enemy by energy orbs
-								</p>
+								<p>Control your character using the arrow keys or WASD. Attack enemies using energy
+									orbs.</p>
 								<a class="image fit"><img src="images/home/card24.png" alt="" /></a>
 								<a class="image fit"><img src="images/home/card25.png" alt="" /></a>
-								<p>In the End,you can see the score and the game result.</p>
+								<p>At the end, view your score and game results.</p>
 								<a class="image fit"><img src="images/home/card26.png" alt="" /></a>
 							</div>
 						</div>
@@ -175,18 +179,17 @@
 									<h1 class="article-title">DS&ALGO</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									A repor for notes and books about<br> Data Structure and Algorithm.<br>you can
-									download the pdf file and study it.
+									A collection of notes and books on Data Structures and Algorithms.<br>You can
+									download the PDF files for study.
 								</p>
 							</div>
 							<div class="book__content">
-								<p><span class="drop-cap"></span>Data Structure and Algorithm is a very important part
-									of Computer Science. It is the basis of programming, and it is also the basis of
-									many other fields such as Artificial Intelligence, Computer Graphics, and Computer
-									Networks. </p>
+								<p><span class="drop-cap"></span>Data Structures and Algorithms are fundamental to
+									computer science. They form the basis of programming and are essential in fields
+									such as artificial intelligence, computer graphics, and networking.</p>
 								<a class="image fit"><img src="images/home/card31.jpg" alt="" /></a>
-								<p>In this repository, I will provide notes and books about Data Structure and
-									Algorithm. You can download the pdf file and study it.</p>
+								<p>This repository provides notes and books on Data Structures and Algorithms. Feel free
+									to download the PDFs for your studies.</p>
 								<a class="image fit"><img src="images/home/card32.png" alt="" /></a>
 							</div>
 						</div>
@@ -213,18 +216,17 @@
 									<h1 class="article-title">CPP</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									A repor for notes and books about C++.<br>you can download the pdf file and study
-									it.
+									A collection of notes and books on C++.<br>Download the PDF files to learn more.
 								</p>
 							</div>
 							<div class="book__content">
-								<p><span class="drop-cap"></span>C++ is a high-level programming language that is widely
-									used in various fields such as game development, system programming, and web
-									development. It is an object-oriented language that supports multiple programming
-									paradigms, including procedural, object-oriented, and functional programming. </p>
+								<p><span class="drop-cap"></span>C++ is a high-level programming language widely used in
+									game development, system programming, and web development. It supports multiple
+									programming paradigms, including procedural, object-oriented, and functional
+									programming.</p>
 								<a class="image fit"><img src="images/home/card41.png" alt="" /></a>
-								<p>In this repository, I will provide notes and books about C++ Language. You can
-									download the pdf file and study it.</p>
+								<p>This repository contains notes and books on C++. Download the PDFs to enhance your
+									understanding.</p>
 								<a class="image fit"><img src="images/home/card42.png" alt="" /></a>
 							</div>
 						</div>
@@ -250,15 +252,15 @@
 									<h1 class="article-title">CPU Design</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									a project for CPU design <br>include MIPS32 and LA32R <br>you can download the pdf
-									file and study it.
+									A CPU design project, including MIPS32 and LA32R implementations.<br>Download the
+									PDF files to learn more.
 								</p>
 							</div>
 							<div class="book__content">
-								<p><span class="drop-cap"></span>CPU design is a project for designing a CPU. It
-									includes MIPS32 and LA32R.</p>
+								<p><span class="drop-cap"></span>This project focuses on CPU design, featuring both
+									MIPS32 and LA32R architectures.</p>
 								<a class="image fit"><img src="images/home/card51.png" alt="" /></a>
-								<p> MIPS32 and LA32R are located in different subdirectories respectively</p>
+								<p>The MIPS32 and LA32R implementations are organized in separate subdirectories.</p>
 								<a class="image fit"><img src="images/home/card52.png" alt="" /></a>
 							</div>
 						</div>
@@ -284,17 +286,23 @@
 									<h1 class="article-title">Text_Query</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									This is a project for text query <br>you can full text query by the keyword <br>you
-									can download the pdf file and study it.
+									A project for full-text search by keyword.<br>Download the PDF files for more
+									details.
 								</p>
 							</div>
 							<div class="book__content">
-								<p><span class="drop-cap"></span>Text_query is a simply project for full text query. It
-									can search the keyword in the text and return the result.</p>
+								<p><span class="drop-cap"></span>Text_Query is a simple project for full-text search.
+									Enter a keyword to search through text files and get results instantly.</p>
 								<a class="image fit"><img src="images/home/card61.png" alt="" /></a>
-								<p>In the cmd window,you can choose the query or exit the program,check the history of
-									query, and clean the history.</p>
+								<p>In the command window, you can perform queries, exit the program, view query history,
+									or clear the history.</p>
 								<a class="image fit"><img src="images/home/card62.png" alt="" /></a>
+								<p>In the query window, enter the path to the text file and the keyword. You can use &,
+									|, and ~ for advanced search operations.</p>
+								<a class="image fit"><img src="images/home/card63.png" alt="" /></a>
+								<p>In the history window, view your past queries. Enter 0 to display the entire history.
+								</p>
+								<a class="image fit"><img src="images/home/card64.png" alt="" /></a>
 							</div>
 						</div>
 					</div>
@@ -320,18 +328,16 @@
 									<h1 class="article-title">Tetris</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									The first game I begin to finish<br>But now also have some bugs<br>you can install
-									it to find my bugs
+									My first completed game.<br>There are still some bugs—feel free to try it and
+									discover them!
 								</p>
 							</div>
 							<div class="book__content">
-								<p><span class="drop-cap"></span>Tetris is a simple game but have more popular in the
-									world. I try my best to finish the game but also have some bugs. You can install it
-									to find my bugs.</p>
-								</p>
+								<p><span class="drop-cap"></span>Tetris is a classic and popular game worldwide. I did
+									my best to complete this version, though some bugs remain. Try it out and see if you
+									can find them!</p>
 								<a class="image fit"><img src="images/home/card71.png" alt="" /></a>
-								<p> a end window of the game, you can see game over and the score.
-								</p>
+								<p>The game over screen displays your final score.</p>
 								<a class="image fit"><img src="images/home/card72.png" alt="" /></a>
 							</div>
 						</div>
@@ -357,28 +363,29 @@
 									<h1 class="article-title">Addressbook</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									This is a easy system of addressbook for learning.<br>you can download the pdf file
-									and study it.
+									A simple address book system for learning purposes.<br>Download the PDF files to
+									explore more.
 								</p>
 							</div>
 							<div class="book__content">
-								<p><span class="drop-cap"></span>AddressBook is a system for managing contacts. It can
-									store personal information such as name, phone number, email, and address. It can
-									also store notes and tags for each contact. </p>
+								<p><span class="drop-cap"></span>AddressBook is a contact management system. It stores
+									personal information such as name, phone number, email, and address, as well as
+									notes and tags for each contact.</p>
 								<a class="image fit"><img src="images/home/card81.png" alt="" /></a>
-								<p> firstly you can add a new contact about name ,sex , phone number, and address. </p>
+								<p>First, add a new contact with details such as name, gender, phone number, and
+									address.</p>
 								<a class="image fit"><img src="images/home/card82.png" alt="" /></a>
-								<p> And then you can show the all contacts in the addressbook. </p>
+								<p>Then, view all contacts in the address book.</p>
 								<a class="image fit"><img src="images/home/card83.png" alt="" /></a>
-								<p> delete the contact by search </p>
+								<p>Delete contacts by searching for them.</p>
 								<a class="image fit"><img src="images/home/card84.png" alt="" /></a>
-								<p> you can search the contact by name or phone number or address </p>
+								<p>Search for contacts by name, phone number, or address.</p>
 								<a class="image fit"><img src="images/home/card85.png" alt="" /></a>
-								<p> you can edit the information of the contact. </p>
+								<p>Edit contact information as needed.</p>
 								<a class="image fit"><img src="images/home/card86.png" alt="" /></a>
-								<p> clean the addressbook. </p>
+								<p>Clear all contacts from the address book.</p>
 								<a class="image fit"><img src="images/home/card87.png" alt="" /></a>
-								<p> in the end , you can exit the program. </p>
+								<p>Finally, you can exit the program.</p>
 								<a class="image fit"><img src="images/home/card88.png" alt="" /></a>
 							</div>
 						</div>
@@ -389,7 +396,105 @@
 					</ul>
 				</article>
 				<!--break-->
+				<article>
+					<header class="major">
+						<span>My Project🧑‍💻</span>
+						<h2><a href="https://github.com/jlu005807/the-reservation-of-computer-room.git">reservation</a>
+						</h2>
+					</header>
+					<div class="fullcard-wrapper">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card9.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">Reservation</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									A project for managing computer room reservations.<br>Download the files to learn
+									more.
+								</p>
+							</div>
+							<div class="book__content">
+								<p><span class="drop-cap"></span>This project simulates a computer room reservation
+									system for schools. There are three types of users: students, teachers, and
+									administrators. On the login page, select your identity and enter your password to
+									log in.</p>
+								<a class="image fit"><img src="images/home/card91.png" alt="" /></a>
+								<p>On the student page, log in with your student number and password to reserve a
+									computer room.</p>
+								<a class="image fit"><img src="images/home/card92.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card93.png" alt="" /></a>
+								<p>Students can also view and cancel their reservations.</p>
+								<a class="image fit"><img src="images/home/card94.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card95.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card96.png" alt="" /></a>
+								<p>On the teacher page, log in with your teacher number and password.</p>
+								<a class="image fit"><img src="images/home/card97.png" alt="" /></a>
+								<p>Teachers can view all reservations and verify them.</p>
+								<a class="image fit"><img src="images/home/card98.png" alt="" /></a>
+								<p>On the administrator page, log in with your administrator number and password to
+									manage the computer rooms.</p>
+								<a class="image fit"><img src="images/home/card99.png" alt="" /></a>
+								<p>Administrators can add, delete, and modify student and teacher accounts, as well as
+									manage reservations.</p>
+								<a class="image fit"><img src="images/home/card910.png" alt="" /></a>
+							</div>
+						</div>
+					</div>
+
+					<ul class="actions special">
+						<li><a href="https://github.com/jlu005807/the-reservation-of-computer-room.git"
+								class="button">✨Start Project✨</a></li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>My game🕹️</span>
+						<h2><a href="">GEWUQIYUJI</a></h2>
+					</header>
+					<div class="fullcard-wrapper">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card10.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">GEWUQIYUJI</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									A popular science game about ancient Chinese physics, focusing on using traditional
+									knowledge to solve practical problems.
+								</p>
+							</div>
+							<div class="book__content">
+								<p><span class="drop-cap"></span>This is a popular science game centered on ancient
+									Chinese physics, designed to solve practical problems using traditional knowledge.
+									Currently, it features only a dialogue system and lacks a complete interactive
+									gameplay system. However, you can still try it out by downloading and extracting
+									Game.zip. Here are some actual screenshots:</p>
+								<a class="image fit"><img src="images/home/card101.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card102.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card103.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card104.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card105.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card106.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card107.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card108.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card109.png" alt="" /></a>
+							</div>
+						</div>
+					</div>
+
+					<ul class="actions special">
+						<li><a href="" class="button">✨Start Game✨</a></li>
+					</ul>
+				</article>
+				<!--break-->
 			</section>
+
 
 			<!-- Footer -->
 			<footer>
@@ -435,7 +540,7 @@
 		<div id="copyright">
 			<ul>
 				<li>&copy; Ozy</li>
-				<li>Design: <a href="https://github.com/jlu005807">OZY</a></li>
+				<li>Design: <a href="#">OZY</a></li>
 			</ul>
 		</div>
 
@@ -443,172 +548,20 @@
 
 	<!-- Scripts -->
 	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script>
-		function updateDateTime() {
-			const dateElements = document.querySelectorAll('.current-date');
-			const options = {
-				year: 'numeric',
-				month: 'long',
-				day: 'numeric',
-				hour: '2-digit',
-				minute: '2-digit',
-				second: '2-digit',
-				hour12: false
-			};
+	<script src="assets/js/jquery.scrollex.min.js" defer></script>
+	<script src="assets/js/jquery.scrolly.min.js" defer></script>
+	<script src="assets/js/browser.min.js" defer></script>
+	<script src="assets/js/breakpoints.min.js" defer></script>
+	<script src="assets/js/util.js" defer></script>
+	<script src="assets/js/main.js" defer></script>
+	<script src="assets/js/datetime.js" defer></script>
+	<script src="assets/js/book-expand.js" defer></script>
+	<script src="assets/js/shuffle-articles.js" defer></script>
+	
 
-			dateElements.forEach(element => {
-				element.textContent = new Date().toLocaleDateString('en-US', options);
-			});
-		}
 
-		updateDateTime();
-		setInterval(updateDateTime, 1000);
-	</script>
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script>
-		"use strict";
 
-		$('.book').on('click', function () {
-			const $book = $(this);
-
-			if ($book.hasClass('book--expanded')) {
-				// 关闭时重置滚动位置
-				$book.scrollTop(0); // 🚨 新增这行
-				$book.removeClass('book--expanded');
-			} else {
-				$book.addClass('book--expanded');
-			}
-		});
-	</script>
-
-	<!-- 随机排序文章元素 -->
-	<script>
-		// 增强版UUID生成（带错误处理）
-		function getUserUUID() {
-			try {
-				let uuid = localStorage.getItem('userUUID');
-				if (!uuid) {
-					const cryptoObj = window.crypto || window.msCrypto;
-					uuid = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-						(c ^ cryptoObj.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-					);
-					localStorage.setItem('userUUID', uuid);
-				}
-				return uuid;
-			} catch (e) {
-				console.error('UUID生成失败:', e);
-				return `temp-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-			}
-		}
-
-		class SeededRandom {
-			constructor(seedStr) {
-				let hash = 0;
-				for (let i = 0; i < seedStr.length; i++) {
-					hash = (Math.imul(31, hash) + seedStr.charCodeAt(i)) >>> 0;
-				}
-				this.seed = hash % 2147483647;
-				if (this.seed <= 0) this.seed += 2147483646;
-			}
-
-			next() {
-				this.seed = Math.imul(16807, this.seed) % 2147483647;
-				return (this.seed - 1) / 2147483646;
-			}
-		}
-
-		function getDailySeed() {
-			const today = new Date();
-			const datePart = [
-				today.getFullYear(),
-				(today.getMonth() + 1).toString().padStart(2, '0'),
-				today.getDate().toString().padStart(2, '0')
-			].join('');
-			return `${datePart}_${getUserUUID()}`;
-		}
-
-		// 修改点1：增加数组有效性验证
-		function seededShuffle(array, seedStr) {
-			try {
-				const rng = new SeededRandom(seedStr);
-				const arr = [...array]; // 创建副本避免修改原始数组
-				let currentIndex = arr.length;
-
-				while (currentIndex > 0) {
-					currentIndex--;
-					const randomIndex = Math.floor(rng.next() * (currentIndex + 1));
-					// 修改点2：添加元素存在性检查
-					if (arr[currentIndex] && arr[randomIndex]) {
-						[arr[currentIndex], arr[randomIndex]] =
-							[arr[randomIndex], arr[currentIndex]];
-					}
-				}
-
-				// 修改点3：过滤无效元素
-				return arr.filter(el => el instanceof HTMLElement);
-			} catch (e) {
-				console.error('洗牌失败:', e);
-				return array;
-			}
-		}
-
-		// 修改点4：使用replaceChildren替代append
-		function shuffleArticles() {
-			const container = document.querySelector('section.posts');
-			if (!container || !container.children.length) return;
-
-			try {
-				const seed = getDailySeed();
-				const articles = Array.from(container.children);
-
-				// 添加调试日志
-				console.log('原始元素:', articles);
-				const shuffled = seededShuffle(articles, seed);
-				console.log('洗牌后元素:', shuffled);
-
-				// 批量替换元素
-				container.replaceChildren(...shuffled);
-			} catch (e) {
-				console.error('文章排序失败:', e);
-			}
-		}
-
-		function init() {
-			const readyHandler = () => {
-				if (document.querySelector('section.posts')) {
-					// 修改点5：添加延迟确保动态内容加载
-					setTimeout(shuffleArticles, 100);
-				}
-			};
-
-			if (document.readyState !== 'loading') {
-				readyHandler();
-			} else {
-				document.addEventListener('DOMContentLoaded', readyHandler);
-			}
-
-			const now = new Date();
-			const nextMidnight = new Date(now);
-			nextMidnight.setDate(now.getDate() + 1);
-			nextMidnight.setHours(0, 0, 0, 0);
-
-			setTimeout(() => {
-				try {
-					window.location.reload();
-				} catch (e) {
-					console.error('自动刷新失败:', e);
-				}
-			}, nextMidnight - now);
-		}
-
-		init();
-	</script>
+	
 
 </body>
 
