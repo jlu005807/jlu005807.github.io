@@ -68,6 +68,7 @@
       const articles = Array.from(container.children);
       const shuffled = seededShuffle(articles, seed);
       container.replaceChildren(...shuffled);
+      console.log('shuffleArticles: articles shuffled successfully');
     } catch (e) {
       console.error('文章排序失败:', e);
     }
