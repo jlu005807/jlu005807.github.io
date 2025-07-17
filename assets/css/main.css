@@ -4738,12 +4738,11 @@ input, select, textarea {
 }
 #parallax_bg {
     position: absolute;
-	background-size: 100% auto, auto, contains;
-    width: 150%;
-    height: 150%;
-    left: -25%;
-    top: -25%;
-    background: url('../../images/home/long-bg.png') center/contain no-repeat !important;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: url('../../images/home/long-bg.png') center/cover no-repeat !important;
     transform-style: preserve-3d;
     will-change: transform;
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -4787,3 +4786,4 @@ input, select, textarea {
     top: 0;
   }
 }
+
