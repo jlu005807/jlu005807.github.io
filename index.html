@@ -21,6 +21,7 @@
 		<link rel="stylesheet" href="assets/css/fullcard.css">
 	</noscript>
 </head>
+<a id="top"></a>
 
 <body class="is-preload" style="opacity:0;">
 
@@ -52,6 +53,7 @@
 				<li class="active"><a href="index.html">Home</a></li>
 				<li><a href="introduction.html">Introduction</a></li>
 				<li><a href="other.html">Other</a></li>
+				<li><a href="message.html">Message Board</a></li>
 			</ul>
 			<ul class="icons">
 				<li><a href="https://github.com/jlu005807" class="icon brands fa-github"><span
@@ -70,10 +72,18 @@
 				</header>
 				<a class="image main "><img src="images/home/1.jpg" alt="" /></a>
 				<ul class="actions special">
-					<li><a href="#about" class="button large">✨Start My Story✨</a></li>
+					<li><a href="#article-search" class="button large">✨Start My Story✨</a></li>
 				</ul>
 			</article>
-			<a name="about"></a>
+
+			
+			<div class="search-bar-wrapper">
+				<span class="search-icon">&#128269;</span>
+				<input type="text" id="article-search" placeholder="Search article title..." autocomplete="off">
+				<span class="clear-btn" id="clear-search" title="Clear">&#10006;</span>
+			</div>
+			
+
 			<!-- Posts -->
 			<section class="posts">
 				<!--break-->
@@ -93,7 +103,7 @@
 								</div>
 								<p class="book__cover-exerpt">
 									Play with friends or challenge the computer.<br>Install
-									from:<br>/Tictactoe_Setup/Release/Tictactoe_Setup.msi
+									from:<br>/Tictactoe_Setup/<br>Release/Tictactoe_Setup.msi
 								</p>
 							</div>
 							<div class="book__content">
@@ -190,7 +200,7 @@
 								</div>
 								<p class="book__cover-exerpt">
 									A collection of notes and books on Data Structures and Algorithms.<br>You can
-									download the PDF files for study.
+									download the files for study.
 								</p>
 							</div>
 							<div class="book__content">
@@ -234,7 +244,7 @@
 									<h1 class="article-title">CPP</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									A collection of notes and books on C++.<br>Download the PDF files to learn more.
+									A collection of notes and books on C++.<br>Download the files to learn more.
 								</p>
 							</div>
 							<div class="book__content">
@@ -278,13 +288,16 @@
 								</div>
 								<p class="book__cover-exerpt">
 									A CPU design project, including MIPS32 and LA32R implementations.<br>Download the
-									PDF files to learn more.
+									 files to learn more.
 								</p>
 							</div>
 							<div class="book__content">
 								<h3>🖥️ Project Introduction</h3>
 								<p><span class="drop-cap"></span>This project focuses on CPU design, featuring both
 									MIPS32 and LA32R architectures.</p>
+								<p><strong>Note:</strong> The MIPS32 and LA32R implementations have only passed their respective Lab1. 
+									The design includes BTB (Branch Target Buffer) and BHT (Branch History Table) for branch prediction, 
+									and uses bypass forwarding to resolve data hazards.</p>
 								<h3>🔑 Key Features</h3>
 								<ul>
 									<li>📊 <strong>Architecture comparison:</strong> MIPS32 and LA32R implementations.</li>
@@ -320,7 +333,7 @@
 									<h1 class="article-title">Text_Query</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									A project for full-text search by keyword.<br>Download the PDF files for more
+									A project for full-text search by keyword.<br>Download the files for more
 									details.
 								</p>
 							</div>
@@ -412,7 +425,7 @@
 									<h1 class="article-title">Addressbook</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									A simple address book system for learning purposes.<br>Download the PDF files to
+									A simple address book system for learning purposes.<br>Download the files to
 									explore more.
 								</p>
 							</div>
@@ -677,10 +690,10 @@
 									<div class="overlay"></div>
 								</div>
 								<div class="title-wrap">
-									<h1 class="article-title">Operating System</h1>
+									<h1 class="article-title">OS</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									A collection of notes and experiments on Operating Systems.<br>Topics include process management, memory, file systems, and more.
+									A collection of notes and labs on Operating Systems.<br>Topics include process management, memory, file systems, and more.
 								</p>
 							</div>
 							<div class="book__content">
@@ -717,10 +730,12 @@
 
 		</div>
 
+		<div class="transparent-area medium"></div>
+
 		<!-- Footer -->
 		<footer id="footer">
 			<section>
-				<a href="#" class="image fit"><img src="images/home/2.jpg" alt="" /></a>
+				<a href="#top" class="image fit"><img src="images/home/2.jpg" alt="" /></a>
 			</section>
 			<section class="split contact">
 				<section class="alt">

@@ -440,25 +440,190 @@
 	})();
 
 	
- // 页面加载时淡入
+ // 页面加载时淡入淡出过渡动画
  try {
+	// 初始化时设置透明度为0
 	document.body.style.opacity = 0;
+	// 只添加透明度过渡效果，不影响位置和变换
+	document.body.style.transition = 'opacity 400ms ease-in-out';
+	
+	// 页面加载完成后淡入
 	window.addEventListener('DOMContentLoaded', function() {
-	  document.body.style.opacity = 1;
+	  // 短暂延迟确保过渡效果生效
+	  setTimeout(function() {
+		document.body.style.opacity = 1;
+	  }, 50);
 	});
+	
 	// 所有内部链接点击时淡出再跳转
 	document.querySelectorAll('a').forEach(function(link) {
+	  // 只处理同域名且没有target属性的链接
 	  if (link.hostname === window.location.hostname && !link.hasAttribute('target')) {
 		link.addEventListener('click', function(e) {
+		  // 不处理锚点链接和javascript链接
 		  if (link.getAttribute('href').startsWith('#') || link.getAttribute('href').startsWith('javascript:')) return;
 		  e.preventDefault();
+		  // 只添加淡出效果，不改变位置
 		  document.body.style.opacity = 0;
+		  // 等待动画完成后跳转
 		  setTimeout(function() {
+			// 记录当前滚动位置到会话存储，以便返回时恢复
+			sessionStorage.setItem('lastScrollPosition', window.pageYOffset);
 			window.location = link.href;
-		  }, 300);
+		  }, 380); // 稍微延长时间，让过渡更完整
 		});
 	  }
 	});
-  } catch (e) { /* ignore */ }
+	
+	// 如果是从内部页面返回，检查是否需要恢复滚动位置
+	if(sessionStorage.getItem('lastScrollPosition')) {
+	  window.addEventListener('load', function() {
+		// 等待一会儿再恢复，确保页面已完全加载
+		setTimeout(function() {
+		  // 恢复上次保存的滚动位置
+		  window.scrollTo(0, sessionStorage.getItem('lastScrollPosition'));
+		  // 使用后删除，避免影响后续访问
+		  sessionStorage.removeItem('lastScrollPosition');
+		}, 100);
+	  });
+	}
+  } catch (e) { console.log('页面过渡动画出错:', e); /* 保留错误信息便于调试 */ }
   
 })(jQuery);
+
+
+
+// ====== 平滑滚动与锚点跳转相关功能 ======
+
+// 1. “Start My Story”按钮：点击后让搜索框居中并自动聚焦
+// ------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.querySelector('a.button.large[href="#article-search"]');
+  var search = document.getElementById('article-search');
+  if (btn && search) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      // 计算目标位置，使搜索框在视口垂直居中
+      var rect = search.getBoundingClientRect();
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var target = rect.top + scrollTop - (window.innerHeight / 2) + (rect.height / 2);
+      window.scrollTo({
+        top: target,
+        behavior: 'smooth'
+      });
+      // 自动聚焦输入框
+      setTimeout(function() {
+        search.focus();
+      }, 500);
+    });
+  }
+});
+
+// 2. 首页顶部图片：点击后平滑滚动到页面顶部
+// ------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', function() {
+  var imgLink = document.querySelector('section > a.image.fit');
+  if (imgLink) {
+    imgLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+});
+
+// 3. 通用曲线锚点平滑滚动（支持中断）
+// ------------------------------------------------------------
+// 缓动函数（easeInOutCubic）
+function easeInOutCubic(t) {
+  return t < 0.5
+    ? 4 * t * t * t
+    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+// 动画滚动到目标位置（支持自定义时长，用户滚轮时进入惯性滚动阶段）
+function smoothScrollTo(targetY, duration = 800) {
+  const startY = window.pageYOffset || document.documentElement.scrollTop;
+  const diff = targetY - startY;
+  const startTime = performance.now();
+  let interrupted = false;
+  let inertia = false;
+  let inertiaStart = 0;
+  let inertiaDuration = 800; // 惯性滚动时长（ms），可根据需要调整
+  let inertiaStartY = 0;
+  let inertiaVelocity = 0;
+
+  // 滚轮中断机制，进入惯性滚动阶段
+  function onWheel(e) {
+    if (!interrupted) {
+      interrupted = true;
+      inertia = true;
+      inertiaStart = performance.now();
+      inertiaStartY = window.pageYOffset || document.documentElement.scrollTop;
+      // 估算惯性速度（正负号代表方向，数值可调节惯性感）
+      inertiaVelocity = e.deltaY * 1.5; // 1.5 可调节惯性强度
+      window.removeEventListener('wheel', onWheel, { passive: true });
+    }
+  }
+  window.addEventListener('wheel', onWheel, { passive: true });
+
+  function step(now) {
+    if (!interrupted) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+      window.scrollTo(0, startY + diff * ease);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        window.removeEventListener('wheel', onWheel, { passive: true });
+      }
+    } else if (inertia) {
+      // 惯性滚动阶段
+      const elapsed = now - inertiaStart;
+      const progress = Math.min(elapsed / inertiaDuration, 1);
+      // easeOutCubic 让惯性更自然
+      const ease = 1 - Math.pow(1 - progress, 3);
+      // 计算惯性滚动距离
+      const inertiaDistance = inertiaVelocity * (1 - ease);
+      window.scrollTo(0, inertiaStartY + inertiaVelocity - inertiaDistance);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+// 4. 所有锚点跳转：自定义曲线平滑滚动，index页面更慢，其它页面适中
+// ------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', function() {
+  // 只在本地页面（非外链）应用自定义曲线滚动
+  var localPages = ['index.html', 'introduction.html', 'other.html', 'message.html'];
+  var isLocal = localPages.some(function(name) {
+    return window.location.pathname.endsWith(name);
+  });
+  if (!isLocal) return;
+
+  document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(function(anchor) {
+    // 排除 .actions 区块下的 a（如Continue按钮等，保留原有平滑机制）
+    if (anchor.closest('.actions')) return;
+    anchor.addEventListener('click', function(e) {
+      var targetId = this.getAttribute('href').slice(1);
+      var target = document.getElementById(targetId) || document.querySelector('[name="' + targetId + '"]');
+      if (target) {
+        e.preventDefault();
+        var rect = target.getBoundingClientRect();
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var top = rect.top + scrollTop;
+        var distance = Math.abs(top - scrollTop);
+        // 所有页面统一速度：每1000px用1200ms，最短800ms，最长3000ms
+        var duration = Math.min(3000, Math.max(800, distance / 1000 * 1200));
+        smoothScrollTo(top, duration);
+      }
+    });
+  });
+});
+// ====== 平滑滚动与锚点跳转相关功能 END ======

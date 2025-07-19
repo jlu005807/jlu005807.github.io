@@ -96,5 +96,39 @@
       }
     }, nextMidnight - now);
   }
+  function initSearch() {
+    const searchInput = document.getElementById('article-search');
+    const clearBtn = document.getElementById('clear-search');
+    if (!searchInput) return;
+    searchInput.addEventListener('input', function() {
+      const keyword = this.value.trim().toLowerCase();
+      const container = document.querySelector('section.posts');
+      if (!container) return;
+      Array.from(container.children).forEach(card => {
+        const h2 = card.querySelector('.major h2');
+        if (!h2) {
+          card.style.display = '';
+          return;
+        }
+        const text = h2.textContent.trim().toLowerCase();
+        if (keyword === '' || text.includes(keyword)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      // 控制清除按钮显示
+      if (clearBtn) clearBtn.style.display = keyword ? 'inline' : 'none';
+    });
+    // 清除按钮功能
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input'));
+        searchInput.focus();
+      });
+    }
+  }
   initShuffle();
+  initSearch();
 })(); 

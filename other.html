@@ -13,7 +13,8 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload" style="opacity:0;">
-
+		<a id="top"></a>
+		
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -28,6 +29,7 @@
 							<li><a href="index.html">Home</a></li>
 							<li><a href="introduction.html">Introduction</a></li>
 							<li class="active"><a href="other.html">Other</a></li>
+							<li><a href="message.html">Message Board</a></li>
 						</ul>
 						<ul class="icons">
 							<li><a href="https://github.com/jlu005807" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
@@ -87,12 +89,7 @@
 												<li>💰 <strong>Become rich</strong></li>
 											</ol>	
 										</div>
-										<div>
-											<h3>🔗 Social</h3>
-											<ul class="icons alt center">
-												<li><a href="https://github.com/jlu005807" class="icon brands alt fa-github"><span class="label">Github</span></a></li>
-												</ul>
-										</div>
+										
 									</div>
 
 									<hr />
@@ -437,7 +434,6 @@
 								<!-- Preformatted Code -->
 									<h2>🎉 End!</h2>
 									<a><h3>🙏 Thank you for your attention!</h3></a>
-									<p>Here is a little C++ code:</p>
 									<pre><code>
 int main() {
 	std::string name;
@@ -453,18 +449,19 @@ int main() {
 					<footer>
 						<section class="pagination">	
 							<a href="./introduction.html" class="next">Back🔗</a>
+						</section>
 							<section class="pagination">
-								<a href="./index.html" class="next">Home🔗</a>
-							</section>
+								<a href="./message.html" class="next">Next🔗</a>
 						</section>
 					</footer>
-
 					</div>
+
+					<div class="transparent-area medium"></div>
 
 				<!-- Footer -->
 					<footer id="footer">
 						<section>
-							<a href="other.html" class="image fit"><img src="images/other/5.png" alt="" /></a>
+							<a href="#top" class="image fit"><img src="images/other/5.png" alt="" /></a>
 						</section>
 						<section class="split contact">
 							<section class="alt">
@@ -504,6 +501,7 @@ int main() {
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
+				console.log('smooth-scroll loaded');
 				function updateDateTime() {
 				  const dateElements = document.querySelectorAll('.current-date');
 				  const options = { 

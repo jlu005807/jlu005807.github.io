@@ -29,6 +29,21 @@ body:has(.book--expanded) {
   overscroll-behavior: contain;
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+  
+  /* 隐藏滚动条但保持滚动功能 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* 当书籍展开时隐藏footer和copyright区域，防止覆盖 */
+body:has(.book--expanded) #footer,
+body:has(.book--expanded) #copyright {
+  display: none !important;
+}
+
+/* 隐藏 body 的 WebKit 滚动条 */
+body:has(.book--expanded)::-webkit-scrollbar {
+  display: none;
 }
 
 
@@ -79,13 +94,15 @@ body:has(.book--expanded) {
 }
 
 .fullcard-wrapper {
-  height: 75vh;  /* 调整为视口高度的80%，缩小显示区域 */
+  height: auto;
+  min-height: 60px;
+  padding: 1.5em 2em;
+  background: transparent !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem; /* 减少上下边距，并保持左右内边距 */
-  max-width: 90vw;  /* 限制最大宽度，防止卡片太宽 */
-  margin: 0 auto;  
+  max-width: 90vw;
+  margin: 1.5em 0;
 }
 
 
@@ -117,6 +134,10 @@ body:has(.book--expanded) {
   max-width: 750px;
   margin: 0 auto 6rem;
   padding: 0 2rem;
+}
+
+.book--expanded .book__content {
+  padding-bottom: 4rem; /* 确保展开时内容底部有足够的间距 */
 }
 .book__content p {
   line-height: 1.8;
@@ -150,8 +171,9 @@ body:has(.book--expanded) {
   left: 0;  /* 左侧对齐 */
   width: 100vw;  /* 100% 视口宽度 */
   height: 100vh;  /* 100% 视口高度 */
-  z-index: 999;  /* 置于最上层 */
+  z-index: 10000;  /* 提高z-index确保在footer之上 */
   overflow-y: auto; /* 允许滚动 */
+  overflow-x: hidden; /* 隐藏水平滚动条 */
   padding: 2rem; /* 添加内边距 */
   background: white; /* 背景填充 */
   transition: all 0.5s ease-in-out;
@@ -159,6 +181,15 @@ body:has(.book--expanded) {
   transition: 
   transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
   opacity 0.3s ease;
+  
+  /* 隐藏滚动条但保持滚动功能 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* 隐藏 WebKit 浏览器（Chrome, Safari）的滚动条 */
+.book--expanded::-webkit-scrollbar {
+  display: none;
 }
 .book--expanded .overlay {
   opacity: 0.95;
