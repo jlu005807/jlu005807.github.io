@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Message Board</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<!-- 优化移动设备适配性 -->
+		<meta name="theme-color" content="#f8f8f8" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="description" content="Leave your message, share your thoughts or suggestions on Ozy's message board." />
+	</head>
+    
+	<body class="is-preload" style="opacity:0;">
+<a id="top"></a>
+        
+		<div id="wrapper">
+			<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="logo">Ozy</a>
+			</header>
+			<!-- Nav -->
+			<nav id="nav">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="introduction.html">Introduction</a></li>
+					<li><a href="other.html">Other</a></li>
+					<li class="active"><a href="message.html">Message Board</a></li>
+				</ul>
+				<ul class="icons">
+					<li><a href="https://github.com/jlu005807" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+				</ul>
+			</nav>
+            
+			<!-- Main -->
+			<div id="main">
+				<section class="post">
+					<header class="major">
+						<h1>📝Message</h1>
+						<span class="date current-date"></span>
+					</header>
+					<p>👋Welcome to leave your message, share your thoughts or suggestions!</p>
+					
+					<!-- 添加名人名言 -->
+					<blockquote>
+						<p><em>"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science."</em></p>
+						<footer>— Albert Einstein</footer>
+					</blockquote>
+					
+                    <hr />
+                    <div class="box" style="background:#f8f8f8; border-left:4px solid #f39c12; margin-bottom:1.5em;">
+                        <h3 style="margin-top:0;">Notice</h3>
+                        <ul style="margin-bottom:0;">
+                            <li>😊 Please be respectful and friendly.</li>
+                            <li>🚫 No spam or advertisements.</li>
+                            <li>🌍 Comments are public and visible to everyone.</li>
+                            <li>🐞 For technical issues, please use <a href="https://github.com/jlu005807/jlu005807.github.io/issues" target="_blank">GitHub Issues</a>.</li>
+                        </ul>
+                    </div>
+                    <h2>💬 Comments </h2>
+                    
+                    <!-- 评论系统优化提示 -->
+                    <div id="comment-loading" style="text-align:center; padding:20px;">
+                        <p>Loading comments...</p>
+                        <div class="spinner" style="width:40px; height:40px; margin:10px auto; border:4px solid rgba(0,0,0,0.1); border-left-color:#f39c12; border-radius:50%; animation:spin 1s linear infinite;"></div>
+                    </div>
+                    
+                    <div class="giscus"></div>
+				</section>
+                
+                <footer>
+                    <section class="pagination">	
+                        <a href="./other.html" class="next">Back🔗</a>
+                    </section>
+                    <section class="pagination">
+                            <a href="./index.html" class="next">Home🔗</a>     
+                    </section>
+                </footer>
+			</div>
+			<div class="transparent-area medium"></div>
+
+            
+
+			<!-- Footer -->
+			<footer id="footer">
+				<section>
+					<a href="#top" class="image fit"><img src="images/message/1.jpg" alt="" /></a>
+				</section>
+				<section class="split contact">
+					<section class="alt">
+						<h3>Address</h3>
+						<p><a href="https://www.google.com/maps/place/Beijing+China/@39.904691,116.407173,11z/data=!3m1!4b1!4m5!3m4!1s0x35b0d031f6e01f2d:0x5e3a2a7c6c4c7f86!8m2!3d39.904214!4d116.407971">China🚩</a></p>
+					</section>
+					<section>
+						<h3>QQ</h3>
+						<p><a>1289406660</a></p>
+					</section>
+					<section>
+						<h3>Email</h3>
+						<p><a>1289406660@qq.com</a></p>
+					</section>
+					<section>
+						<h3>Social</h3>
+						<ul class="icons alt">
+							<li><a href="https://github.com/jlu005807" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</section>
+				</section>
+			</footer>
+			<div id="copyright">
+				<ul><li>&copy; Ozy</li><li>Design: <a href="index.html">Ozy</a></li></ul>
+			</div>
+		</div>
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
+		// Date display
+		function updateDateTime() {
+		  const dateElements = document.querySelectorAll('.current-date');
+		  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+		  dateElements.forEach(element => {
+			element.textContent = new Date().toLocaleDateString('en-US', options);
+		  });
+		}
+		updateDateTime();
+		setInterval(updateDateTime, 1000);
+		</script>
+		<script src="https://giscus.app/client.js"
+			data-repo="jlu005807/jlu005807.github.io"
+			data-repo-id="R_kgDOOPXtSA"
+			data-category="Announcements"
+			data-category-id="DIC_kwDOOPXtSM4CtKxy"
+			data-mapping="pathname"
+			data-strict="0"
+			data-reactions-enabled="1"
+			data-emit-metadata="0"
+			data-input-position="top"
+			data-theme="preferred_color_scheme" 
+			data-lang="en"
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async>
+		</script>
+		
+		<!-- 优化评论系统加载 -->
+		<script>
+		// 日期显示功能
+		function updateDateTime() {
+		  const dateElements = document.querySelectorAll('.current-date');
+		  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+		  dateElements.forEach(element => {
+			element.textContent = new Date().toLocaleDateString('en-US', options);
+		  });
+		}
+		updateDateTime();
+		setInterval(updateDateTime, 60000); // 每分钟更新一次，减少资源消耗
+		
+		// 评论加载优化
+		document.addEventListener('DOMContentLoaded', function() {
+			// 监听评论系统加载
+			const giscusContainer = document.querySelector('.giscus');
+			const loadingIndicator = document.getElementById('comment-loading');
+			
+			// 创建一个观察器来监听 giscus 容器内的变化
+			const observer = new MutationObserver(function(mutations) {
+				// 检查是否有iframe被添加（表示评论已加载）
+				if (giscusContainer.querySelector('iframe')) {
+					// 隐藏加载指示器
+					if (loadingIndicator) {
+						loadingIndicator.style.display = 'none';
+					}
+					// 停止观察
+					observer.disconnect();
+				}
+			});
+			
+			// 开始观察目标节点变化
+			observer.observe(giscusContainer, { childList: true, subtree: true });
+			
+			// 30秒后无论如何都隐藏加载指示器（防止加载失败时一直显示）
+			setTimeout(function() {
+				if (loadingIndicator) {
+					loadingIndicator.style.display = 'none';
+				}
+			}, 30000);
+		});
+		</script>
+		
+		<style>
+		/* 添加动画样式 */
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+		
+		/* 优化引用块样式 */
+		blockquote {
+			border-left: 4px solid rgba(243, 156, 18, 0.5);
+			padding: 1em 1.5em;
+			margin: 1.5em 0;
+			background: rgba(248, 248, 248, 0.7);
+			border-radius: 3px;
+			font-style: italic;
+			position: relative;
+		}
+		
+		blockquote:before {
+			content: '"';
+			font-size: 4em;
+			position: absolute;
+			left: 10px;
+			top: -10px;
+			color: rgba(243, 156, 18, 0.2);
+			font-family: serif;
+		}
+		
+		blockquote footer {
+			text-align: right;
+			margin-top: 0.5em;
+			font-weight: 600;
+			color: #555;
+		}
+		
+		/* 优化移动设备适配性 */
+		@media screen and (max-width: 480px) {
+			.box {
+				padding: 1em !important;
+			}
+			
+			blockquote {
+				padding: 1em 1em 1em 1.5em;
+				margin: 1em 0;
+			}
+			
+			blockquote:before {
+				font-size: 3em;
+				left: 5px;
+				top: -5px;
+			}
+		}
+		</style>
+	</body>
+</html> 
