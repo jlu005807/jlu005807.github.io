@@ -5,6 +5,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/expanding-cards.css" />
+		<link rel="stylesheet" href="assets/css/message-comments.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<!-- 优化移动设备适配性 -->
 		<meta name="theme-color" content="#f8f8f8" />
@@ -40,19 +42,41 @@
 						<h1>📝Message</h1>
 						<span class="date current-date"></span>
 					</header>
-					<p>👋Welcome to leave your message, share your thoughts or suggestions!</p>
 					
-					<!-- 添加名人名言 - 两行显示 -->
-					<blockquote>
-						<p><em><span id="typewriter-text" data-text="The most beautiful thing we can experience is the mysterious."></span></em></p>
-						<p><em><span id="typewriter-text-2" data-text="It is the source of all true art and science."></span></em></p>
-						<footer id="typewriter-author" style="opacity: 0;">— Albert Einstein</footer>
-					</blockquote>
-					
-                    <hr />
-                    <div class="box" style="background:#f8f8f8; border-left:4px solid #f39c12; margin-bottom:1.5em;">
+					<!-- Expanding Cards Gallery -->
+					<div class="expanding-cards-wrapper" style="position: relative; margin-bottom: 15em; height: auto; min-height: 300px;">
+						<div class="expanding-cards-container">
+							<div class="panel" style="background-image: url('./images/message/card1.png')">
+								<blockquote>"Success is not final, failure is not fatal: it is the courage to continue that counts."</blockquote>
+								<cite>— Winston Churchill</cite>
+							</div>
+							<div class="panel" style="background-image: url('./images/message/card2.png')">
+								<blockquote>"First, solve the problem. Then, write the code."</blockquote>
+								<cite>— John Johnson</cite>
+							</div>
+							<div class="panel" style="background-image: url('./images/message/card3.png')">
+								<blockquote>"Design is not just what it looks like. Design is how it works."</blockquote>
+								<cite>— Steve Jobs</cite>
+							</div>    
+							<div class="panel" style="background-image: url('./images/message/card4.png')">
+								<blockquote>"Innovation distinguishes between a leader and a follower."</blockquote>
+								<cite>— Steve Jobs</cite>
+							</div>
+							<div class="panel" style="background-image: url('./images/message/card5.png')">
+								<blockquote>"The best way to predict the future is to create it."</blockquote>
+								<cite>— Peter Drucker</cite>
+							</div>
+							<div class="panel" style="background-image: url('./images/message/card6.png')">
+								<blockquote>"Life is what happens to you while you're busy making other plans."</blockquote>
+								<cite>— John Lennon</cite>
+							</div>
+						</div>
+					</div>
+					                    
+                    <div class="box notice-box" style="background:#f8f8f8; border-left:4px solid #f39c12; margin-bottom:1.5em; position:relative; z-index:10; margin-top: 3em; clear: both;">
                         <h3 style="margin-top:0;">Notice</h3>
                         <ul style="margin-bottom:0;">
+							<li>👋Welcome to leave your message, share your thoughts or suggestions!</li>
                             <li>😊 Please be respectful and friendly.</li>
                             <li>🚫 No spam or advertisements.</li>
                             <li>🌍 Comments are public and visible to everyone.</li>
@@ -124,68 +148,9 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-		<script>
-		// Date display
-		function updateDateTime() {
-		  const dateElements = document.querySelectorAll('.current-date');
-		  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-		  dateElements.forEach(element => {
-			element.textContent = new Date().toLocaleDateString('en-US', options);
-		  });
-		}
-		updateDateTime();
-		setInterval(updateDateTime, 1000);
-
-		// 打字效果函数
-		function typeWriter(element, text, speed = 80) {
-			return new Promise((resolve) => {
-				let i = 0;
-				element.innerHTML = '';
-				
-				function type() {
-					if (i < text.length) {
-						element.innerHTML += text.charAt(i);
-						i++;
-						// 添加随机延迟让打字更自然
-						const randomDelay = speed + Math.random() * 40;
-						setTimeout(type, randomDelay);
-					} else {
-						// 打字完成，移除光标
-						element.classList.add('typing-complete');
-						resolve();
-					}
-				}
-				type();
-			});
-		}
-
-		// 页面加载完成后启动打字效果
-		document.addEventListener('DOMContentLoaded', async function() {
-			// 延迟1秒后开始打字效果
-			setTimeout(async function() {
-				const typewriterElement = document.getElementById('typewriter-text');
-				const typewriterElement2 = document.getElementById('typewriter-text-2');
-				const authorElement = document.getElementById('typewriter-author');
-				
-				if (typewriterElement && typewriterElement2) {
-					const text1 = typewriterElement.dataset.text;
-					const text2 = typewriterElement2.dataset.text;
-					
-					// 开始第一行打字效果
-					await typeWriter(typewriterElement, text1, 60);
-					
-					// 第一行完成后开始第二行
-					await typeWriter(typewriterElement2, text2, 60);
-					
-					// 两行都完成后显示作者名
-					setTimeout(() => {
-						authorElement.style.transition = 'opacity 1.5s ease-in';
-						authorElement.style.opacity = '1';
-					}, 800);
-				}
-			}, 1500);
-		});
-		</script>
+		<script src="assets/js/datetime.js"></script>
+		<script src="assets/js/expanding-cards.js"></script>
+		<script src="assets/js/comment-loader.js"></script>
 		<script src="https://giscus.app/client.js"
 			data-repo="jlu005807/jlu005807.github.io"
 			data-repo-id="R_kgDOOPXtSA"
@@ -202,300 +167,5 @@
 			crossorigin="anonymous"
 			async>
 		</script>
-		
-		<!-- 优化评论系统加载 -->
-		<script>
-		// 日期显示功能
-		function updateDateTime() {
-		  const dateElements = document.querySelectorAll('.current-date');
-		  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-		  dateElements.forEach(element => {
-			element.textContent = new Date().toLocaleDateString('en-US', options);
-		  });
-		}
-		updateDateTime();
-		setInterval(updateDateTime, 60000); // 每分钟更新一次，减少资源消耗
-		
-		// 评论加载优化
-		document.addEventListener('DOMContentLoaded', function() {
-			// 监听评论系统加载
-			const giscusContainer = document.querySelector('.giscus');
-			const loadingIndicator = document.getElementById('comment-loading');
-			
-			// 创建一个观察器来监听 giscus 容器内的变化
-			const observer = new MutationObserver(function(mutations) {
-				// 检查是否有iframe被添加（表示评论已加载）
-				if (giscusContainer.querySelector('iframe')) {
-					// 隐藏加载指示器
-					if (loadingIndicator) {
-						loadingIndicator.style.display = 'none';
-					}
-					
-					// 确保iframe宽度正确，且边界框完全显示
-					const iframe = giscusContainer.querySelector('iframe');
-					if (iframe) {
-						iframe.style.width = '100%';
-						iframe.style.maxWidth = '100%';
-						iframe.style.boxSizing = 'border-box';
-						iframe.style.overflow = 'hidden';
-						
-						// 监听iframe内容加载完成
-						iframe.addEventListener('load', function() {
-							// 添加额外的监听以处理评论系统可能的动态大小变化
-							setTimeout(function() {
-								// 确保iframe宽度适当
-								iframe.style.width = '100%';
-								iframe.style.maxWidth = '100%';
-								
-								// 尝试修复iframe内容中可能的样式问题
-								try {
-									const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-									if (iframeDoc) {
-										// 为iframe内的主容器添加样式
-										const mainContainer = iframeDoc.querySelector('.gsc-main');
-										if (mainContainer) {
-											mainContainer.style.width = '98%';
-											mainContainer.style.maxWidth = '98%';
-											mainContainer.style.boxSizing = 'border-box';
-										}
-									}
-								} catch(e) {
-									// 跨域问题，忽略错误
-								}
-							}, 1000);
-						});
-					}
-					
-					// 停止观察
-					observer.disconnect();
-				}
-			});
-			
-			// 开始观察目标节点变化
-			observer.observe(giscusContainer, { childList: true, subtree: true });
-			
-			// 30秒后无论如何都隐藏加载指示器（防止加载失败时一直显示）
-			setTimeout(function() {
-				if (loadingIndicator) {
-					loadingIndicator.style.display = 'none';
-				}
-			}, 30000);
-		});
-		</script>
-		
-		<style>
-		/* 添加动画样式 */
-		@keyframes spin {
-			0% { transform: rotate(0deg); }
-			100% { transform: rotate(360deg); }
-		}
-		
-		/* 打字光标动画 */
-		@keyframes blink {
-			0%, 50% { opacity: 1; }
-			51%, 100% { opacity: 0; }
-		}
-		
-		/* 控制评论系统的全局样式，确保边界框完全显示 */
-		.post {
-			box-sizing: border-box;
-			padding-right: 15px; /* 为右侧提供额外空间 */
-			overflow: visible;
-		}
-		
-		/* 优化引用块样式 - 3:1比例，居中显示 */
-		blockquote {
-			border-left: 4px solid rgba(243, 156, 18, 0.8);
-			padding: 1.5em 2.5em;
-			margin: 2em auto; /* 改为auto实现水平居中 */
-			background-image: url('images/message/2.jpg'); /* 背景图片 */
-			background-size: cover;
-			background-position: center;
-			background-repeat: no-repeat;
-			border-radius: 12px;
-			font-style: italic;
-			position: relative;
-			box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-			overflow: hidden;
-			/* 创建3:1比例 */
-			width: 90%; /* 设置为90%宽度，而不是100% */
-			max-width: 1200px; /* 设置最大宽度 */
-			aspect-ratio: 3/1; /* 改为3:1比例 */
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-		}
-		
-		/* 移除半透明遮罩，使背景图完全显示 */
-		blockquote::after {
-			content: none; /* 移除遮罩层 */
-		}
-		
-		/* 确保文字在背景上清晰可见 - 半透明效果 */
-		blockquote p, 
-		blockquote footer {
-			position: relative;
-			z-index: 2;
-			color: rgba(255, 255, 255, 0.85); /* 半透明白色 */
-			font-weight: bold;
-			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), 
-						 -1px -1px 0 rgba(0, 0, 0, 0.7), 
-						 1px -1px 0 rgba(0, 0, 0, 0.7), 
-						 -1px 1px 0 rgba(0, 0, 0, 0.7), 
-						 1px 1px 0 rgba(0, 0, 0, 0.7);
-			/* 添加发光效果增强可读性 */
-			filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.4));
-		}
-		
-		/* 适应3:1比例的文字大小 - 缩小字体 */
-		blockquote p {
-			font-size: 1em; /* 缩小字体大小 */
-			line-height: 1.4; /* 减小行高以适应3:1比例 */
-		}
-		
-		blockquote:before {
-			content: '"';
-			font-size: 4.5em; /* 稍微缩小引号大小 */
-			position: absolute;
-			left: 15px;
-			top: -15px;
-			color: rgba(255, 255, 255, 0.7); /* 更透明的白色 */
-			font-family: serif;
-			z-index: 2;
-			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-			opacity: 0.9; /* 额外增加透明度 */
-		}
-		
-		blockquote footer {
-			text-align: right;
-			margin-top: 0.3em; /* 减小与上方文字的间距 */
-			font-weight: 700;
-			color: rgba(255, 255, 255, 0.85); /* 半透明白色 */
-			transition: opacity 1.5s ease-in;
-			font-size: 0.8em; /* 缩小作者名字体 */
-			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
-			opacity: 0.9; /* 额外增加透明度 */
-		}
-		
-		/* 打字效果样式 */
-		#typewriter-text,
-		#typewriter-text-2 {
-			position: relative;
-			z-index: 2;
-			font-weight: bold;
-			opacity: 0.95; /* 轻微透明效果 */
-		}
-		
-		#typewriter-text:after,
-		#typewriter-text-2:after {
-			content: '|';
-			color: rgba(255, 255, 255, 0.85); /* 半透明白色 */
-			animation: blink 1s infinite;
-			font-weight: bold;
-			font-size: 1em; /* 缩小光标大小以匹配文字 */
-			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-			opacity: 0.9; /* 额外增加透明度 */
-		}
-		
-		/* 当打字完成后隐藏光标 */
-		.typing-complete:after {
-			display: none;
-		}
-		
-		/* 确保名言行间距合适 - 针对3:1比例优化 */
-		blockquote p {
-			margin-bottom: 0.3em; /* 减小行间距 */
-		}
-		
-		blockquote p:last-of-type {
-			margin-bottom: 0.5em; /* 减小与作者名之间的间距 */
-		}
-		
-		/* 优化评论系统样式 - 解决右侧边界框显示不全问题 */
-		.giscus, .giscus-frame {
-			width: 98% !important; /* 减小宽度以确保边界可见 */
-			max-width: 98% !important;
-			margin-top: 1.5em;
-			margin-left: auto !important;
-			margin-right: auto !important;
-			position: relative;
-			z-index: 3; /* 确保评论框在上层 */
-			box-sizing: border-box;
-			overflow: visible;
-		}
-		
-		#comment-loading {
-			margin-bottom: 1em;
-			position: relative;
-			z-index: 2;
-		}
-		
-		/* 修复iframe可能的溢出问题 */
-		.giscus iframe {
-			width: 100% !important;
-			max-width: 100% !important;
-			box-sizing: border-box;
-			border: none;
-		}
-		
-		/* 优化移动设备适配性 */
-		@media screen and (max-width: 480px) {
-			.box {
-				padding: 1em !important;
-			}
-			
-			blockquote {
-				padding: 1.2em 1.5em;
-				margin: 1.5em auto; /* 保持水平居中 */
-				aspect-ratio: 3/1; /* 保持3:1比例 */
-				width: 95%; /* 在小屏幕上宽度更大一些 */
-			}
-			
-			blockquote:before {
-				font-size: 3.5em; /* 进一步缩小引号在移动设备上的大小 */
-				left: 10px;
-				top: -10px;
-			}
-			
-			#typewriter-text:after,
-			#typewriter-text-2:after {
-				font-size: 0.9em; /* 缩小移动设备上的光标大小 */
-			}
-			
-			blockquote p {
-				margin-bottom: 0.3em;
-				font-size: 0.8em; /* 进一步缩小移动设备上的字体 */
-			}
-			
-			blockquote footer {
-				font-size: 0.7em; /* 缩小移动设备上的作者名字体 */
-			}
-			
-			/* 小屏幕上的评论系统优化 */
-			.comment-container {
-				width: 95% !important;
-				margin: 0 auto !important;
-				padding: 0 5px !important;
-				box-sizing: border-box !important;
-				overflow: visible !important;
-			}
-			
-			.giscus, .giscus-frame {
-				width: 98% !important;
-				max-width: 98% !important;
-				transform: scale(0.95) !important;
-				transform-origin: left top !important;
-				margin-right: 10px !important;
-			}
-			
-			/* 确保评论框内容不被截断 */
-			.giscus-frame iframe {
-				width: 98% !important;
-				margin-left: auto !important;
-				margin-right: auto !important;
-				box-sizing: border-box !important;
-			}
-		}
-		</style>
 	</body>
 </html> 
