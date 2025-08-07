@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
+
+/* 容器范围限定，避免污染全局 */
+.card_wrapper, .card_wrapper * {
+  box-sizing: border-box;
+  font-weight: normal;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  color: #555;
+}
+
+/* 容器背景和文字居中 */
+.card_wrapper {
+  background: #222;
+  padding: 1em;
+  text-align: center;
+}
+
+/* 标题 - 响应式字体 */
+.card_wrapper card_h1 {
+  font-size: clamp(1.5em, 4vw, 2.2em);
+  margin: 0 0 0.5em;
+}
+
+/* Base flip styles - 响应式设计 */
+.card_flip {
+  position: relative;
+  display: inline-block;
+  margin-right: 2px;
+  margin-bottom: 1em;
+  width: clamp(280px, 90vw, 374px); /* 响应式宽度 */
+  max-width: 374px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.card_flip > .card_front,
+.card_flip > .card_back {
+  display: block;
+  color: white;
+  width: 100%;
+  background-size: cover !important;
+  background-position: center !important;
+  height: clamp(160px, 40vw, 220px); /* 响应式高度 */
+  padding: clamp(0.8em, 3vw, 1em) clamp(1.2em, 4vw, 2em); /* 响应式内边距 */
+  background: #313131;
+  border-radius: clamp(8px, 2vw, 10px); /* 响应式圆角 */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+.card_flip > .card_front p,
+.card_flip > .card_back p {
+  font-size: clamp(0.7rem, 2vw, 0.8rem); /* 响应式字体 */
+  line-height: 160%;
+  color: #999;
+  margin: 0;
+}
+
+/* 卡片标题响应式字体 */
+.card_flip > .card_front card_h1,
+.card_flip > .card_back h2 {
+  font-size: clamp(1.2em, 3.5vw, 1.8em);
+  margin-bottom: clamp(0.3em, 2vw, 0.5em);
+}
+
+/* 优化 card_h1 元素样式 */
+card_h1 {
+  display: block;
+  font-weight: bold;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  color: inherit;
+  margin: 0;
+}
+
+/* 确保 card_h1 能够正确应用 text-shadow */
+card_h1.card_text-shadow {
+  text-shadow:
+    1px 1px rgba(0, 0, 0, 0.1),
+    2px 2px rgba(0, 0, 0, 0.08),
+    3px 3px rgba(0, 0, 0, 0.06),
+    4px 4px rgba(0, 0, 0, 0.04);
+}
+
+.card_flip > .card_front {
+  transform: rotateY(0deg);
+  transition: transform 0.5s cubic-bezier(.175, .885, .32, 1.275), opacity 0.5s;
+  position: relative;
+  z-index: 2;
+}
+
+.card_flip > .card_back {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(-180deg);
+  transition: transform 0.5s cubic-bezier(.175, .885, .32, 1.275), opacity 0.5s;
+  z-index: 1;
+}
+
+.card_flip:hover > .card_front {
+  transform: rotateY(180deg);
+  opacity: 0;
+  z-index: 1;
+}
+
+.card_flip:hover > .card_back {
+  opacity: 1;
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+/* Flip vertical */
+.card_flip.card_flip-vertical > .card_back {
+  transform: rotateX(-180deg);
+}
+
+.card_flip.card_flip-vertical:hover > .card_front {
+  transform: rotateX(180deg);
+  opacity: 0;
+  z-index: 1;
+}
+
+.card_flip.card_flip-vertical:hover > .card_back {
+  transform: rotateX(0deg);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* 阴影文字效果 - 优化移动端性能 */
+.card_text-shadow {
+  text-shadow:
+    1px 1px rgba(0, 0, 0, 0.1),
+    2px 2px rgba(0, 0, 0, 0.08),
+    3px 3px rgba(0, 0, 0, 0.06),
+    4px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .card_flip {
+    width: calc(100% - 4px);
+    margin-right: 0;
+    margin-bottom: clamp(0.8em, 3vw, 1.2em);
+  }
+  
+  .card_flip > .card_front,
+  .card_flip > .card_back {
+    height: clamp(140px, 35vw, 180px);
+    padding: clamp(0.6em, 3vw, 0.8em) clamp(1em, 4vw, 1.5em);
+  }
+  
+  /* 移动端触摸优化 */
+  .card_flip:active > .card_front {
+    transform: rotateY(180deg);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .card_flip:active > .card_back {
+    opacity: 1;
+    transform: rotateY(0deg);
+    z-index: 2;
+  }
+  
+  .card_flip.card_flip-vertical:active > .card_front {
+    transform: rotateX(180deg);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .card_flip.card_flip-vertical:active > .card_back {
+    transform: rotateX(0deg);
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+/* 小屏幕设备进一步优化 */
+@media (max-width: 480px) {
+  .card_flip > .card_front,
+  .card_flip > .card_back {
+    height: clamp(120px, 30vw, 160px);
+    padding: clamp(0.5em, 2.5vw, 0.7em) clamp(0.8em, 3vw, 1.2em);
+  }
+  
+  .card_flip > .card_front card_h1,
+  .card_flip > .card_back h2 {
+    font-size: clamp(1em, 4vw, 1.4em);
+  }
+  
+  .card_flip > .card_front p,
+  .card_flip > .card_back p {
+    font-size: clamp(0.6rem, 2.5vw, 0.75rem);
+  }
+}

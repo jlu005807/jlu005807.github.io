@@ -4922,6 +4922,11 @@ input, select, textarea {
   .search-icon, .clear-btn {
     top: -12px;
   }
+
+  .clear-btn {
+  position: relative;
+  top: -12px; /* 向上移动2px，可根据实际效果调整 */
+  }
 }
 
 a[name] {

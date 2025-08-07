@@ -5,6 +5,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/expanding-cards.css" />
+		<link rel="stylesheet" href="assets/css/message-comments.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<!-- 优化移动设备适配性 -->
 		<meta name="theme-color" content="#f8f8f8" />
@@ -40,18 +42,41 @@
 						<h1>📝Message</h1>
 						<span class="date current-date"></span>
 					</header>
-					<p>👋Welcome to leave your message, share your thoughts or suggestions!</p>
 					
-					<!-- 添加名人名言 -->
-					<blockquote>
-						<p><em>"The most beautiful thing we can experience is the mysterious. It is the source of all true art and science."</em></p>
-						<footer>— Albert Einstein</footer>
-					</blockquote>
-					
-                    <hr />
-                    <div class="box" style="background:#f8f8f8; border-left:4px solid #f39c12; margin-bottom:1.5em;">
+					<!-- Expanding Cards Gallery -->
+					<div class="expanding-cards-wrapper" style="position: relative; margin-bottom: 15em; height: auto; min-height: 300px;">
+						<div class="expanding-cards-container">
+							<div class="panel" style="background-image: url('./images/message/card1.png')">
+								<blockquote>"Success is not final, failure is not fatal: it is the courage to continue that counts."</blockquote>
+								<cite>— Winston Churchill</cite>
+							</div>
+							<div class="panel" style="background-image: url('./images/message/card2.png')">
+								<blockquote>"First, solve the problem. Then, write the code."</blockquote>
+								<cite>— John Johnson</cite>
+							</div>
+							<div class="panel" style="background-image: url('./images/message/card3.png')">
+								<blockquote>"Design is not just what it looks like. Design is how it works."</blockquote>
+								<cite>— Steve Jobs</cite>
+							</div>    
+							<div class="panel" style="background-image: url('./images/message/card4.png')">
+								<blockquote>"Innovation distinguishes between a leader and a follower."</blockquote>
+								<cite>— Steve Jobs</cite>
+							</div>
+							<div class="panel" style="background-image: url('./images/message/card5.png')">
+								<blockquote>"The best way to predict the future is to create it."</blockquote>
+								<cite>— Peter Drucker</cite>
+							</div>
+							<div class="panel" style="background-image: url('./images/message/card6.png')">
+								<blockquote>"Life is what happens to you while you're busy making other plans."</blockquote>
+								<cite>— John Lennon</cite>
+							</div>
+						</div>
+					</div>
+					                    
+                    <div class="box notice-box" style="background:#f8f8f8; border-left:4px solid #f39c12; margin-bottom:1.5em; position:relative; z-index:10; margin-top: 3em; clear: both;">
                         <h3 style="margin-top:0;">Notice</h3>
                         <ul style="margin-bottom:0;">
+							<li>👋Welcome to leave your message, share your thoughts or suggestions!</li>
                             <li>😊 Please be respectful and friendly.</li>
                             <li>🚫 No spam or advertisements.</li>
                             <li>🌍 Comments are public and visible to everyone.</li>
@@ -66,26 +91,29 @@
                         <div class="spinner" style="width:40px; height:40px; margin:10px auto; border:4px solid rgba(0,0,0,0.1); border-left-color:#f39c12; border-radius:50%; animation:spin 1s linear infinite;"></div>
                     </div>
                     
-                    <div class="giscus"></div>
+                    <div class="comment-container" style="width:100%; max-width:100%; overflow:visible; position:relative; padding-right:15px; box-sizing:border-box;">
+                        <div class="giscus" style="transform:scale(0.98); transform-origin:left top;"></div>
+                    </div>
 				</section>
                 
                 <footer>
                     <section class="pagination">	
-                        <a href="./other.html" class="next">Back🔗</a>
+                        <a href="./other.html#top" class="next">Back🔗</a>
                     </section>
                     <section class="pagination">
-                            <a href="./index.html" class="next">Home🔗</a>     
+                            <a href="./index.html#top" class="next">Home🔗</a>     
                     </section>
                 </footer>
 			</div>
-			<div class="transparent-area medium"></div>
+			<!-- 添加额外的间距，确保右侧边界不被遮挡 -->
+			<div class="transparent-area medium" style="margin-right:20px;"></div>
 
             
 
 			<!-- Footer -->
 			<footer id="footer">
 				<section>
-					<a href="#top" class="image fit"><img src="images/message/1.jpg" alt="" /></a>
+					<a href="#top" class="image fit scrolly"><img src="images/message/1.jpg" alt="" /></a>
 				</section>
 				<section class="split contact">
 					<section class="alt">
@@ -120,18 +148,50 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script src="assets/js/datetime.js"></script>
+		<script src="assets/js/expanding-cards.js"></script>
+		<script src="assets/js/comment-loader.js"></script>
+		
+		<!-- 防止 Giscus 脚本导致页面跳转到底部 -->
 		<script>
-		// Date display
-		function updateDateTime() {
-		  const dateElements = document.querySelectorAll('.current-date');
-		  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-		  dateElements.forEach(element => {
-			element.textContent = new Date().toLocaleDateString('en-US', options);
-		  });
-		}
-		updateDateTime();
-		setInterval(updateDateTime, 1000);
+		// 确保页面始终从顶部开始
+		window.addEventListener('DOMContentLoaded', function() {
+			// 立即滚动到顶部
+			window.scrollTo(0, 0);
+			
+			// 防止 Giscus 脚本加载后自动滚动
+			var scrollToTop = function() {
+				if (window.location.hash === '#top' || window.location.hash === '') {
+					setTimeout(function() {
+						window.scrollTo(0, 0);
+					}, 100);
+				}
+			};
+			
+			// 在页面完全加载后再次确保位置正确
+			window.addEventListener('load', scrollToTop);
+			
+			// 监听 Giscus 脚本的加载
+			var observer = new MutationObserver(function(mutations) {
+				mutations.forEach(function(mutation) {
+					if (mutation.addedNodes.length > 0) {
+						setTimeout(scrollToTop, 500);
+					}
+				});
+			});
+			
+			observer.observe(document.body, {
+				childList: true,
+				subtree: true
+			});
+			
+			// 5秒后停止观察（Giscus通常会在这个时间内加载完成）
+			setTimeout(function() {
+				observer.disconnect();
+			}, 5000);
+		});
 		</script>
+		
 		<script src="https://giscus.app/client.js"
 			data-repo="jlu005807/jlu005807.github.io"
 			data-repo-id="R_kgDOOPXtSA"
@@ -142,109 +202,11 @@
 			data-reactions-enabled="1"
 			data-emit-metadata="0"
 			data-input-position="top"
-			data-theme="preferred_color_scheme" 
+			data-theme="fro" 
 			data-lang="en"
 			data-loading="lazy"
 			crossorigin="anonymous"
 			async>
 		</script>
-		
-		<!-- 优化评论系统加载 -->
-		<script>
-		// 日期显示功能
-		function updateDateTime() {
-		  const dateElements = document.querySelectorAll('.current-date');
-		  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-		  dateElements.forEach(element => {
-			element.textContent = new Date().toLocaleDateString('en-US', options);
-		  });
-		}
-		updateDateTime();
-		setInterval(updateDateTime, 60000); // 每分钟更新一次，减少资源消耗
-		
-		// 评论加载优化
-		document.addEventListener('DOMContentLoaded', function() {
-			// 监听评论系统加载
-			const giscusContainer = document.querySelector('.giscus');
-			const loadingIndicator = document.getElementById('comment-loading');
-			
-			// 创建一个观察器来监听 giscus 容器内的变化
-			const observer = new MutationObserver(function(mutations) {
-				// 检查是否有iframe被添加（表示评论已加载）
-				if (giscusContainer.querySelector('iframe')) {
-					// 隐藏加载指示器
-					if (loadingIndicator) {
-						loadingIndicator.style.display = 'none';
-					}
-					// 停止观察
-					observer.disconnect();
-				}
-			});
-			
-			// 开始观察目标节点变化
-			observer.observe(giscusContainer, { childList: true, subtree: true });
-			
-			// 30秒后无论如何都隐藏加载指示器（防止加载失败时一直显示）
-			setTimeout(function() {
-				if (loadingIndicator) {
-					loadingIndicator.style.display = 'none';
-				}
-			}, 30000);
-		});
-		</script>
-		
-		<style>
-		/* 添加动画样式 */
-		@keyframes spin {
-			0% { transform: rotate(0deg); }
-			100% { transform: rotate(360deg); }
-		}
-		
-		/* 优化引用块样式 */
-		blockquote {
-			border-left: 4px solid rgba(243, 156, 18, 0.5);
-			padding: 1em 1.5em;
-			margin: 1.5em 0;
-			background: rgba(248, 248, 248, 0.7);
-			border-radius: 3px;
-			font-style: italic;
-			position: relative;
-		}
-		
-		blockquote:before {
-			content: '"';
-			font-size: 4em;
-			position: absolute;
-			left: 10px;
-			top: -10px;
-			color: rgba(243, 156, 18, 0.2);
-			font-family: serif;
-		}
-		
-		blockquote footer {
-			text-align: right;
-			margin-top: 0.5em;
-			font-weight: 600;
-			color: #555;
-		}
-		
-		/* 优化移动设备适配性 */
-		@media screen and (max-width: 480px) {
-			.box {
-				padding: 1em !important;
-			}
-			
-			blockquote {
-				padding: 1em 1em 1em 1.5em;
-				margin: 1em 0;
-			}
-			
-			blockquote:before {
-				font-size: 3em;
-				left: 5px;
-				top: -5px;
-			}
-		}
-		</style>
 	</body>
 </html> 

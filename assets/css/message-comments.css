@@ -1,0 +1,120 @@
+/* 评论系统样式优化 */
+
+/* 添加动画样式 */
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/* 控制评论系统的全局样式，确保边界框完全显示 */
+.post {
+	box-sizing: border-box;
+	padding-right: 15px; /* 为右侧提供额外空间 */
+	overflow: visible;
+	max-width: 100%; /* 防止内容溢出 */
+}
+
+/* 防止卡片溢出wrapper的额外保护 */
+@media (max-width: 700px) {
+	#main {
+		overflow-x: visible !important; /* 改为visible，不截断内容 */
+		box-sizing: border-box;
+		padding-left: 15px; /* 增加左侧内边距 */
+		padding-right: 15px; /* 增加右侧内边距 */
+	}
+	
+	.post {
+		padding-left: 5px;
+		padding-right: 5px;
+		max-width: 100%; /* 允许使用全宽 */
+		box-sizing: border-box;
+	}
+	
+	/* 确保wrapper有足够空间容纳卡片 */
+	#wrapper {
+		overflow-x: visible !important;
+		box-sizing: border-box;
+	}
+}
+
+/* 注意事项框样式 - 确保在小屏幕上不被遮挡 */
+.notice-box {
+	position: relative;
+	z-index: 10 !important; /* 最高层级，确保始终可见 */
+	margin-top: 5em !important; /* 大幅增加顶部间距 */
+	clear: both !important; /* 确保不受浮动元素影响 */
+	display: block !important; /* 强制显示为块元素 */
+}
+
+/* 特定针对760px宽度的修复 */
+@media (max-width: 760px) {
+	.notice-box {
+		margin-top: 6em !important; /* 特别增加间距 */
+		border-top: 1px solid #f39c12; /* 添加顶部边框增加分隔感 */
+		padding-top: 1em !important; /* 增加内部顶部间距 */
+	}
+	
+	hr {
+		margin-top: 5em !important; /* 增加水平线顶部间距 */
+		margin-bottom: 2em !important; /* 增加水平线底部间距 */
+	}
+}
+
+/* 优化评论系统样式 - 解决右侧边界框显示不全问题 */
+.giscus, .giscus-frame {
+	width: 98% !important; /* 减小宽度以确保边界可见 */
+	max-width: 98% !important;
+	margin-top: 1.5em;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	position: relative;
+	z-index: 3; /* 确保评论框在上层 */
+	box-sizing: border-box;
+	overflow: visible;
+}
+
+#comment-loading {
+	margin-bottom: 1em;
+	position: relative;
+	z-index: 2;
+}
+
+/* 修复iframe可能的溢出问题 */
+.giscus iframe {
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box;
+	border: none;
+}
+
+/* 优化移动设备适配性 */
+@media screen and (max-width: 480px) {
+	.box {
+		padding: 1em !important;
+	}
+	
+	/* 小屏幕上的评论系统优化 */
+	.comment-container {
+		width: 95% !important;
+		margin: 0 auto !important;
+		padding: 0 5px !important;
+		box-sizing: border-box !important;
+		overflow: visible !important;
+	}
+	
+	.giscus, .giscus-frame {
+		width: 98% !important;
+		max-width: 98% !important;
+		transform: scale(0.95) !important;
+		transform-origin: left top !important;
+		margin-right: 10px !important;
+	}
+	
+	/* 确保评论框内容不被截断 */
+	.giscus-frame iframe {
+		width: 98% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		box-sizing: border-box !important;
+	}
+}

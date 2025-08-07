@@ -627,3 +627,95 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 // ====== 平滑滚动与锚点跳转相关功能 END ======
+
+// 页面加载完成后检查URL中的锚点并滚动到对应位置
+$(document).ready(function() {
+	if (window.location.hash) {
+		var target = window.location.hash;
+		if (target === '#top') {
+			// 滚动到页面顶部
+			$('html, body').animate({ scrollTop: 0 }, 800);
+		} else {
+			// 滚动到指定位置
+			var targetElement = $(target);
+			if (targetElement.length) {
+				$('html, body').animate({
+					scrollTop: targetElement.offset().top
+				}, 800);
+			}
+		}
+	}
+
+	// 为轮播图的"Learn More"链接添加点击事件处理
+	$('.carousel a.scrolly').on('click', function(e) {
+		e.preventDefault(); // 阻止默认跳转行为
+		
+		var targetId = $(this).attr('href');
+		var targetElement = $(targetId);
+		
+		if (!targetElement.length) return;
+		
+		// 获取目标元素的父级article元素
+		var targetArticle = targetElement.closest('article');
+		
+		// 检查目标文章是否被搜索功能隐藏
+		var isTargetHidden = targetArticle.length && 
+							 (targetArticle.css('display') === 'none' || 
+							  targetArticle.is(':hidden'));
+		
+		var searchInput = document.getElementById('article-search');
+		
+		if (searchInput && searchInput.value.trim() !== '' && isTargetHidden) {
+			// 停止当前所有动画，防止冲突
+			$('html, body').stop(true, false);
+			
+			// 只有当目标文章被搜索隐藏时才清除搜索
+			searchInput.value = ''; // 清空搜索框
+			
+			// 使用原生JavaScript触发input事件
+			var inputEvent = new Event('input', {
+				bubbles: true,
+				cancelable: true
+			});
+			searchInput.dispatchEvent(inputEvent);
+			
+			// 计算跳转距离以确定等待时间
+			var currentScrollTop = $(window).scrollTop();
+			var targetOffsetTop = targetElement.offset().top;
+			var jumpDistance = Math.abs(targetOffsetTop - currentScrollTop);
+			
+			// 远距离跳转需要更长的稳定时间
+			var baseDelay = jumpDistance > 2000 ? 200 : 100; // 远距离使用200ms基础延迟
+			var extraDelay = jumpDistance > 3000 ? 100 : 0;  // 超远距离额外100ms
+			
+			// 使用多重延迟确保DOM完全稳定
+			setTimeout(function() {
+				// 第一次等待DOM更新
+				requestAnimationFrame(function() {
+					// 第二次等待渲染完成
+					requestAnimationFrame(function() {
+						// 第三次等待布局稳定 - 远距离跳转使用更长时间
+						setTimeout(function() {
+							// 第四次等待确保远距离跳转完全稳定
+							requestAnimationFrame(function() {
+								var updatedTarget = $(targetId);
+								if (updatedTarget.length && updatedTarget.is(':visible')) {
+									// 根据距离调整动画速度
+									var animationDuration = jumpDistance > 2000 ? 1200 : 1000;
+									$('html, body').animate({
+										scrollTop: updatedTarget.offset().top
+									}, animationDuration, 'swing');
+								}
+							});
+						}, baseDelay + extraDelay);
+					});
+				});
+			}, 50);
+		} else {
+			// 如果搜索框为空或目标文章已可见，直接跳转
+			$('html, body').stop(true, false).animate({
+				scrollTop: targetElement.offset().top
+			}, 800, 'swing');
+		}
+	});
+});
