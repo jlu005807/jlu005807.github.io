@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	// 延迟展开控制
 	let expandTimer = null;
-	const expandDelay = 100; // 100ms延迟展开
+	const expandDelay = 25; // 25ms延迟展开
 	
 	panels.forEach(panel => {
 		if (isTouchDevice) {

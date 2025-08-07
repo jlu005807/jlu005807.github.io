@@ -98,10 +98,10 @@
                 
                 <footer>
                     <section class="pagination">	
-                        <a href="./other.html" class="next">Back🔗</a>
+                        <a href="./other.html#top" class="next">Back🔗</a>
                     </section>
                     <section class="pagination">
-                            <a href="./index.html" class="next">Home🔗</a>     
+                            <a href="./index.html#top" class="next">Home🔗</a>     
                     </section>
                 </footer>
 			</div>
@@ -113,7 +113,7 @@
 			<!-- Footer -->
 			<footer id="footer">
 				<section>
-					<a href="#top" class="image fit"><img src="images/message/1.jpg" alt="" /></a>
+					<a href="#top" class="image fit scrolly"><img src="images/message/1.jpg" alt="" /></a>
 				</section>
 				<section class="split contact">
 					<section class="alt">
@@ -151,6 +151,47 @@
 		<script src="assets/js/datetime.js"></script>
 		<script src="assets/js/expanding-cards.js"></script>
 		<script src="assets/js/comment-loader.js"></script>
+		
+		<!-- 防止 Giscus 脚本导致页面跳转到底部 -->
+		<script>
+		// 确保页面始终从顶部开始
+		window.addEventListener('DOMContentLoaded', function() {
+			// 立即滚动到顶部
+			window.scrollTo(0, 0);
+			
+			// 防止 Giscus 脚本加载后自动滚动
+			var scrollToTop = function() {
+				if (window.location.hash === '#top' || window.location.hash === '') {
+					setTimeout(function() {
+						window.scrollTo(0, 0);
+					}, 100);
+				}
+			};
+			
+			// 在页面完全加载后再次确保位置正确
+			window.addEventListener('load', scrollToTop);
+			
+			// 监听 Giscus 脚本的加载
+			var observer = new MutationObserver(function(mutations) {
+				mutations.forEach(function(mutation) {
+					if (mutation.addedNodes.length > 0) {
+						setTimeout(scrollToTop, 500);
+					}
+				});
+			});
+			
+			observer.observe(document.body, {
+				childList: true,
+				subtree: true
+			});
+			
+			// 5秒后停止观察（Giscus通常会在这个时间内加载完成）
+			setTimeout(function() {
+				observer.disconnect();
+			}, 5000);
+		});
+		</script>
+		
 		<script src="https://giscus.app/client.js"
 			data-repo="jlu005807/jlu005807.github.io"
 			data-repo-id="R_kgDOOPXtSA"

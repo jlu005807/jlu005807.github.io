@@ -1,0 +1,367 @@
+html {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.color-white {
+  color: #ffffff !important;
+}
+
+.color-white * {
+  color: #ffffff !important;
+}
+
+.flipcard-flip-box-header {
+  font-size: 28px;
+  color: #ffffff !important;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* 正面标题样式 - 移除黑框 */
+.flipcard-flip-box-front .flipcard-flip-box-header {
+  opacity: 0.95;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* 正面标题悬停效果 - 简化 */
+.flipcard-flip-box:hover .flipcard-flip-box-front .flipcard-flip-box-header {
+  opacity: 1;
+  transform: none;
+}
+
+.flipcard-flip-box p,
+.flipcard-flip-box li {
+  font-size: 16px;
+  line-height: 1.6em;
+  color: #ffffff !important;
+}
+
+.flipcard-flip-box ul,
+.flipcard-flip-box ol {
+  color: #ffffff !important;
+  text-align: left;
+  margin: 20px 0;
+  padding-left: 25px;
+}
+
+.flipcard-flip-box ul li,
+.flipcard-flip-box ol li {
+  margin-bottom: 10px;
+  color: #ffffff !important;
+  font-size: 16px;
+}
+
+.flipcard-flip-box strong {
+  color: #ffffff !important;
+  font-size: 16px;
+}
+
+/* 新增外层容器 */
+.flipcard_wrapper {
+  /* 这里可以按需添加容器样式，比如宽度限制或居中 */
+  width: 100%;
+}
+
+.flipcard-box-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 10px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .flipcard-box-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+/* 平板设备优化 */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .flipcard-flip-box-img {
+    width: 28px;
+    max-width: 28px;
+  }
+  
+  .flipcard-flip-box-front .flipcard-inner {
+    padding: 25px 20px;
+  }
+  
+  .flipcard-flip-box-front .flipcard-flip-box-header {
+    font-size: 26px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .flipcard-box-container {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+}
+
+.flipcard-box-item {
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  width: 280px;
+  margin-bottom: 0;
+  max-width: 100%;
+  flex: 0 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .flipcard-box-item {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+.flipcard-flip-box {
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  perspective: 800px; /* 1000px * 0.8 = 800px */
+  -webkit-perspective: 800px;
+}
+
+.flipcard-flip-box-front,
+.flipcard-flip-box-back {
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  min-height: 320px;
+  position: relative;
+  -ms-transition: transform 0.6s cubic-bezier(.4,.2,.2,1);
+  transition: transform 0.6s cubic-bezier(.4,.2,.2,1);
+  -webkit-transition: transform 0.6s cubic-bezier(.4,.2,.2,1);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.flipcard-flip-box-front::before,
+.flipcard-flip-box-back::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .flipcard-flip-box-front,
+  .flipcard-flip-box-back {
+    min-height: 240px;
+  }
+  
+  /* 移动端正面内容调整 */
+  .flipcard-flip-box-front .flipcard-inner {
+    padding: 15px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    top: 0;
+    transform: none;
+    -webkit-transform: none;
+    -ms-transform: none;
+  }
+  
+  /* 移动端标题调整 */
+  .flipcard-flip-box-front .flipcard-flip-box-header {
+    font-size: 20px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* 移动端箭头调整 - 减小尺寸 */
+  .flipcard-flip-box-img {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 22px;
+    height: auto;
+    max-width: 22px;
+  }
+  
+  .flipcard-flip-box:hover .flipcard-flip-box-img {
+    transform: translateY(-2px);
+  }
+  
+  /* 移动端背面内容调整 */
+  .flipcard-flip-box-back .flipcard-inner {
+    padding: 20px 15px;
+  }
+}
+
+/* 超小屏幕设备优化 */
+@media screen and (max-width: 480px) {
+  .flipcard-box-item {
+    max-width: 280px;
+  }
+  
+  .flipcard-flip-box-front,
+  .flipcard-flip-box-back {
+    min-height: 200px;
+  }
+  
+  .flipcard-flip-box-front .flipcard-inner {
+    padding: 12px 10px;
+  }
+  
+  .flipcard-flip-box-front .flipcard-flip-box-header {
+    font-size: 18px;
+  }
+  
+  .flipcard-flip-box-img {
+    width: 18px;
+    max-width: 18px;
+  }
+  
+  .flipcard-flip-box-back .flipcard-inner {
+    padding: 15px 12px;
+  }
+  
+  .flipcard-flip-box ul,
+  .flipcard-flip-box ol {
+    padding-left: 18px;
+    margin: 12px 0;
+  }
+  
+  .flipcard-flip-box p,
+  .flipcard-flip-box li {
+    font-size: 13px;
+  }
+}
+
+.flipcard-flip-box-front {
+  -ms-transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.flipcard-flip-box:hover .flipcard-flip-box-front {
+  -ms-transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.flipcard-flip-box-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  -ms-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.flipcard-flip-box:hover .flipcard-flip-box-back {
+  -ms-transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.flipcard-flip-box .flipcard-inner {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding: 35px;
+  outline: 1px solid transparent;
+  -webkit-perspective: inherit;
+  perspective: inherit;
+  z-index: 2;
+  transform: translateY(-50%) translateZ(30px) scale(0.85);
+  -webkit-transform: translateY(-50%) translateZ(30px) scale(0.85);
+  -ms-transform: translateY(-50%) translateZ(30px) scale(0.85);
+  top: 50%;
+}
+
+/* 正面内容特殊定位 - 重新布局为上下结构 */
+.flipcard-flip-box-front .flipcard-inner {
+  text-align: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px;
+  transform: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+}
+
+/* 背面内容左对齐 */
+.flipcard-flip-box-back .flipcard-inner {
+  text-align: left;
+}
+
+/* 正面标题定位到上方 */
+.flipcard-flip-box-front .flipcard-flip-box-header {
+  margin-top: 0;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.flipcard-flip-box-img {
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 0.8;
+  filter: brightness(1.2);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
+  width: 32px;
+  height: auto;
+  max-width: 32px;
+}
+
+/* 箭头悬停效果 */
+.flipcard-flip-box:hover .flipcard-flip-box-img {
+  opacity: 1;
+  transform: translateY(-3px);
+}

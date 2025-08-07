@@ -14,6 +14,7 @@
 	<link rel="preload" href="images/home/foreground.png" as="image">
 
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="assets/css/carousel.css" />
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -68,11 +69,111 @@
 			<article class="post featured">
 				<header class="major">
 					<span class="date current-date"></span>
-					<h2><a href="#">Welcome to My Website🎈 </a></h2>
+					<h2><a href="#">Welcome🎈 </a></h2>
 				</header>
-				<a class="image main "><img src="images/home/1.jpg" alt="" /></a>
+				
+				<!-- 轮播图替换原始图片 -->
+				<section class="carousel">
+					<article>
+						<img src="images/home/card1.jpg" alt="Tic-Tac-Toe" />
+						<h2>Tic-Tac-Toe</h2>
+						<div>
+							<p>Classic two-player game on 3x3-grid</p>
+						</div>
+						<a href="#card1" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card2.jpg" alt="Survivor-of-Teyvat" />
+						<h2>Teyvat</h2>
+						<div>
+							<p>Roguelike game with unique enemies</p>
+						</div>
+						<a href="#card2" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card3.jpg" alt="DS&ALGO" />
+						<h2>DS&ALGO</h2>
+						<div>
+							<p>Data Structures & Algorithms resources</p>
+						</div>
+						<a href="#card3" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card4.jpg" alt="Cpp" />
+						<h2>C++</h2>
+						<div>
+							<p>C++ programming language resources</p>
+						</div>
+						<a href="#card4" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card5.jpg" alt="CPU" />
+						<h2>CPU</h2>
+						<div>
+							<p>MIPS32 and LA32R CPU designs</p>
+						</div>
+						<a href="#card5" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card6.jpg" alt="Text_Query" />
+						<h2>TextQuery</h2>
+						<div>
+							<p>Full-text search engine project</p>
+						</div>
+						<a href="#card6" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card7.jpg" alt="Tetris" />
+						<h2>Tetris</h2>
+						<div>
+							<p>Classic tile-matching puzzle game</p>
+						</div>
+						<a href="#card7" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card8.jpg" alt="Addressbook" />
+						<h2>AddressBook</h2>
+						<div>
+							<p>Contact management system</p>
+						</div>
+						<a href="#card8" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card9.jpg" alt="Reservation" />
+						<h2>Reservation</h2>
+						<div>
+							<p>Computer room booking system</p>
+						</div>
+						<a href="#card9" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card10.jpg" alt="GEWUQIYUJI" />
+						<h2>GEWUQIYUJI</h2>
+						<div>
+							<p>Ancient Chinese artifacts game</p>
+						</div>
+						<a href="#card10" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card11.jpg" alt="BookSystem" />
+						<h2>Book System</h2>
+						<div>
+							<p>Library management system</p>
+						</div>
+						<a href="#card11" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card12.jpg" alt="Operating System" />
+						<h2>OS</h2>
+						<div>
+							<p>Operating-Systems study resources</p>
+						</div>
+						<a href="#card12" class="scrolly">Learn More</a>
+					</article>
+				</section>
+				
 				<ul class="actions special">
-					<li><a href="#article-search" class="button large">✨Start My Story✨</a></li>
+					<li><a href="#article-search" class="button large">✨Start✨</a></li>
 				</ul>
 			</article>
 
@@ -724,7 +825,7 @@
 			<!-- Footer -->
 			<footer>
 				<div class="pagination">
-					<a href="./introduction.html" class="next">Next🔗</a>
+					<a href="./introduction.html#top" class="next">Next🔗</a>
 				</div>
 			</footer>
 
@@ -735,7 +836,7 @@
 		<!-- Footer -->
 		<footer id="footer">
 			<section>
-				<a href="#top" class="image fit"><img src="images/home/2.jpg" alt="" /></a>
+				<a href="#top" class="image fit scrolly"><img src="images/home/1.jpg" alt="" /></a>
 			</section>
 			<section class="split contact">
 				<section class="alt">
@@ -784,6 +885,7 @@
 	<script src="assets/js/datetime.js" defer></script>
 	<script src="assets/js/book-expand.js" defer></script>
 	<script src="assets/js/shuffle-articles.js" defer></script>
+	<script src="assets/js/parallax-fix.js" defer></script>
 	
 	
 
