@@ -10,8 +10,28 @@
 	<title>Other</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="theme-color" content="#ffffff" id="theme-color-meta">
+	<script>
+		// 初始主题色设置（避免页面闪烁）
+		(function() {
+			const savedTheme = localStorage.getItem('theme');
+			const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			
+			// 设置初始主题属性
+			document.documentElement.setAttribute(
+				'data-theme', 
+				savedTheme || (systemPrefersDark ? 'dark' : 'light')
+			);
+			
+			// 设置初始主题色
+			document.getElementById('theme-color-meta').content = 
+				(savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) 
+					? '#121212' : '#ffffff';
+		})();
+	</script>
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="assets/css/Fancy_3D_flip_card.css" />
+	<link rel="stylesheet" href="assets/css/theme-integrated.css" />
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -285,6 +305,19 @@ int main() {
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/datetime.js"></script>
+	
+	<!-- 主题切换按钮 -->
+	<button class="theme-toggle" aria-label="切换主题模式" id="theme-toggle">
+		<span class="theme-icon light-icon">☀️</span>
+		<span class="theme-icon dark-icon">🌙</span>
+	</button>
+	
+	<!-- 主题切换脚本 -->
+	<script src="assets/js/theme-switcher.js"></script>
+	<script src="assets/js/theme-toggle-position.js"></script>
+	
+	<!-- 页面过渡效果脚本 -->
+	<script src="assets/js/page-transition.js"></script>
 </body>
 
 </html>

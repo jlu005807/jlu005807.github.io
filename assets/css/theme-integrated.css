@@ -1,0 +1,500 @@
+/* ===== 主题系统集成 ===== */
+/* 这个文件将被集成到main.css中，解决样式冲突问题 */
+
+/* 主题变量系统 */
+:root {
+  /* 日间模式默认值 */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --link-color: #1a73e8;
+  --border-color: #dee2e6;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  /* 夜间模式变量 */
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #aaaaaa;
+  --link-color: #8ab4f8;
+  --border-color: #444;
+  --card-shadow: rgba(0, 0, 0, 0.3);
+  --bg-primary-transparent: rgba(18, 18, 18, 0.7);
+  --bg-secondary-transparent: rgba(30, 30, 30, 0.7);
+  --text-shadow-dark: 0 0 5px rgba(0, 0, 0, 0.8);
+  /* 轮播图相关变量 */
+  --carousel-bg: #252525;
+  --carousel-border: #505050;
+  --carousel-hover-shadow: rgba(138, 180, 248, 0.2);
+}
+
+/* ===== 图片保护系统 ===== */
+[data-theme="dark"] img, 
+[data-theme="dark"] .svg-image,
+[data-theme="dark"] .image-container,
+[data-theme="dark"] .media-content,
+[data-theme="dark"] .logo,
+[data-theme="dark"] .banner,
+[data-theme="dark"] .infographic,
+[data-theme="dark"] .fullcard-wrapper,
+[data-theme="dark"] .flipcard-box-item,
+[data-theme="dark"] .panel,
+[data-theme="dark"] .image,
+[data-theme="dark"] .image img,
+[data-theme="dark"] a.image,
+[data-theme="dark"] .fullcard-wrapper .book__content img,
+[data-theme="dark"] .theme-protected-bg,
+[data-theme="dark"] .theme-protected-bg * {
+  filter: none !important;
+  -webkit-filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+/* ===== 切换按钮样式 ===== */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px; /* 改为左上角 */
+  z-index: 1001; /* 确保在导航栏上方 */
+  background: var(--bg-secondary);
+  border: 2px solid var(--link-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  opacity: 0.85;
+  -webkit-tap-highlight-color: transparent; /* 移除移动设备上的点击高亮 */
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  opacity: 1;
+  box-shadow: 0 2px 20px rgba(26,115,232,0.4);
+}
+
+/* 移除拖动相关样式 */
+
+/* 提示浮层已禁用 */
+.theme-toggle::after {
+  display: none;
+}
+
+.theme-toggle:hover::after {
+  display: none;
+}
+
+.theme-icon {
+  font-size: 24px;
+  transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+/* 移动设备上的优化样式 */
+@media screen and (max-width: 736px) {
+  .theme-toggle {
+    width: 42px;
+    height: 42px;
+    top: 15px;
+    left: 15px; /* 保持在左上角 */
+  }
+  
+  .theme-icon {
+    font-size: 22px;
+  }
+  
+  /* 为移动设备添加额外的点击反馈 */
+  .theme-toggle:active {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  
+  /* 优化导航栏在移动设备上的表现 */
+  [data-theme="dark"] #nav {
+    background-color: var(--bg-primary) !important;
+    padding: 0 10px;
+  }
+  
+  /* 移动设备上的导航链接 */
+  #nav ul.links li a {
+    padding: 0.5em 0.5em;
+    font-size: 0.9em;
+  }
+  
+  /* 导航栏图标 */
+  #nav ul.icons li a {
+    width: 2em;
+    height: 2em;
+  }
+  
+  /* 确保主题切换按钮在移动设备上不与导航栏重叠 */
+  #header + #nav {
+    padding-top: 0;
+    padding-right: 50px; /* 为主题切换按钮留出空间 */
+  }
+}
+
+.light-icon { 
+  display: block;
+  transform: rotate(0deg);
+}
+
+.dark-icon { 
+  display: none;
+  transform: rotate(-90deg);
+}
+
+[data-theme="dark"] .light-icon { display: none; }
+[data-theme="dark"] .dark-icon { 
+  display: block;
+  transform: rotate(0deg);
+}
+
+/* ===== 主题覆盖样式 ===== */
+
+/* 设置header和nav背景 - 深色模式下header保持透明 */
+[data-theme="dark"] #header {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+[data-theme="dark"] #nav {
+  background-color: var(--bg-primary-transparent) !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Logo和导航文字颜色 */
+[data-theme="dark"] #header .logo {
+  color: #ffffff; /* 深色模式下保持logo为白色，确保在各种背景下可见 */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* 添加文字阴影增强可读性 */
+}
+
+[data-theme="dark"] #nav ul.links li a {
+  color: var(--text-primary);
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] #nav ul.links li.active a {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] #nav ul.links li a:hover {
+  color: var(--link-color);
+}
+
+[data-theme="dark"] #nav ul.icons li a {
+  color: var(--text-primary);
+  background-color: transparent !important;
+}
+
+/* 主内容区域 */
+[data-theme="dark"] #main {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* 文字颜色 */
+[data-theme="dark"] #main h1,
+[data-theme="dark"] #main h2,
+[data-theme="dark"] #main h3,
+[data-theme="dark"] #main h4,
+[data-theme="dark"] #main h5,
+[data-theme="dark"] #main h6,
+[data-theme="dark"] #main p,
+[data-theme="dark"] #main li,
+[data-theme="dark"] #main span {
+  color: var(--text-primary);
+}
+
+/* 页脚颜色修复 */
+[data-theme="dark"] footer .pagination a, 
+[data-theme="dark"] footer .pagination span {
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] footer .pagination a:hover {
+  color: var(--link-color) !important;
+  border-color: var(--link-color) !important;
+  background-color: rgba(138, 180, 248, 0.1) !important;
+}
+
+/* Footer区域 */
+[data-theme="dark"] #footer {
+  color: var(--text-primary) !important;
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] #footer a,
+[data-theme="dark"] #footer h2,
+[data-theme="dark"] #footer h3,
+[data-theme="dark"] #footer p,
+[data-theme="dark"] #footer .alt {
+  color: var(--text-primary) !important;
+}
+
+/* 版权信息 */
+[data-theme="dark"] #copyright {
+  color: var(--text-secondary);
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] #copyright a {
+  color: var(--text-secondary);
+}
+
+/* 特殊按钮保留样式 */
+[data-theme="dark"] ul.actions.special .button,
+[data-theme="dark"] ul.actions.special .button.large {
+  background-color: #212931 !important; /* 保留原样式 */
+  color: #ffffff !important; /* 保留原样式 */
+}
+
+[data-theme="dark"] ul.actions.special .button:hover,
+[data-theme="dark"] ul.actions.special .button.large:hover {
+  background-color: #1a73e8 !important;
+}
+
+/* FullCard 背景颜色 */
+[data-theme="dark"] .fullcard-wrapper .book {
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .fullcard-wrapper .book__content {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* 确保文本在暗黑模式下可读 */
+[data-theme="dark"] .card_h1,
+[data-theme="dark"] .card_h2,
+[data-theme="dark"] .card_h3,
+[data-theme="dark"] .flipcard-flip-box-header,
+[data-theme="dark"] .blockquote {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* intro部分 */
+[data-theme="dark"] #intro {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] #intro h1,
+[data-theme="dark"] #intro p,
+[data-theme="dark"] #intro a {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 代码块样式 */
+[data-theme="dark"] code {
+  background-color: #2d2d2d;
+  color: #e6e6e6;
+}
+
+[data-theme="dark"] pre {
+  background-color: #2d2d2d;
+  border-color: #444;
+}
+
+[data-theme="dark"] pre code {
+  color: #e6e6e6;
+}
+
+/* 轮播图样式 */
+[data-theme="dark"] .carousel article {
+  background-color: var(--carousel-bg);
+  border: 1px solid var(--carousel-border);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .carousel article:hover {
+  box-shadow: 0 6px 12px var(--carousel-hover-shadow) !important;
+  transform: translateY(-2px);
+  border-color: var(--link-color);
+}
+
+[data-theme="dark"] .carousel article h2 {
+  color: var(--text-primary);
+  margin-top: 0.75em;
+}
+
+[data-theme="dark"] .carousel article p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .carousel article a {
+  color: var(--link-color);
+  border-bottom: dotted 1px var(--link-color);
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+[data-theme="dark"] .carousel article a:hover {
+  color: var(--link-color);
+  border-bottom-color: transparent;
+  text-shadow: 0 0 8px var(--carousel-hover-shadow);
+}
+
+/* 优化轮播图图片 */
+[data-theme="dark"] .carousel article img {
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 文章内容 */
+[data-theme="dark"] .post {
+  background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] input, 
+[data-theme="dark"] select, 
+[data-theme="dark"] textarea {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* 搜索框样式 */
+[data-theme="dark"] .search-bar-wrapper {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .search-bar-wrapper input {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .search-icon,
+[data-theme="dark"] .clear-btn {
+  color: var(--text-primary);
+}
+
+/* 额外的样式修复 */
+/* 修复链接颜色 */
+[data-theme="dark"] a {
+  color: var(--link-color);
+}
+
+[data-theme="dark"] a:hover {
+  color: var(--link-color);
+  border-bottom-color: transparent;
+}
+
+/* 修复内容链接颜色 */
+[data-theme="dark"] #main header h2 a {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] #main header h2 a:hover {
+  color: var(--link-color);
+}
+
+/* 确保普通按钮在暗模式下可见 */
+[data-theme="dark"] .button,
+[data-theme="dark"] button,
+[data-theme="dark"] input[type="submit"],
+[data-theme="dark"] input[type="reset"],
+[data-theme="dark"] input[type="button"] {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* 确保粗体文本在深色模式下更明显 */
+[data-theme="dark"] strong,
+[data-theme="dark"] b,
+[data-theme="dark"] h1 strong,
+[data-theme="dark"] h2 strong,
+[data-theme="dark"] h3 strong,
+[data-theme="dark"] h4 strong,
+[data-theme="dark"] h5 strong,
+[data-theme="dark"] h6 strong,
+[data-theme="dark"] li strong,
+[data-theme="dark"] p strong {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .button:hover,
+[data-theme="dark"] button:hover,
+[data-theme="dark"] input[type="submit"]:hover,
+[data-theme="dark"] input[type="reset"]:hover,
+[data-theme="dark"] input[type="button"]:hover {
+  background-color: var(--link-color);
+  color: #ffffff;
+  border-color: var(--link-color);
+}
+
+/* 确保表单元素在暗模式下可见 */
+[data-theme="dark"] input, 
+[data-theme="dark"] select, 
+[data-theme="dark"] textarea,
+[data-theme="dark"] .select-wrapper:before {
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+/* 表单标签文字颜色 */
+[data-theme="dark"] label {
+  color: var(--text-primary);
+}
+
+/* 特别处理checkbox和radio的标签 */
+[data-theme="dark"] input[type="checkbox"] + label,
+[data-theme="dark"] input[type="radio"] + label {
+  color: var(--text-primary);
+}
+
+/* 修复按钮样式在悬停时的对比度 */
+[data-theme="dark"] .button:not(.special):hover,
+[data-theme="dark"] button:not(.special):hover,
+[data-theme="dark"] input[type="submit"]:not(.special):hover,
+[data-theme="dark"] input[type="reset"]:not(.special):hover,
+[data-theme="dark"] input[type="button"]:not(.special):hover {
+  background-color: var(--link-color) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px var(--carousel-hover-shadow) !important;
+}
+
+/* 打印模式优化 */
+@media print {
+  [data-theme="dark"] {
+    --bg-primary: #ffffff !important;
+    --bg-secondary: #ffffff !important;
+    --text-primary: #000000 !important;
+    --text-secondary: #333333 !important;
+    --border-color: #cccccc !important;
+  }
+  
+  .theme-toggle {
+    display: none !important;
+  }
+  
+  [data-theme="dark"] #header,
+  [data-theme="dark"] #nav {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  [data-theme="dark"] * {
+    box-shadow: none !important;
+  }
+}

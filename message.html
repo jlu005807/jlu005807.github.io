@@ -4,9 +4,27 @@
 		<title>Message Board</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<script>
+			// 初始主题色设置（避免页面闪烁）
+			(function() {
+				const savedTheme = localStorage.getItem('theme');
+				const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				
+				// 设置初始主题属性
+				document.documentElement.setAttribute(
+					'data-theme', 
+					savedTheme || (systemPrefersDark ? 'dark' : 'light')
+				);
+				
+				// 设置初始主题色
+				const metaColor = savedTheme === 'dark' || (!savedTheme && systemPrefersDark) ? '#121212' : '#f8f8f8';
+				document.querySelector('meta[name="theme-color"]').setAttribute('content', metaColor);
+			})();
+		</script>
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/expanding-cards.css" />
 		<link rel="stylesheet" href="assets/css/message-comments.css" />
+		<link rel="stylesheet" href="assets/css/theme-integrated.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<!-- 优化移动设备适配性 -->
 		<meta name="theme-color" content="#f8f8f8" />
@@ -73,8 +91,8 @@
 						</div>
 					</div>
 					                    
-                    <div class="box notice-box" style="background:#f8f8f8; border-left:4px solid #f39c12; margin-bottom:1.5em; position:relative; z-index:10; margin-top: 3em; clear: both;">
-                        <h3 style="margin-top:0;">Notice</h3>
+                    <div class="box notice-box" style="background:var(--bg-secondary); border-left:4px solid #f39c12; margin-bottom:1.5em; position:relative; z-index:10; margin-top: 3em; clear: both; color:var(--text-primary);">
+                        <h3 style="margin-top:0; color:var(--text-primary);">Notice</h3>
                         <ul style="margin-bottom:0;">
 							<li>👋Welcome to leave your message, share your thoughts or suggestions!</li>
                             <li>😊 Please be respectful and friendly.</li>
@@ -86,9 +104,9 @@
                     <h2>💬 Comments </h2>
                     
                     <!-- 评论系统优化提示 -->
-                    <div id="comment-loading" style="text-align:center; padding:20px;">
+                    <div id="comment-loading" style="text-align:center; padding:20px; color:var(--text-primary);">
                         <p>Loading comments...</p>
-                        <div class="spinner" style="width:40px; height:40px; margin:10px auto; border:4px solid rgba(0,0,0,0.1); border-left-color:#f39c12; border-radius:50%; animation:spin 1s linear infinite;"></div>
+                        <div class="spinner" style="width:40px; height:40px; margin:10px auto; border:4px solid var(--border-color); border-left-color:#f39c12; border-radius:50%; animation:spin 1s linear infinite;"></div>
                     </div>
                     
                     <div class="comment-container" style="width:100%; max-width:100%; overflow:visible; position:relative; padding-right:15px; box-sizing:border-box;">
@@ -152,61 +170,125 @@
 		<script src="assets/js/expanding-cards.js"></script>
 		<script src="assets/js/comment-loader.js"></script>
 		
-		<!-- 防止 Giscus 脚本导致页面跳转到底部 -->
+		<!-- Giscus 加载优化 -->
 		<script>
-		// 确保页面始终从顶部开始
+		// 与页面过渡效果协调的Giscus加载控制
 		window.addEventListener('DOMContentLoaded', function() {
-			// 立即滚动到顶部
-			window.scrollTo(0, 0);
-			
-			// 防止 Giscus 脚本加载后自动滚动
-			var scrollToTop = function() {
-				if (window.location.hash === '#top' || window.location.hash === '') {
-					setTimeout(function() {
-						window.scrollTo(0, 0);
-					}, 100);
+			// 检测Giscus框架加载完成
+			function handleGiscusFrameLoaded() {
+				// 标记Giscus已加载
+				window._giscusLoaded = true;
+				
+				// 通知页面过渡系统Giscus已加载完成
+				if (window.notifyGiscusLoaded && typeof window.notifyGiscusLoaded === 'function') {
+					window.notifyGiscusLoaded();
 				}
-			};
-			
-			// 在页面完全加载后再次确保位置正确
-			window.addEventListener('load', scrollToTop);
-			
-			// 监听 Giscus 脚本的加载
-			var observer = new MutationObserver(function(mutations) {
-				mutations.forEach(function(mutation) {
-					if (mutation.addedNodes.length > 0) {
-						setTimeout(scrollToTop, 500);
+				
+				// 如果存在锚点，则滚动到对应位置
+				if (window.location.hash) {
+					const target = document.querySelector(window.location.hash);
+					if (target) {
+						setTimeout(() => {
+							target.scrollIntoView({behavior: 'smooth'});
+						}, 300);
 					}
+				}
+			}
+			
+			// 监听Giscus iframe的加载
+			var giscusObserver = new MutationObserver(function(mutations) {
+				for (const mutation of mutations) {
+					if (mutation.addedNodes.length > 0) {
+						const giscusFrame = document.querySelector('iframe.giscus-frame');
+						if (giscusFrame && !window._giscusFrameObserved) {
+							window._giscusFrameObserved = true;
+							giscusFrame.addEventListener('load', handleGiscusFrameLoaded);
+							// 仅监听一次
+							giscusObserver.disconnect();
+							break;
+						}
+					}
+				}
+			});
+			
+			// 观察整个Giscus容器区域
+			const giscusContainer = document.querySelector('.giscus');
+			if (giscusContainer) {
+				giscusObserver.observe(giscusContainer, {
+					childList: true,
+					subtree: true
 				});
-			});
-			
-			observer.observe(document.body, {
-				childList: true,
-				subtree: true
-			});
-			
-			// 5秒后停止观察（Giscus通常会在这个时间内加载完成）
-			setTimeout(function() {
-				observer.disconnect();
-			}, 5000);
+				
+				// 10秒后无论如何都停止观察
+				setTimeout(function() {
+					if (!window._giscusLoaded) {
+						window._giscusLoaded = true;
+						giscusObserver.disconnect();
+						
+						// 如果超时后仍未加载完成，也通知页面过渡系统
+						if (window.notifyGiscusLoaded && typeof window.notifyGiscusLoaded === 'function') {
+							window.notifyGiscusLoaded();
+						}
+					}
+				}, 10000);
+			}
 		});
 		</script>
 		
-		<script src="https://giscus.app/client.js"
-			data-repo="jlu005807/jlu005807.github.io"
-			data-repo-id="R_kgDOOPXtSA"
-			data-category="Announcements"
-			data-category-id="DIC_kwDOOPXtSM4CtKxy"
-			data-mapping="pathname"
-			data-strict="0"
-			data-reactions-enabled="1"
-			data-emit-metadata="0"
-			data-input-position="top"
-			data-theme="fro" 
-			data-lang="en"
-			data-loading="lazy"
-			crossorigin="anonymous"
-			async>
+		<script>
+			// 确定初始Giscus主题
+			(function() {
+				const savedTheme = localStorage.getItem('theme');
+				const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+				
+				// 创建Giscus脚本
+				const giscusScript = document.createElement('script');
+				giscusScript.src = "https://giscus.app/client.js";
+				giscusScript.setAttribute("data-repo", "jlu005807/jlu005807.github.io");
+				giscusScript.setAttribute("data-repo-id", "R_kgDOOPXtSA");
+				giscusScript.setAttribute("data-category", "Announcements");
+				giscusScript.setAttribute("data-category-id", "DIC_kwDOOPXtSM4CtKxy");
+				giscusScript.setAttribute("data-mapping", "pathname");
+				giscusScript.setAttribute("data-strict", "0");
+				giscusScript.setAttribute("data-reactions-enabled", "1");
+				giscusScript.setAttribute("data-emit-metadata", "0");
+				giscusScript.setAttribute("data-input-position", "top");
+				giscusScript.setAttribute("data-theme", currentTheme === 'dark' ? 'dark' : 'fro');
+				giscusScript.setAttribute("data-lang", "en");
+				giscusScript.setAttribute("data-loading", "lazy");
+				giscusScript.setAttribute("crossorigin", "anonymous");
+				giscusScript.async = true;
+				
+				// 添加到文档
+				document.body.appendChild(giscusScript);
+			})();
+		</script>
+		
+	<!-- 主题切换按钮 -->
+	<button class="theme-toggle" aria-label="切换主题模式" id="theme-toggle">
+		<span class="theme-icon light-icon">☀️</span>
+		<span class="theme-icon dark-icon">🌙</span>
+	</button>	<!-- 主题切换脚本 -->
+	<script src="assets/js/theme-switcher.js"></script>
+	<script src="assets/js/theme-toggle-position.js"></script>
+	<!-- 页面过渡效果脚本 -->
+	<script src="assets/js/page-transition.js"></script>
+	<!-- Giscus 主题适配脚本 -->
+		<script>
+			document.addEventListener('themeChanged', function(e) {
+				const theme = e.detail.theme;
+				const giscusFrame = document.querySelector('iframe.giscus-frame');
+				if (giscusFrame) {
+					giscusFrame.contentWindow.postMessage({
+						giscus: {
+							setConfig: {
+								theme: theme === 'dark' ? 'dark_tritanopia' : 'fro'
+							}
+						}
+					}, 'https://giscus.app');
+				}
+			});
 		</script>
 	</body>
 </html> 
