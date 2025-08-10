@@ -1,0 +1,527 @@
+.theme-container *,
+.theme-container *:after,
+.theme-container *:before {
+	box-sizing: border-box;
+}
+
+.theme-container {
+  /* 重置和隔离样式 */
+  all: initial;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  
+  /* 限制容器尺寸避免影响其他元素 */
+  width: 150px; /* 限制容器宽度 */
+  height: 50px; /* 限制容器高度 */
+  overflow: visible; /* 允许按钮内容超出但不影响布局 */
+  pointer-events: none; /* 容器本身不响应鼠标事件 */
+  
+  /* 主题切换变量 */
+  --slide-ease: cubic-bezier(.4,-0.3,.6,1.3);
+  --easing: var(--slide-ease);
+  --speed: 0.5s;
+  --width: clamp(100px, 45vmin, 250px);
+  --ar: 8 / 3;
+  --ray: hsl(0 0% 100% / 0.5);
+  --sun: hsl(47, 91%, 58%);
+  --moon: hsl(212, 13%, 82%);
+  --crater: hsl(221, 16%, 68%);
+  --bg: hsl(219, 30%, 88%);
+  --bear-speed: 10s;
+  --color: hsl(219 30% 20%);
+  
+  /* 独立的容器样式 */
+  background: transparent;
+  color: initial;
+  font-family: sans-serif, system-ui;
+  font-size: 16px;
+  line-height: 1;
+  text-align: left;
+  direction: ltr;
+}
+
+.theme-container[data-dark-mode=true] {
+  --bg: hsl(219, 30%, 12%);
+  --color: hsl(219 30% 98%);
+}
+
+
+
+.theme-container .toggle__backdrop:first-of-type .clouds path:first-of-type {
+	fill: var(--ray);
+}
+
+.theme-container .toggle {
+  -webkit-tap-highlight-color: transparent;
+  width: 400px; /* 固定小尺寸适合左上角 */
+  height: 120px; /* 固定高度 */
+  z-index: 10;
+  will-change: transform;
+  isolation: isolate;
+  transform: scale(0.3); /* 缩小按钮 */
+  transform-origin: top left; /* 从左上角缩放 */
+	aspect-ratio: var(--ar);
+	border-radius: 100vh;
+	border: 0;
+	position: relative;
+	padding: 0;
+	overflow: hidden;
+	cursor: pointer;
+	pointer-events: all; /* 确保按钮可以响应鼠标事件 */
+	transition: background var(--speed) var(--easing), transform 0.2s ease-out;
+	--sky: hsl(204, 53%, 47%);
+	--night: hsl(229, 25%, 16%);
+	outline-color: transparent;
+	outline: none; /* 移除焦点轮廓 */
+	
+	/* 完全重置按钮样式，阻止main.css影响 */
+	appearance: none !important;
+	-webkit-appearance: none !important;
+	-moz-appearance: none !important;
+	font-family: inherit !important;
+	font-size: inherit !important;
+	font-weight: inherit !important;
+	letter-spacing: inherit !important;
+	line-height: inherit !important;
+	text-align: inherit !important;
+	text-decoration: none !important;
+	text-transform: none !important;
+	white-space: inherit !important;
+	color: initial !important;
+	
+	background: hsl(
+		calc(204 + (var(--dark, 0) * 25))
+		calc((53 - (var(--dark, 0) * 28)) * 1%)
+		calc((47 - (var(--dark, 0) * 31)) * 1%)
+	);
+	box-shadow:
+		calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+		calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+		calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15);
+}
+
+/* 移除按钮的默认焦点和活动状态样式，使用最高特异性 */
+.theme-container .theme-container .toggle:focus,
+.theme-container .theme-container .toggle:focus-visible,
+.theme-container .theme-container .toggle:active,
+.theme-container .toggle:focus,
+.theme-container .toggle:focus-visible,
+.theme-container .toggle:active,
+button.toggle:focus,
+button.toggle:focus-visible,
+button.toggle:active {
+  outline: none !important;
+  background: hsl(
+    calc(204 + (var(--dark, 0) * 25))
+    calc((53 - (var(--dark, 0) * 28)) * 1%)
+    calc((47 - (var(--dark, 0) * 31)) * 1%)
+  ) !important;
+  box-shadow:
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+  color: transparent !important;
+  border: none !important;
+  -webkit-box-shadow: 
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+  -moz-box-shadow: 
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+}
+
+/* 悬停效果 - 使用最高特异性完全覆盖main.css */
+.theme-container .theme-container .toggle:hover,
+.theme-container .toggle:hover,
+button.toggle:hover {
+  transform: scale(0.32) !important;
+  background: hsl(
+    calc(204 + (var(--dark, 0) * 25))
+    calc((53 - (var(--dark, 0) * 28)) * 1%)
+    calc((47 - (var(--dark, 0) * 31)) * 1%)
+  ) !important;
+  box-shadow:
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+  color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  /* 专门针对main.css的蓝色样式进行覆盖 */
+  -webkit-box-shadow: 
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+  -moz-box-shadow: 
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+}
+
+/* 移动设备优化 */
+@media (max-width: 768px) {
+  .theme-container {
+    top: 10px; /* 移动端顶部距离更小 */
+    left: 10px; /* 移动端左侧距离更小 */
+    width: 120px; /* 移动端容器更小 */
+    height: 40px; /* 移动端容器高度更小 */
+  }
+  
+  .theme-container .toggle {
+    transform: scale(0.25); /* 移动端按钮更小 */
+  }
+  
+  .theme-container .theme-container .toggle:hover,
+  .theme-container .toggle:hover,
+  button.toggle:hover {
+    transform: scale(0.27) !important;
+    background: hsl(
+      calc(204 + (var(--dark, 0) * 25))
+      calc((53 - (var(--dark, 0) * 28)) * 1%)
+      calc((47 - (var(--dark, 0) * 31)) * 1%)
+    ) !important;
+    box-shadow:
+      calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+      calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+      calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+    color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    -webkit-box-shadow: 
+      calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+      calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+      calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+    -moz-box-shadow: 
+      calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+      calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+      calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+  }
+}
+
+.theme-container .toggle:after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	box-shadow:
+		calc(var(--width) * 0) calc(var(--width) * -0.025) calc(var(--width) * 0.025) 0 hsl(210 10% 10% / 0.15) inset,
+		calc(var(--width) * 0) calc(var(--width) * 0.025) calc(var(--width) * 0.025) 0 hsl(210 10% 10% / 0.65) inset;
+	border-radius: 100vh;
+}
+
+.theme-container .toggle__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: 100vh;
+  display: block;
+  clip-path: inset( 0 0 0 0 round 100vh);
+  container-type: inline-size;
+}
+
+.theme-container .toggle__backdrop {
+  overflow: visible !important;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	transition: translate var(--speed) var(--easing);
+	translate: 0 calc(
+		var(--dark, 0) * (100% - (3 / 8 * var(--width)))
+	);
+}
+
+.theme-container [aria-pressed=false] .toggle__backdrop:last-of-type {
+	transition-timing-function: cubic-bezier(.2,-0.6,.7,1.6);
+}
+
+.theme-container [aria-pressed=false] .stars path {
+	transition-delay: 0s;
+}
+
+.theme-container .stars path {
+	transform-box: fill-box;
+	transform-origin: 25% 50%;
+	scale: calc(0.25 + (var(--dark, 0) * 0.75));
+	transition: scale var(--speed) calc(var(--speed) * 0.5) var(--easing);
+}
+
+.theme-container .toggle__indicator {
+	height: 100%;
+	aspect-ratio: 1;
+	border-radius: 0%;
+	display: grid;
+	place-items: center;
+	padding: 3%;
+  transition: translate var(--speed) var(--slide-ease);
+  translate: calc(var(--dark, 0) * (100cqi - 100%)) 0;
+}
+
+.theme-container .pilot-bear {
+	position: absolute;
+	width: 25%;
+}
+
+.theme-container .toggle__star {
+	height: 100%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	position: relative;
+	transition: translate var(--speed) var(--easing);
+	translate: calc((var(--dark, 0) * -10%) + 5%) 0;
+}
+
+.theme-container .sun {
+	background: var(--sun);
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	overflow: hidden;
+	box-shadow:
+		calc(var(--width) * 0.01) calc(var(--width) * 0.01) calc(var(--width) * 0.02) 0 hsl(210 10% 100% / 0.95) inset,
+		calc(var(--width) * -0.01) calc(var(--width) * -0.01) calc(var(--width) * 0.02) 0 hsl(210 10% 20% / 0.5) inset;
+}
+.theme-container .moon {
+	position: absolute;
+	inset: -1%;
+	border-radius: 50%;
+	background: var(--moon);
+  transition: translate var(--speed) ease-in-out;
+	translate: calc((100 - (var(--dark, 0) * 100)) * 1%) 0%;
+	box-shadow:
+		calc(var(--width) * 0.01) calc(var(--width) * 0.01) calc(var(--width) * 0.02) 0 hsl(210 10% 100% / 0.95) inset,
+		calc(var(--width) * -0.01) calc(var(--width) * -0.01) calc(var(--width) * 0.02) 0 hsl(210 10% 10% / 0.95) inset;
+}
+
+.theme-container .moon__crater {
+	position: absolute;
+	background: var(--crater);
+	border-radius: 50%;
+	width: calc(var(--size, 10) * 1%);
+	aspect-ratio: 1;
+	left: calc(var(--x) * 1%);
+	top: calc(var(--y) * 1%);
+	box-shadow:
+		calc(var(--width) * 0.01) calc(var(--width) * 0.01) calc(var(--width) * 0.01) 0 hsl(210 10% 6% / 0.25) inset,
+		0 calc(var(--width) * 0.005) calc(var(--width) * 0.01) 0 hsl(210 10% 100% / 0.25);
+}
+
+.theme-container .moon__crater:nth-of-type(1) {
+	--size: 18;
+	--x: 40;
+	--y: 15;
+}
+.theme-container .moon__crater:nth-of-type(2) {
+	--size: 20;
+	--x: 65;
+	--y: 58;
+}
+.theme-container .moon__crater:nth-of-type(3) {
+	--size: 34;
+	--x: 18;
+	--y: 40;
+}
+
+.theme-container .toggle__star:before {
+	content: "";
+	z-index: -1;
+	width: 356%;
+	background:
+		radial-gradient(hsl(0 0% 100% / 0.25) 40%, transparent 40.5%),
+		radial-gradient(hsl(0 0% 100% / 0.25) 56%, transparent 56.5%)
+	  hsl(0 0% 100% / 0.25);
+	border-radius: 50%;
+	aspect-ratio: 1;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transition: translate var(--speed) var(--easing);
+	translate: calc(
+		(50 - (var(--dark, 0) * 4)) *
+		-1%
+	)
+	-50%;
+}
+
+.theme-container .toggle__star:after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	display: block;
+	background: hsl(0 0% 0% / 0.5);
+	filter: blur(4px);
+	translate: 2% 4%;
+	border-radius: 50%;
+	z-index: -1;
+}
+
+.theme-container .toggle__indicator-wrapper {
+	position: absolute;
+	inset: 0;
+}
+
+.theme-container [aria-pressed=true] {
+	--dark: 1;
+}
+
+.theme-container .stars g {
+	transform-box: fill-box;
+	transform-origin: 50% 50%;
+}
+.theme-container .stars g:nth-of-type(3) {
+	animation: twinkle 4s -2s infinite;
+}
+
+.theme-container .stars g:nth-of-type(11) {
+	animation: twinkle 6s -2s infinite;
+}
+
+.theme-container .stars g:nth-of-type(9) {
+	animation: twinkle 4s -1s infinite;
+}
+
+@keyframes twinkle {
+	0%, 40%, 60%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0);
+	}
+}
+
+.theme-container .astrobear {
+	width: 12%;
+	position: absolute;
+	top: 100%;
+	left: 0%;
+	transition: translate calc(var(--speed) + (var(--dark, 0) * (var(--bear-speed) - var(--speed))))
+		calc(var(--bear-speed) * (0.4 * var(--dark, 0))) linear;
+	translate: calc(var(--dark, 0) * 400%) calc(var(--dark, 0) * -350%);
+}
+
+.theme-container .astrobear svg {
+	transform-origin: 50% 75%;
+	scale: var(--dark, 0);
+	rotate: calc(var(--dark, 0) * 360deg);
+	transition: rotate calc(var(--speed) + (var(--dark, 0) * (var(--bear-speed) - var(--speed)))) calc(var(--bear-speed) * 0.4) linear, scale var(--speed) ease-in-out;
+}
+
+.theme-container .astrobear__container {
+	position: absolute;
+	overflow: hidden;
+	inset: 0;
+	clip-path: inset(0 0 0 0);
+	opacity: var(--dark, 0);
+	translate: 0 calc(-200% + (var(--dark, 0) * 200%));
+	transition: opacity var(--speed) var(--easing), translate var(--speed) var(--easing);
+}
+
+.theme-container .pilot__container {
+	position: absolute;
+	overflow: hidden;
+	inset: 0;
+	clip-path: inset(0 0 0 0);
+	opacity: calc(1 - var(--dark, 0));
+	translate: 0 calc(var(--dark, 0) * 200%);
+	transition: opacity var(--speed) var(--easing), translate var(--speed) var(--easing);
+}
+
+.theme-container .pilot-bear {
+	width: 18%;
+	position: absolute;
+	top: 70%;
+	left: 100%;
+	transition:
+		translate
+			calc(
+				var(--speed) + ((1 - var(--dark, 0)) *
+					((var(--bear-speed) * 0.5) - var(--speed))))
+			calc((var(--bear-speed) * 0.5) * ((1 - var(--dark, 0)) * 0.4)) linear;
+	translate:
+		calc(
+			(0 - (1 - var(--dark, 0))) * (var(--width) + 100%))
+		calc(
+		(0 - (1 - var(--dark, 0))) * (200%));
+}
+
+.theme-container .pilot {
+	rotate: 12deg;
+	animation: fly 4s infinite ease-in-out;
+}
+
+@keyframes fly {
+	50% { translate: 0 -25%; }
+}
+
+.theme-container .controls {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: sans-serif;
+  color: var(--color);
+  transition: color var(--speed) var(--easing);
+}
+
+.theme-container [type=checkbox] {
+  accent-color: var(--color);
+  transition: accent-color var(--speed) var(--easing);
+}
+
+.theme-container .bear-link {
+	color: canvasText;
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+	width: 48px;
+	aspect-ratio: 1;
+	display: grid;
+	place-items: center;
+	opacity: 0.8;
+  transition: color var(--speed);
+}
+
+.theme-container :where(.x-link, .bear-link):is(:hover, :focus-visible) {
+	opacity: 1;
+}
+.theme-container .bear-link svg {
+	width: 75%;
+}
+
+/* 终极解决方案：最高特异性覆盖所有可能的main.css样式 */
+html body .theme-container .theme-container .toggle,
+html body .theme-container .toggle,
+html body button.toggle {
+  box-shadow: 
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+  color: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+html body .theme-container .theme-container .toggle:hover,
+html body .theme-container .toggle:hover,
+html body button.toggle:hover {
+  box-shadow: 
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15) !important;
+  color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  background: hsl(
+    calc(204 + (var(--dark, 0) * 25))
+    calc((53 - (var(--dark, 0) * 28)) * 1%)
+    calc((47 - (var(--dark, 0) * 31)) * 1%)
+  ) !important;
+}

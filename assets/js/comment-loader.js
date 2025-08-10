@@ -49,6 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
 							// 跨域问题，忽略错误
 							console.log('跨域限制，无法访问iframe内容');
 						}
+						
+						// 通知页面过渡系统Giscus已加载
+						if (window.notifyGiscusLoaded && typeof window.notifyGiscusLoaded === 'function') {
+							window.notifyGiscusLoaded();
+						}
 					}, 1000);
 				});
 			}
@@ -61,10 +66,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 开始观察目标节点变化
 	observer.observe(giscusContainer, { childList: true, subtree: true });
 	
-	// 30秒后无论如何都隐藏加载指示器（防止加载失败时一直显示）
+	// 15秒后无论如何都隐藏加载指示器（防止加载失败时一直显示）
 	setTimeout(function() {
 		if (loadingIndicator) {
 			loadingIndicator.style.display = 'none';
+			
+			// 如果加载超时，也通知页面过渡系统
+			if (window.notifyGiscusLoaded && typeof window.notifyGiscusLoaded === 'function') {
+				window.notifyGiscusLoaded();
+			}
 		}
-	}, 30000);
+	}, 15000);
 });
