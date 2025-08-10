@@ -1,15 +1,7 @@
 // ===== 主题管理系统 =====
 document.addEventListener('DOMContentLoaded', () => {
-  // 获取主题切换按钮
-  const themeToggle = document.querySelector('.theme-toggle');
-  
   // 初始化主题
   initTheme();
-  
-  // 绑定切换事件
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-  }
   
   // 监听系统主题变化
   const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -29,13 +21,16 @@ function initTheme() {
 }
 
 function setTheme(theme) {
+  // 设置根元素的data-dark-mode属性
+  document.documentElement.setAttribute('data-dark-mode', theme === 'dark');
+  // 保留原有的data-theme属性以兼容其他代码
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
   
   // 更新主题色元标签
   const metaThemeColor = document.querySelector("meta[name=theme-color]");
   if (metaThemeColor) {
-    metaThemeColor.setAttribute("content", theme === 'dark' ? '#121212' : '#ffffff');
+    metaThemeColor.setAttribute("content", theme === 'dark' ? '#121212' : '#f8f8f8');
   }
   
   // 更新UI状态
@@ -55,23 +50,11 @@ function toggleTheme() {
 }
 
 function updateThemeToggleUI(theme) {
-  const themeToggle = document.querySelector('.theme-toggle');
+  const themeToggle = document.querySelector('.toggle');
   if (!themeToggle) return;
   
-  // 更新按钮图标
-  if (theme === 'dark') {
-    themeToggle.querySelector('.light-icon').style.display = 'none';
-    themeToggle.querySelector('.dark-icon').style.display = 'block';
-  } else {
-    themeToggle.querySelector('.light-icon').style.display = 'block';
-    themeToggle.querySelector('.dark-icon').style.display = 'none';
-  }
-  
-  // 添加动画效果
-  themeToggle.style.transform = 'scale(0.8)';
-  setTimeout(() => {
-    themeToggle.style.transform = 'scale(1)';
-  }, 200);
+  // 使用aria-pressed属性控制动画状态
+  themeToggle.setAttribute('aria-pressed', theme === 'dark');
 }
 
 function systemThemeChange(e) {

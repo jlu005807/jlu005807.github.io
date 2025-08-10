@@ -4,27 +4,13 @@
 		<title>Message Board</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<script>
-			// 初始主题色设置（避免页面闪烁）
-			(function() {
-				const savedTheme = localStorage.getItem('theme');
-				const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				
-				// 设置初始主题属性
-				document.documentElement.setAttribute(
-					'data-theme', 
-					savedTheme || (systemPrefersDark ? 'dark' : 'light')
-				);
-				
-				// 设置初始主题色
-				const metaColor = savedTheme === 'dark' || (!savedTheme && systemPrefersDark) ? '#121212' : '#f8f8f8';
-				document.querySelector('meta[name="theme-color"]').setAttribute('content', metaColor);
-			})();
-		</script>
+		
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/expanding-cards.css" />
 		<link rel="stylesheet" href="assets/css/message-comments.css" />
 		<link rel="stylesheet" href="assets/css/theme-integrated.css" />
+		<link rel="stylesheet" href="assets/css/theme-toggle.css" />
+		<link rel="stylesheet" href="assets/css/smart-back-to-top.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<!-- 优化移动设备适配性 -->
 		<meta name="theme-color" content="#f8f8f8" />
@@ -170,70 +156,7 @@
 		<script src="assets/js/expanding-cards.js"></script>
 		<script src="assets/js/comment-loader.js"></script>
 		
-		<!-- Giscus 加载优化 -->
-		<script>
-		// 与页面过渡效果协调的Giscus加载控制
-		window.addEventListener('DOMContentLoaded', function() {
-			// 检测Giscus框架加载完成
-			function handleGiscusFrameLoaded() {
-				// 标记Giscus已加载
-				window._giscusLoaded = true;
-				
-				// 通知页面过渡系统Giscus已加载完成
-				if (window.notifyGiscusLoaded && typeof window.notifyGiscusLoaded === 'function') {
-					window.notifyGiscusLoaded();
-				}
-				
-				// 如果存在锚点，则滚动到对应位置
-				if (window.location.hash) {
-					const target = document.querySelector(window.location.hash);
-					if (target) {
-						setTimeout(() => {
-							target.scrollIntoView({behavior: 'smooth'});
-						}, 300);
-					}
-				}
-			}
-			
-			// 监听Giscus iframe的加载
-			var giscusObserver = new MutationObserver(function(mutations) {
-				for (const mutation of mutations) {
-					if (mutation.addedNodes.length > 0) {
-						const giscusFrame = document.querySelector('iframe.giscus-frame');
-						if (giscusFrame && !window._giscusFrameObserved) {
-							window._giscusFrameObserved = true;
-							giscusFrame.addEventListener('load', handleGiscusFrameLoaded);
-							// 仅监听一次
-							giscusObserver.disconnect();
-							break;
-						}
-					}
-				}
-			});
-			
-			// 观察整个Giscus容器区域
-			const giscusContainer = document.querySelector('.giscus');
-			if (giscusContainer) {
-				giscusObserver.observe(giscusContainer, {
-					childList: true,
-					subtree: true
-				});
-				
-				// 10秒后无论如何都停止观察
-				setTimeout(function() {
-					if (!window._giscusLoaded) {
-						window._giscusLoaded = true;
-						giscusObserver.disconnect();
-						
-						// 如果超时后仍未加载完成，也通知页面过渡系统
-						if (window.notifyGiscusLoaded && typeof window.notifyGiscusLoaded === 'function') {
-							window.notifyGiscusLoaded();
-						}
-					}
-				}, 10000);
-			}
-		});
-		</script>
+		
 		
 		<script>
 			// 确定初始Giscus主题
@@ -265,13 +188,11 @@
 			})();
 		</script>
 		
-	<!-- 主题切换按钮 -->
-	<button class="theme-toggle" aria-label="切换主题模式" id="theme-toggle">
-		<span class="theme-icon light-icon">☀️</span>
-		<span class="theme-icon dark-icon">🌙</span>
-	</button>	<!-- 主题切换脚本 -->
+	<!-- 主题切换脚本 -->
 	<script src="assets/js/theme-switcher.js"></script>
 	<script src="assets/js/theme-toggle-position.js"></script>
+	<!-- 智能回到顶部按钮脚本 -->
+	<script src="assets/js/smart-back-to-top.js"></script>
 	<!-- 页面过渡效果脚本 -->
 	<script src="assets/js/page-transition.js"></script>
 	<!-- Giscus 主题适配脚本 -->

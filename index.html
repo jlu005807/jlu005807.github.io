@@ -6,24 +6,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="theme-color" content="#ffffff" id="theme-color-meta">
-	<script>
-		// 初始主题色设置（避免页面闪烁）
-		(function() {
-			const savedTheme = localStorage.getItem('theme');
-			const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			
-			// 设置初始主题属性
-			document.documentElement.setAttribute(
-				'data-theme', 
-				savedTheme || (systemPrefersDark ? 'dark' : 'light')
-			);
-			
-			// 设置初始主题色
-			document.getElementById('theme-color-meta').content = 
-				(savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) 
-					? '#121212' : '#ffffff';
-		})();
-	</script>
+	
 
 	<!-- 添加资源提示 -->
 	<link rel="preconnect" href="https://code.jquery.com">
@@ -34,6 +17,8 @@
 
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="assets/css/carousel.css" />
+	<link rel="stylesheet" href="assets/css/theme-toggle.css" />
+	<link rel="stylesheet" href="assets/css/smart-back-to-top.css" />
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -42,13 +27,12 @@
 	</noscript>
 	<link rel="stylesheet" href="assets/css/theme-integrated.css" />
 </head>
+
 <a id="top"></a>
 
 <body class="is-preload" style="opacity:0;">
-
 	<!-- Wrapper -->
 	<div id="wrapper" class="fade-in">
-
 		<!-- Intro -->
 		<div id="intro">
 			<div id="parallax_wrapper">
@@ -91,7 +75,7 @@
 					<span class="date current-date"></span>
 					<h2><a href="#">Welcome🎈 </a></h2>
 				</header>
-				
+
 				<!-- 轮播图替换原始图片 -->
 				<section class="carousel">
 					<article>
@@ -191,19 +175,19 @@
 						<a href="#card12" class="scrolly">Learn More</a>
 					</article>
 				</section>
-				
+
 				<ul class="actions special">
 					<li><a href="#article-search" class="button large">✨Start✨</a></li>
 				</ul>
 			</article>
 
-			
+
 			<div class="search-bar-wrapper">
 				<span class="search-icon">&#128269;</span>
 				<input type="text" id="article-search" placeholder="Search article title..." autocomplete="off">
 				<span class="clear-btn" id="clear-search" title="Clear">&#10006;</span>
 			</div>
-			
+
 
 			<!-- Posts -->
 			<section class="posts">
@@ -229,13 +213,20 @@
 							</div>
 							<div class="book__content">
 								<h3>🎮 Game Introduction</h3>
-								<p><span class="drop-cap"></span>Tic-Tac-Toe is a classic two-player game played on a 3x3 grid. The first player to align three marks horizontally, vertically, or diagonally wins. If all 9 squares are filled with no winner, the game ends in a draw.</p>
+								<p><span class="drop-cap"></span>Tic-Tac-Toe is a classic two-player game played on a
+									3x3 grid. The first player to align three marks horizontally, vertically, or
+									diagonally wins. If all 9 squares are filled with no winner, the game ends in a
+									draw.</p>
 								<h3>🕹️ How to Play</h3>
 								<ul>
-									<li>👫 <strong>Two-player mode:</strong> Play with your friend on the same device.</li>
-									<li>🤖 <strong>AI mode:</strong> Challenge the computer with two difficulty levels: Easy and Hard.</li>
-									<li>🖱️ <strong>Simple controls:</strong> Just click on the squares to make your move.</li>
-									<li>🏆 <strong>Automatic win detection:</strong> The game will announce the winner or a draw automatically.</li>
+									<li>👫 <strong>Two-player mode:</strong> Play with your friend on the same device.
+									</li>
+									<li>🤖 <strong>AI mode:</strong> Challenge the computer with two difficulty levels:
+										Easy and Hard.</li>
+									<li>🖱️ <strong>Simple controls:</strong> Just click on the squares to make your
+										move.</li>
+									<li>🏆 <strong>Automatic win detection:</strong> The game will announce the winner
+										or a draw automatically.</li>
 								</ul>
 								<h3>📷 Screenshots</h3>
 								<a class="image fit"><img src="images/home/card1_1.png" alt="" /></a>
@@ -248,6 +239,7 @@
 								<p>Game over screen. You can choose to play again or exit.</p>
 								<a class="image fit"><img src="images/home/card1_5.png" alt="" /></a>
 								<a class="image fit"><img src="images/home/card1_6.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/Tictactoe" target="_blank">https://github.com/jlu005807/Tictactoe</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -277,13 +269,19 @@
 							</div>
 							<div class="book__content">
 								<h3>🕹️ Game Introduction</h3>
-								<p><span class="drop-cap"></span>Survivor-of-Teyvat is a roguelike game where your goal is to score points by defeating enemies. The number of energy orbs around you represents your health. Each monster has unique characteristics—explore and discover them!</p>
+								<p><span class="drop-cap"></span>Survivor-of-Teyvat is a roguelike game where your goal
+									is to score points by defeating enemies. The number of energy orbs around you
+									represents your health. Each monster has unique characteristics—explore and discover
+									them!</p>
 								<h3>⚙️ Features</h3>
 								<ul>
-									<li>🧑‍🎮 <strong>Character selection:</strong> Choose your favorite character to play.</li>
-									<li>⚔️ <strong>Monster challenge:</strong> Each monster has unique skills and behaviors.</li>
+									<li>🧑‍🎮 <strong>Character selection:</strong> Choose your favorite character to
+										play.</li>
+									<li>⚔️ <strong>Monster challenge:</strong> Each monster has unique skills and
+										behaviors.</li>
 									<li>💡 <strong>Skill variety:</strong> Use different skills to defeat enemies.</li>
-									<li>📈 <strong>Score system:</strong> View your score and results at the end of each game.</li>
+									<li>📈 <strong>Score system:</strong> View your score and results at the end of each
+										game.</li>
 								</ul>
 								<h3>📷 Screenshots</h3>
 								<a class="image fit"><img src="images/home/card2_1.png" alt="" /></a>
@@ -296,6 +294,7 @@
 								<a class="image fit"><img src="images/home/card2_5.png" alt="" /></a>
 								<p>At the end, view your score and game results.</p>
 								<a class="image fit"><img src="images/home/card2_6.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/Survivor-of-Teyvat" target="_blank">https://github.com/jlu005807/Survivor-of-Teyvat</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -331,7 +330,8 @@
 								<h3>🔑 Key Features</h3>
 								<ul>
 									<li>📖 <strong>Comprehensive notes:</strong> Well-organized study materials.</li>
-									<li>🔗 <strong>PDF downloads:</strong> Downloadable resources for offline study.</li>
+									<li>🔗 <strong>PDF downloads:</strong> Downloadable resources for offline study.
+									</li>
 									<li>💡 <strong>Algorithm explanations:</strong> Clear and concise explanations.</li>
 									<li>📝 <strong>Practical examples:</strong> Real code and use cases.</li>
 								</ul>
@@ -340,6 +340,7 @@
 								<p>This repository provides notes and books on Data Structures and Algorithms. Feel free
 									to download the PDFs for your studies.</p>
 								<a class="image fit"><img src="images/home/card3_2.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/Data_Structure_and_Algorithm" target="_blank">https://github.com/jlu005807/Data_Structure_and_Algorithm</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -374,7 +375,8 @@
 									game development, system programming, and web development.</p>
 								<h3>🔑 Key Features</h3>
 								<ul>
-									<li>🛠️ <strong>Multi-paradigm support:</strong> Procedural, object-oriented, and functional programming.</li>
+									<li>🛠️ <strong>Multi-paradigm support:</strong> Procedural, object-oriented, and
+										functional programming.</li>
 									<li>📄 <strong>Code samples:</strong> Practical code examples for learning.</li>
 									<li>🔗 <strong>PDF downloads:</strong> Downloadable learning materials.</li>
 									<li>💡 <strong>Modern C++ features:</strong> Covers latest language features.</li>
@@ -384,6 +386,7 @@
 								<p>This repository contains notes and books on C++. Download the PDFs to enhance your
 									understanding.</p>
 								<a class="image fit"><img src="images/home/card4_2.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/Cpp" target="_blank">https://github.com/jlu005807/Cpp</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -409,27 +412,34 @@
 								</div>
 								<p class="book__cover-exerpt">
 									A CPU design project, including MIPS32 and LA32R implementations.<br>Download the
-									 files to learn more.
+									files to learn more.
 								</p>
 							</div>
 							<div class="book__content">
 								<h3>🖥️ Project Introduction</h3>
 								<p><span class="drop-cap"></span>This project focuses on CPU design, featuring both
 									MIPS32 and LA32R architectures.</p>
-								<p><strong>Note:</strong> The MIPS32 and LA32R implementations have only passed their respective Lab1. 
-									The design includes BTB (Branch Target Buffer) and BHT (Branch History Table) for branch prediction, 
+								<p><strong>Note:</strong> The MIPS32 and LA32R implementations have only passed their
+									respective Lab1.
+									The design includes BTB (Branch Target Buffer) and BHT (Branch History Table) for
+									branch prediction,
 									and uses bypass forwarding to resolve data hazards.</p>
 								<h3>🔑 Key Features</h3>
 								<ul>
-									<li>📊 <strong>Architecture comparison:</strong> MIPS32 and LA32R implementations.</li>
-									<li>📄 <strong>Design documents:</strong> Detailed documentation for each architecture.</li>
-									<li>🔗 <strong>PDF downloads:</strong> Downloadable resources for in-depth study.</li>
-									<li>💡 <strong>Educational value:</strong> Suitable for learning CPU design principles.</li>
+									<li>📊 <strong>Architecture comparison:</strong> MIPS32 and LA32R implementations.
+									</li>
+									<li>📄 <strong>Design documents:</strong> Detailed documentation for each
+										architecture.</li>
+									<li>🔗 <strong>PDF downloads:</strong> Downloadable resources for in-depth study.
+									</li>
+									<li>💡 <strong>Educational value:</strong> Suitable for learning CPU design
+										principles.</li>
 								</ul>
 								<h3>📷 Screenshots</h3>
 								<a class="image fit"><img src="images/home/card5_1.png" alt="" /></a>
 								<p>The MIPS32 and LA32R implementations are organized in separate subdirectories.</p>
 								<a class="image fit"><img src="images/home/card5_2.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/CPU.git" target="_blank">https://github.com/jlu005807/CPU.git</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -460,7 +470,8 @@
 							</div>
 							<div class="book__content">
 								<h3>🔍 Project Introduction</h3>
-								<p><span class="drop-cap"></span>Text_Query is a simple project for full-text search. Enter a keyword to search through text files and get results instantly.</p>
+								<p><span class="drop-cap"></span>Text_Query is a simple project for full-text search.
+									Enter a keyword to search through text files and get results instantly.</p>
 								<h3>⚙️ Features</h3>
 								<ul>
 									<li>🔍 <strong>Keyword search:</strong> Quickly find information in text files.</li>
@@ -479,6 +490,7 @@
 								<p>In the history window, view your past queries. Enter 0 to display the entire history.
 								</p>
 								<a class="image fit"><img src="images/home/card6_4.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/Text_Query.git" target="_blank">https://github.com/jlu005807/Text_Query.git</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -510,7 +522,8 @@
 							</div>
 							<div class="book__content">
 								<h3>🧩 Game Introduction</h3>
-								<p><span class="drop-cap"></span>Tetris is a classic and popular game worldwide. Try it out and see if you can find the bugs!</p>
+								<p><span class="drop-cap"></span>Tetris is a classic and popular game worldwide. Try it
+									out and see if you can find the bugs!</p>
 								<h3>⚙️ Features</h3>
 								<ul>
 									<li>🧩 <strong>Classic gameplay:</strong> Enjoy the timeless Tetris experience.</li>
@@ -522,6 +535,7 @@
 								<a class="image fit"><img src="images/home/card7_1.png" alt="" /></a>
 								<p>The game over screen displays your final score.</p>
 								<a class="image fit"><img src="images/home/card7_2.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/Tetris" target="_blank">https://github.com/jlu005807/Tetris</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -552,13 +566,17 @@
 							</div>
 							<div class="book__content">
 								<h3>📇 Project Introduction</h3>
-								<p><span class="drop-cap"></span>AddressBook is a contact management system. It stores personal information such as name, phone number, email, and address, as well as notes and tags for each contact.</p>
+								<p><span class="drop-cap"></span>AddressBook is a contact management system. It stores
+									personal information such as name, phone number, email, and address, as well as
+									notes and tags for each contact.</p>
 								<h3>⚙️ Features</h3>
 								<ul>
-									<li>📇 <strong>Contact management:</strong> Add, edit, and delete contacts easily.</li>
+									<li>📇 <strong>Contact management:</strong> Add, edit, and delete contacts easily.
+									</li>
 									<li>🔍 <strong>Quick search:</strong> Find contacts by name, phone, or address.</li>
 									<li>📝 <strong>Information editing:</strong> Update contact details anytime.</li>
-									<li>🗑️ <strong>One-click clear:</strong> Remove all contacts with a single action.</li>
+									<li>🗑️ <strong>One-click clear:</strong> Remove all contacts with a single action.
+									</li>
 								</ul>
 								<h3>📷 Screenshots</h3>
 								<a class="image fit"><img src="images/home/card8_1.png" alt="" /></a>
@@ -577,6 +595,7 @@
 								<a class="image fit"><img src="images/home/card8_7.png" alt="" /></a>
 								<p>Finally, you can exit the program.</p>
 								<a class="image fit"><img src="images/home/card8_8.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/addressbook" target="_blank">https://github.com/jlu005807/addressbook</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -608,11 +627,15 @@
 							</div>
 							<div class="book__content">
 								<h3>💻 Project Introduction</h3>
-								<p><span class="drop-cap"></span>This project simulates a computer room reservation system for schools. There are three types of users: students, teachers, and administrators.</p>
+								<p><span class="drop-cap"></span>This project simulates a computer room reservation
+									system for schools. There are three types of users: students, teachers, and
+									administrators.</p>
 								<h3>⚙️ Features</h3>
 								<ul>
-									<li>💻 <strong>Multi-user support:</strong> Students, teachers, and administrators.</li>
-									<li>🕒 <strong>Reservation management:</strong> Book, view, and cancel reservations.</li>
+									<li>💻 <strong>Multi-user support:</strong> Students, teachers, and administrators.
+									</li>
+									<li>🕒 <strong>Reservation management:</strong> Book, view, and cancel reservations.
+									</li>
 									<li>🔒 <strong>Permission levels:</strong> Different access for each user type.</li>
 									<li>📊 <strong>Statistics:</strong> View and analyze reservation data.</li>
 								</ul>
@@ -636,6 +659,7 @@
 								<p>Administrators can add, delete, and modify student and teacher accounts, as well as
 									manage reservations.</p>
 								<a class="image fit"><img src="images/home/card9_10.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/the-reservation-of-computer-room.git" target="_blank">https://github.com/jlu005807/the-reservation-of-computer-room.git</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -681,6 +705,7 @@
 								<a class="image fit"><img src="images/home/card10_7.png" alt="" /></a>
 								<a class="image fit"><img src="images/home/card10_8.png" alt="" /></a>
 								<a class="image fit"><img src="images/home/card10_9.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/GEWUQIYUJI" target="_blank">https://github.com/jlu005807/GEWUQIYUJI</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -711,22 +736,32 @@
 								</p>
 							</div>
 							<div class="book__content">
-								<p><span class="drop-cap"></span>BookSystem is a comprehensive library management system built with Java Swing, featuring a three-tier architecture design. 
-									It supports book search, borrowing, returning, and user management functionalities. The system boasts a beautiful modern interface with real-time search, 
-									card-based display, and permission management features, making it suitable for universities, libraries, and similar institutions.</p>
-								
+								<p><span class="drop-cap"></span>BookSystem is a comprehensive library management system
+									built with Java Swing, featuring a three-tier architecture design.
+									It supports book search, borrowing, returning, and user management functionalities.
+									The system boasts a beautiful modern interface with real-time search,
+									card-based display, and permission management features, making it suitable for
+									universities, libraries, and similar institutions.</p>
+
 								<h3>Core Features</h3>
 								<ul>
-									<li>🔍 <strong>Smart Search</strong>：Fuzzy and real-time search by title, author, and ISBN</li>
-									<li>📚 <strong>Book Management</strong>：Card-based display with add, delete, borrow, and return operations</li>
-									<li>👤 <strong>User Management</strong>：Role-based access control with real-time borrowing status</li>
-									<li>🖥️ <strong>Modern UI</strong>：Custom components with unified design and responsive layout</li>
-									<li>🗃️ <strong>Data Persistence</strong>：MySQL database support with JDBC connection pooling</li>
+									<li>🔍 <strong>Smart Search</strong>：Fuzzy and real-time search by title, author,
+										and ISBN</li>
+									<li>📚 <strong>Book Management</strong>：Card-based display with add, delete, borrow,
+										and return operations</li>
+									<li>👤 <strong>User Management</strong>：Role-based access control with real-time
+										borrowing status</li>
+									<li>🖥️ <strong>Modern UI</strong>：Custom components with unified design and
+										responsive layout</li>
+									<li>🗃️ <strong>Data Persistence</strong>：MySQL database support with JDBC
+										connection pooling</li>
 								</ul>
 
 								<h3>Technical Architecture</h3>
-								<p>Built with a classic three-tier architecture: Presentation Layer (Java Swing GUI), Business Logic Layer (Controller), 
-									and Data Access Layer (DAO), ensuring clear structure, easy maintenance, and scalability.</p>
+								<p>Built with a classic three-tier architecture: Presentation Layer (Java Swing GUI),
+									Business Logic Layer (Controller),
+									and Data Access Layer (DAO), ensuring clear structure, easy maintenance, and
+									scalability.</p>
 
 								<h3>System Features</h3>
 								<ul>
@@ -736,49 +771,54 @@
 									<li>Comprehensive logging and troubleshooting capabilities</li>
 								</ul>
 								<ul>
-									Firstly,you can see the main page of the system. there are three buttons in the main page,login,register,and help.
+									Firstly,you can see the main page of the system. there are three buttons in the main
+									page,login,register,and help.
 								</ul>
 								<a class="image fit"><img src="images/home/card11_1.png" alt="" /></a>
 								<ui>
-									in the help page,you can see the help information of the system. there is my QQ and email.
+									in the help page,you can see the help information of the system. there is my QQ and
+									email.
 								</ui>
 								<a class="image fit"><img src="images/home/card11_2.png" alt="" /></a>
 								<ui>
-									and then,the register page. you can register a new user. you must input your username,password,and second password. 
-									the second password must be the same as the first password. Otherwise the page will warning you. 
+									and then,the register page. you can register a new user. you must input your
+									username,password,and second password.
+									the second password must be the same as the first password. Otherwise the page will
+									warning you.
 									in login page you will see the same warning.
 								</ui>
 								<a class="image fit"><img src="images/home/card11_3.png" alt="" /></a>
 								<a class="image fit"><img src="images/home/card11_4.png" alt="" /></a>
 								<ui>
-								 registe successful,you can login now.
+									registe successful,you can login now.
 								</ui>
 								<a class="image fit"><img src="images/home/card11_5.png" alt="" /></a>
 								<ui>
-									login successful,you can see the user page. 
+									login successful,you can see the user page.
 									you can search relative book by title,author,and ISBN.
 									also return books on the Borrowing History screen.
-									Please note that you cannot borrow the same book at the same time, 
+									Please note that you cannot borrow the same book at the same time,
 									and the maximum number of books you can borrow is 3
 								</ui>xiuxiu
 								<a class="image fit"><img src="images/home/card11_6.png" alt="" /></a>
 								<ui>
-									This is a logout feature that allows you to log out the current user and return to the main interface, 
-									as well as the admin interface 
+									This is a logout feature that allows you to log out the current user and return to
+									the main interface,
+									as well as the admin interface
 								</ui>
 								<a class="image fit"><img src="images/home/card11_7.png" alt="" /></a>
 								<ui>
-									in the admin page,can add new book , 
-									but If you add a book with the same name and author, 
-									you'll be prompted to merge or cancel 
+									in the admin page,can add new book ,
+									but If you add a book with the same name and author,
+									you'll be prompted to merge or cancel
 								</ui>
 								<a class="image fit"><img src="images/home/card11_8.png" alt="" /></a>
 								<a class="image fit"><img src="images/home/card11_9.png" alt="" /></a>
 								<ui>
-									in the admin page,also can delete book, 
+									in the admin page,also can delete book,
 									firstly you should select the book through click,or search the book and click,
-									and if the book is borrowed,you can delete it, but at the same time, 
-									the associated borrowing history will be deleted, even if it hasn't been returned 	
+									and if the book is borrowed,you can delete it, but at the same time,
+									the associated borrowing history will be deleted, even if it hasn't been returned
 								</ui>
 								<a class="image fit"><img src="images/home/card11_10.png" alt="" /></a>
 								<ui>
@@ -789,6 +829,7 @@
 									finally,you can see the log file like this.
 								</ui>
 								<a class="image fit"><img src="images/home/card11_12.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/BookSystem" target="_blank">https://github.com/jlu005807/BookSystem</a></strong></p>
 							</div>
 						</div>
 					</div>
@@ -797,7 +838,7 @@
 						<li><a href="https://github.com/jlu005807/BookSystem" class="button">✨Start Project✨</a></li>
 					</ul>
 				</article>
-				
+
 				<!--break-->
 				<article>
 					<header class="major">
@@ -814,12 +855,14 @@
 									<h1 class="article-title">OS</h1>
 								</div>
 								<p class="book__cover-exerpt">
-									A collection of notes and labs on Operating Systems.<br>Topics include process management, memory, file systems, and more.
+									A collection of notes and labs on Operating Systems.<br>Topics include process
+									management, memory, file systems, and more.
 								</p>
 							</div>
 							<div class="book__content">
 								<h3>📚 Project Introduction</h3>
-								<p><span class="drop-cap"></span>This project summarizes my study of Operating Systems, covering both theory and hands-on practice. 
+								<p><span class="drop-cap"></span>This project summarizes my study of Operating Systems,
+									covering both theory and hands-on practice.
 									It includes notes, code, and experiment results on core OS topics.</p>
 								<a class="image fit"><img src="images/home/card12_1.png" alt="" /></a>
 								<h3>🔑 Key Topics</h3>
@@ -832,11 +875,13 @@
 								<h3>📷 Screenshots</h3>
 
 								<a class="image fit"><img src="images/home/card12_2.png" alt="" /></a>
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/Operating_System" target="_blank">https://github.com/jlu005807/Operating_System</a></strong></p>
 							</div>
 						</div>
 					</div>
 					<ul class="actions special">
-						<li><a href="https://github.com/jlu005807/Operating_System" class="button" target="_blank">✨Start Study✨</a></li>
+						<li><a href="https://github.com/jlu005807/Operating_System" class="button"
+								target="_blank">✨Start Study✨</a></li>
 					</ul>
 				</article>
 			</section>
@@ -906,17 +951,14 @@
 	<script src="assets/js/book-expand.js" defer></script>
 	<script src="assets/js/shuffle-articles.js" defer></script>
 	<script src="assets/js/parallax-fix.js" defer></script>
-	
-	<!-- 主题切换按钮 -->
-	<button class="theme-toggle" aria-label="切换主题模式" id="theme-toggle">
-		<span class="theme-icon light-icon">☀️</span>
-		<span class="theme-icon dark-icon">🌙</span>
-	</button>
-	
+
 	<!-- 主题切换脚本 -->
 	<script src="assets/js/theme-switcher.js"></script>
 	<script src="assets/js/theme-toggle-position.js"></script>
-	
+
+	<!-- 智能回到顶部按钮脚本 -->
+	<script src="assets/js/smart-back-to-top.js"></script>
+
 	<!-- 页面过渡效果脚本 -->
 	<script src="assets/js/page-transition.js"></script>
 
