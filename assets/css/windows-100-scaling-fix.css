@@ -1,0 +1,48 @@
+/* Windows 100%缩放下的修复样式 */
+
+/* 针对宽度大于1280px的大屏显示器，优先应用这些样式以确保背景正常显示 */
+@media screen and (min-width: 1281px) {
+    /* 直接在媒体查询中对#wrapper > .bg应用样式，不需等待JS加载 */
+    #wrapper > .bg {
+        position: fixed !important;
+        background-size: contain, auto, cover !important; /* 背景图全屏覆盖 */
+        background-position: right bottom, center, center !important;
+        background-attachment: fixed !important;
+        transform: none !important;
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+    
+    /* 当JS加载并添加windows-100-scaling类后的附加样式 */
+    body.windows-100-scaling #wrapper > .bg {
+        position: fixed !important;
+        background-size: contain, auto, cover !important; /* 背景图全屏覆盖 */
+        background-position: right bottom, center, center !important;
+        background-attachment: fixed !important;
+        transform: none !important;
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+    
+    /* 防止JavaScript parallax效果对背景的影响 */
+    #wrapper > .bg.fixed,
+    body.windows-100-scaling #wrapper > .bg.fixed {
+        position: fixed !important;
+        transform: none !important;
+        background-attachment: fixed !important;
+    }
+    
+    /* 确保transform:none优先级最高 */
+    #wrapper > .bg,
+    #wrapper > .bg.fixed,
+    body.windows-100-scaling #wrapper > .bg,
+    body.windows-100-scaling #wrapper > .bg.fixed {
+        transform: none !important;
+    }
+}
+
+/* 确保在所有屏幕尺寸下都阻止transform */
+#wrapper > .bg,
+#wrapper > .bg.fixed {
+    transform: none !important;
+}

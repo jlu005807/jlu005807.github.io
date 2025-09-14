@@ -4739,7 +4739,7 @@ input, select, textarea {
   pointer-events: none;
 }
 #parallax_bg {
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     left: 0;
@@ -4748,6 +4748,7 @@ input, select, textarea {
     transform-style: preserve-3d;
     will-change: transform;
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: none !important;
 }
 #parallax_foreground {
     position: absolute;
@@ -4786,6 +4787,15 @@ input, select, textarea {
     height: 100vh;
     left: 0;
     top: 0;
+  }
+  
+  #parallax_foreground {
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 20vh; /* 调整前景图顶部位置，使其更靠下 */
+    background-size: 200% auto !important; /* 调整前景图的大小，放大2倍 */
+    background-position: center bottom !important; /* 调整前景图位置为底部居中 */
   }
 }
 

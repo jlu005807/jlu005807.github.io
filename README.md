@@ -62,10 +62,26 @@ Visit `http://localhost:8000`
 - **Progressive Mobile**: Multi-breakpoint responsive design (1200px, 768px, 480px)
 - **Anti-Shake Navigation**: Distance-based timing to prevent conflicts
 - **Comment Integration**: Stable positioning with DOM mutation monitoring
+- **Fixed Background**: Optimized background images for all devices including Windows 100% scaling
+- **Responsive Foreground**: Adaptive foreground positioning for portrait orientation on mobile devices
 
 ## 🔧 Development
 
 Built with modern web standards and progressive enhancement principles. Optimized for performance with lazy loading and efficient DOM manipulation.
+
+### 📱 Recent Optimizations (2025-09-14)
+
+#### Background Image Improvements
+- **Fixed Background Display**: Solved background image disappearing issues on Windows 100% scaling
+- **Full Screen Coverage**: Implemented CSS `background-size: cover` for complete viewport coverage
+- **Parallax Effect Fix**: Prevented background image movement during scrolling with `position: fixed` and `transform: none`
+- **Cross-device Compatibility**: Added media queries for different screen sizes and orientations
+
+#### Mobile Portrait Mode Enhancements
+- **Foreground Positioning**: Optimized foreground image position for portrait orientation
+- **Responsive Sizing**: Implemented percentage-based sizing (200% auto) for better mobile display
+- **Vertical Alignment**: Adjusted top offset (20vh) to improve vertical positioning on small screens
+- **Custom Media Queries**: Added specific style adjustments for portrait orientation devices
 
 ## 📄 License
 
