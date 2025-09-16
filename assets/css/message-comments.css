@@ -50,7 +50,7 @@
 @media (max-width: 760px) {
 	.notice-box {
 		margin-top: 6em !important; /* 特别增加间距 */
-		border-top: 1px solid #f39c12; /* 添加顶部边框增加分隔感 */
+		border-top: 1px solid #000000; /* 添加顶部边框增加分隔感 */
 		padding-top: 1em !important; /* 增加内部顶部间距 */
 	}
 	
