@@ -4748,7 +4748,6 @@ input, select, textarea {
     transform-style: preserve-3d;
     will-change: transform;
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform: none !important;
 }
 #parallax_foreground {
     position: absolute;
@@ -4777,6 +4776,13 @@ input, select, textarea {
 .parallax-inactive #intro > *:not(#parallax_wrapper) {
     position: static;
     z-index: auto;
+}
+
+/* Scoped: only forcibly disable transforms for parallax elements when parallax is inactive
+   or when the windows-100-scaling workaround is applied. This lets JS set transform normally. */
+.parallax-inactive #parallax_bg,
+body.windows-100-scaling #parallax_bg {
+	transform: none !important;
 }
 
 @media screen and (max-width: 980px), screen and (orientation: portrait) {
