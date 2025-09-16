@@ -4793,7 +4793,7 @@ input, select, textarea {
     width: 100vw;
     height: 100vh;
     left: 0;
-    top: 20vh; /* 调整前景图顶部位置，使其更靠下 */
+    top: 0; /* 调整前景图顶部位置，使其更靠下 */
     background-size: 200% auto !important; /* 调整前景图的大小，放大2倍 */
     background-position: center bottom !important; /* 调整前景图位置为底部居中 */
   }
