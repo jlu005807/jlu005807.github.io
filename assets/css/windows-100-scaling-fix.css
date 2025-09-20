@@ -8,7 +8,6 @@
         background-size: contain, auto, cover !important; /* 背景图全屏覆盖 */
         background-position: right bottom, center, center !important;
         background-attachment: fixed !important;
-        transform: none !important;
         width: 100vw !important;
         height: 100vh !important;
     }
@@ -19,7 +18,6 @@
         background-size: contain, auto, cover !important; /* 背景图全屏覆盖 */
         background-position: right bottom, center, center !important;
         background-attachment: fixed !important;
-        transform: none !important;
         width: 100vw !important;
         height: 100vh !important;
     }
@@ -28,21 +26,16 @@
     #wrapper > .bg.fixed,
     body.windows-100-scaling #wrapper > .bg.fixed {
         position: fixed !important;
-        transform: none !important;
         background-attachment: fixed !important;
     }
     
     /* 确保transform:none优先级最高 */
-    #wrapper > .bg,
-    #wrapper > .bg.fixed,
-    body.windows-100-scaling #wrapper > .bg,
-    body.windows-100-scaling #wrapper > .bg.fixed {
-        transform: none !important;
-    }
+    /* Do not globally force transform:none here; keep only scoped disabling below. */
 }
 
-/* 确保在所有屏幕尺寸下都阻止transform */
-#wrapper > .bg,
-#wrapper > .bg.fixed {
+/* Only disable transforms when windows-100-scaling workaround is active.
+   Avoid globally forcing transform:none which prevents JS-driven parallax. */
+body.windows-100-scaling #wrapper > .bg,
+body.windows-100-scaling #wrapper > .bg.fixed {
     transform: none !important;
 }

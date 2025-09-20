@@ -18,11 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== Windows 100%缩放修复 =====
     // 检测是否需要应用修复
     function checkAndApplyFix() {
-        // 如果宽度大于1280px，应用修复
-        if (window.innerWidth > 1280) {
+        // 仅在可能受 Windows 100% 缩放影响的环境下应用修复：Windows 平台、DPR === 1、大屏
+        var isWindows = navigator.platform.indexOf('Win') === 0 || navigator.userAgent.indexOf('Windows') !== -1;
+        if (isWindows && window.devicePixelRatio && window.devicePixelRatio === 1 && window.innerWidth > 1280) {
             applyBackgroundFix();
         } else {
-            // 小于1280px时恢复正常样式
+            // 其余情况恢复正常样式
             resetBackgroundStyles();
         }
     }
@@ -37,12 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 wrapperBg.dataset.originalTransform = wrapperBg.style.transform || '';
             }
             
-            // 应用修复样式
+            // 应用修复样式（不强制写入 transform，允许后续 JS 变换生效）
             wrapperBg.style.position = 'fixed';
             wrapperBg.style.backgroundSize = 'contain, auto, cover'; // 背景图完全覆盖
             wrapperBg.style.backgroundPosition = 'right bottom, center, center';
             wrapperBg.style.backgroundAttachment = 'fixed';
-            wrapperBg.style.transform = 'none'; // 阻止matrix变换
+            // Do not forcibly set transform here; leave it to CSS scoped rules when needed.
             wrapperBg.style.width = '100vw';
             wrapperBg.style.height = '100vh';
             wrapperBg.style.zIndex = '-1';

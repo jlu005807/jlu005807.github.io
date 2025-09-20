@@ -322,8 +322,11 @@
 			currentTransform.fg.rotateX = lerp(currentTransform.fg.rotateX, targetTransform.fg.rotateX, lerpFactor);
 			currentTransform.fg.rotateY = lerp(currentTransform.fg.rotateY, targetTransform.fg.rotateY, lerpFactor);
 			
-			// 应用变换 - 使用更精确的数值
-			bg.style.transform = `translate3d(${currentTransform.bg.x.toFixed(2)}px, ${currentTransform.bg.y.toFixed(2)}px, 0) rotateX(${currentTransform.bg.rotateX.toFixed(2)}deg) rotateY(${currentTransform.bg.rotateY.toFixed(2)}deg)`;
+			// 应用变换 - 使用更精确的数值（为背景添加!important确保变换生效）
+			const bgTransform = `translate3d(${currentTransform.bg.x.toFixed(2)}px, ${currentTransform.bg.y.toFixed(2)}px, 0) rotateX(${currentTransform.bg.rotateX.toFixed(2)}deg) rotateY(${currentTransform.bg.rotateY.toFixed(2)}deg)`;
+			// 使用cssText+!important确保背景变换不被CSS覆盖
+			bg.style.cssText += `transform: ${bgTransform} !important; -webkit-transform: ${bgTransform} !important;`;
+			
 			fg.style.transform = `translate3d(${currentTransform.fg.x.toFixed(2)}px, ${currentTransform.fg.y.toFixed(2)}px, 0) rotateX(${currentTransform.fg.rotateX.toFixed(2)}deg) rotateY(${currentTransform.fg.rotateY.toFixed(2)}deg)`;
 		}
 		
