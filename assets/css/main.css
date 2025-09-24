@@ -3460,7 +3460,7 @@ input, select, textarea {
 				-webkit-transform: translateY(0);
 				-ms-transform: translateY(0);
 				transform: translateY(0);
-				opacity: 1;
+				opacity: 0.5;
 				visibility: visible;
 			}
 
@@ -3605,6 +3605,7 @@ input, select, textarea {
 			padding: 1rem 1.75rem;
 			text-transform: uppercase;
 			visibility: visible;
+			opacity: 0.5;
 		}
 
 			#header .logo:hover {

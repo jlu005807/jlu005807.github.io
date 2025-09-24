@@ -1,0 +1,45 @@
+/* 非首页固定背景样式
+   此文件专门解决非首页背景图随滚动偏移的问题
+   主要通过禁用 parallax 变换效果，强制背景图固定定位实现
+*/
+
+/* 针对非首页（非index.html）的背景修复 */
+body:not(.home) #wrapper > .bg {
+  transform: none !important; /* 禁用transform变换，防止随滚动变化 */
+  position: fixed !important;
+  background-attachment: fixed !important;
+  background-position: center !important;
+  background-size: cover !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+/* 禁用非首页的前景图（如果有）*/
+body:not(.home) #parallax_wrapper,
+body:not(.home) #parallax_bg,
+body:not(.home) #parallax_foreground {
+  display: none !important;
+}
+
+/* 优化非首页的主内容区域，确保内容在固定背景上方正确显示 */
+body:not(.home) #main {
+  position: relative;
+  z-index: 1;
+}
+
+/* 确保非首页的头部区域不会被背景遮挡 */
+body:not(.home) #header {
+  position: relative;
+  z-index: 2;
+}
+
+/* 移动设备适配 */
+@media screen and (max-width: 736px) {
+  body:not(.home) #wrapper > .bg {
+    background-position: center !important;
+    background-size: cover !important;
+  }
+}
