@@ -1,0 +1,890 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+	<title>Ozy 的网站</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="theme-color" content="#ffffff" id="theme-color-meta">
+	
+
+	<!-- 资源预加载与优化 -->
+	<link rel="preconnect" href="https://code.jquery.com">
+	<link rel="preload" href="assets/css/main.css" as="style">
+	<link rel="preload" href="assets/js/jquery.min.js" as="script">
+	<link rel="preload" href="images/home/long-bg.png" as="image">
+	<link rel="preload" href="images/home/foreground.png" as="image">
+
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="assets/css/carousel.css" />
+	<link rel="stylesheet" href="assets/css/theme-toggle.css" />
+	<link rel="stylesheet" href="assets/css/smart-back-to-top.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<noscript>
+		<link rel="stylesheet" href="assets/css/fullcard.css">
+	</noscript>
+	<link rel="stylesheet" href="assets/css/theme-integrated.css" />
+	<link rel="stylesheet" href="assets/css/windows-100-scaling-fix.css" />
+	<link rel="stylesheet" href="assets/css/fixed-bg-non-home.css" />
+</head>
+
+<a id="top"></a>
+
+<body class="is-preload home" style="opacity:0;">
+	<!-- Wrapper -->
+	<div id="wrapper" class="fade-in">
+		<!-- 主页引导区（视差背景） -->
+		<div id="intro">
+			<div id="parallax_wrapper">
+				<div id="parallax_bg"></div>
+				<div id="parallax_foreground"></div>
+			</div>
+			<h1>Hello!<br />
+				Ozy's Website</h1>
+			<p>来自 <a href="https://www.jlu.edu.cn">吉林大学</a> 的一名计算机科学学生</p>
+			<ul class="actions">
+				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+			</ul>
+		</div>
+
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" class="logo">Ozy</a>
+		</header>
+
+		<!-- 导航 -->
+		<nav id="nav">
+			<ul class="links">
+				<li class="active"><a href="index-zh-CN.html">首页</a></li>
+				<li><a href="introduction-zh-CN.html">介绍</a></li>
+				<li><a href="other-zh-CN.html">其他</a></li>
+				<li><a href="message-zh-CN.html">留言板</a></li>
+				<li><a href="https://jlu005807.github.io/docs.ozy/">文档站</a></li>
+				<li><a href="index.html">English</a></li>
+			</ul>
+			<ul class="icons">
+				<li><a href="https://github.com/jlu005807" class="icon brands fa-github"><span
+							class="label">GitHub</span></a></li>
+			</ul>
+		</nav>
+
+
+		<!-- 主内容 -->
+		<div id="main">
+			<!-- 特色展示 -->
+			<article class="post featured">
+				<header class="major">
+					<span class="date current-date"></span>
+					<h2><a href="#">欢迎🎈 </a></h2>
+				</header>
+
+				<!-- 轮播图（项目/学习卡片预览） -->
+				<section class="carousel">
+					<article>
+						<img src="images/home/card1.jpg" alt="Tic-Tac-Toe" />
+						<h2>Tic-Tac-Toe</h2>
+						<div>
+							<p>经典 3x3 井字棋双人对战小游戏</p>
+						</div>
+						<a href="#card1" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card2.jpg" alt="Survivor-of-Teyvat" />
+						<h2>Teyvat</h2>
+						<div>
+							<p>包含特色敌人的 Roguelike 生存类游戏</p>
+						</div>
+						<a href="#card2" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card3.jpg" alt="DS&ALGO" />
+						<h2>DS&ALGO</h2>
+						<div>
+							<p>数据结构与算法学习与资料库</p>
+						</div>
+						<a href="#card3" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card4.jpg" alt="Cpp" />
+						<h2>C++</h2>
+						<div>
+							<p>C++ 语言学习资料与示例</p>
+						</div>
+						<a href="#card4" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card5.jpg" alt="CPU" />
+						<h2>CPU</h2>
+						<div>
+							<p>MIPS32 与 LA32R CPU 设计实践</p>
+						</div>
+						<a href="#card5" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card6.jpg" alt="Text_Query" />
+						<h2>TextQuery</h2>
+						<div>
+							<p>全文检索引擎实验项目</p>
+						</div>
+						<a href="#card6" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card7.jpg" alt="Tetris" />
+						<h2>Tetris</h2>
+						<div>
+							<p>经典俄罗斯方块消除游戏</p>
+						</div>
+						<a href="#card7" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card8.jpg" alt="Addressbook" />
+						<h2>AddressBook</h2>
+						<div>
+							<p>联系人信息管理系统</p>
+						</div>
+						<a href="#card8" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card9.jpg" alt="Reservation" />
+						<h2>Reservation</h2>
+						<div>
+							<p>机房预约管理系统</p>
+						</div>
+						<a href="#card9" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card10.jpg" alt="GEWUQIYUJI" />
+						<h2>GEWUQIYUJI</h2>
+						<div>
+							<p>古代器物与科普互动游戏</p>
+						</div>
+						<a href="#card10" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card11.jpg" alt="BookSystem" />
+						<h2>Book System</h2>
+						<div>
+							<p>图书馆流通管理系统</p>
+						</div>
+						<a href="#card11" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card12.jpg" alt="Operating System" />
+						<h2>OS</h2>
+						<div>
+							<p>操作系统理论与实验学习资源</p>
+						</div>
+						<a href="#card12" class="scrolly">了解更多</a>
+					</article>
+				</section>
+
+				<ul class="actions special">
+					<li><a href="#article-search" class="button large">✨开始探索✨</a></li>
+				</ul>
+			</article>
+
+
+			<div class="search-bar-wrapper">
+				<span class="search-icon">&#128269;</span>
+				<input type="text" id="article-search" placeholder="搜索文章标题..." autocomplete="off">
+				<span class="clear-btn" id="clear-search" title="清除">&#10006;</span>
+			</div>
+
+
+			<!-- Posts -->
+			<section class="posts">
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的游戏 🕹️</span>
+						<h2><a href="https://github.com/jlu005807/Tictactoe">井字棋 (Tic-Tac-Toe)</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card1">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card1.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">Tic-Tac-Toe</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									支持双人对战或与电脑 AI 进行挑战。<br>安装路径：<br>/Tictactoe_Setup/<br>Release/Tictactoe_Setup.msi
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>🎮 游戏简介</h3>
+								<p><span class="drop-cap"></span>井字棋是一款经典的 3×3 双人对战回合制小游戏。先将自己的符号在横/竖/斜线上连成三个的玩家获胜；若 9 个格子全部落子仍无胜者，则平局结束。</p>
+								<h3>🕹️ 游戏玩法</h3>
+								<ul>
+									<li>👫 <strong>双人模式：</strong> 与朋友同机对战。</li>
+									<li>🤖 <strong>AI 模式：</strong> 提供 简单/困难 两档难度。</li>
+									<li>🖱️ <strong>操作简单：</strong> 点击空格即可落子。</li>
+									<li>🏆 <strong>胜负判定：</strong> 自动识别胜利或平局并提示。</li>
+								</ul>
+								<h3>📷 截图预览</h3>
+								<a class="image fit"><img src="images/home/card1_1.png" alt="" /></a>
+								<p>可选择与好友对战或挑战电脑 AI。</p>
+								<a class="image fit"><img src="images/home/card1_2.png" alt="" /></a>
+								<p>可选难度：简单 / 困难。</p>
+								<a class="image fit"><img src="images/home/card1_3.png" alt="" /></a>
+								<p>游戏开始界面。</p>
+								<a class="image fit"><img src="images/home/card1_4.png" alt="" /></a>
+								<p>游戏结束界面，可重新开始或退出。</p>
+								<a class="image fit"><img src="images/home/card1_5.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card1_6.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/Tictactoe" target="_blank">https://github.com/jlu005807/Tictactoe</a></strong></p>
+							</div>
+						</div>
+					</div>
+					<!-- <a href="#" class="image fit"><img src="images/pic02.png" alt="" /></a> -->
+					<ul class="actions special">
+						<li><a href="https://github.com/jlu005807/Tictactoe" class="button">✨开始游戏✨</a></li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的游戏 🕹️</span>
+						<h2><a href="https://github.com/jlu005807/Survivor-of-Teyvat">提瓦特生存 (Survivor-of-Teyvat)</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card2">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card2.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">Teyvat</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									一款教学性质的 Roguelike 游戏。<br>安装路径：<br>/Survivor-of-Teyvat_Setup/Release
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>🕹️ 游戏简介</h3>
+								<p><span class="drop-cap"></span>这是一款 Roguelike 生存类游戏。通过击败敌人累计积分；环绕角色的能量球数量代表生命值。不同怪物拥有独特行为与特性，等待你探索与发现。</p>
+								<h3>⚙️ 特色功能</h3>
+								<ul>
+									<li>🧑‍🎮 <strong>角色选择：</strong> 多名角色可选。</li>
+									<li>⚔️ <strong>怪物差异：</strong> 不同敌人拥有独特技能与行为。</li>
+									<li>💡 <strong>多样技能：</strong> 利用不同技能组合斩杀敌人。</li>
+									<li>📈 <strong>积分结算：</strong> 战斗结束查看得分统计。</li>
+								</ul>
+								<h3>📷 截图预览</h3>
+								<a class="image fit"><img src="images/home/card2_1.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card2_2.png" alt="" /></a>
+								<p>在角色选择界面挑选你喜欢的角色。</p>
+								<a class="image fit"><img src="images/home/card2_3.png" alt="" /></a>
+								<p>使用方向键或 WASD 控制角色，利用能量球攻击敌人。</p>
+								<a class="image fit"><img src="images/home/card2_4.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card2_5.png" alt="" /></a>
+								<p>战斗结束后查看积分与结果。</p>
+								<a class="image fit"><img src="images/home/card2_6.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/Survivor-of-Teyvat" target="_blank">https://github.com/jlu005807/Survivor-of-Teyvat</a></strong></p>
+							</div>
+						</div>
+					</div>
+					<ul class="actions special">
+						<li><a href="https://github.com/jlu005807/Survivor-of-Teyvat" class="button">✨开始游戏✨</a>
+						</li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的学习 📖</span>
+						<h2><a href="https://github.com/jlu005807/Data_Structure_and_Algorithm">数据结构与算法 (DS&ALGO)</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card3">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card3.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">DS&ALGO</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									收录数据结构与算法相关的学习笔记与 PDF 资料，可下载本地研读。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>📚 项目简介</h3>
+								<p><span class="drop-cap"></span>数据结构与算法是计算机科学的核心基础。本仓库提供系统化的笔记与参考书目，帮助理解与巩固重要概念。</p>
+								<h3>🔑 亮点特性</h3>
+								<ul>
+									<li>📖 <strong>系统笔记：</strong> 按专题整理核心知识。</li>
+									<li>🔗 <strong>PDF 下载：</strong> 可离线阅读。</li>
+									<li>💡 <strong>算法解析：</strong> 精炼直观。</li>
+									<li>📝 <strong>实践示例：</strong> 结合代码用例。</li>
+								</ul>
+								<h3>📷 截图</h3>
+								<a class="image fit"><img src="images/home/card3_1.jpg" alt="" /></a>
+								<p>本仓库可作为复习/入门/巩固阶段的参考材料，适合配合刷题与课程学习。</p>
+								<a class="image fit"><img src="images/home/card3_2.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/Data_Structure_and_Algorithm" target="_blank">https://github.com/jlu005807/Data_Structure_and_Algorithm</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+					<ul class="actions special">
+						<li><a href="https://github.com/jlu005807/Data_Structure_and_Algorithm" class="button">✨开始学习✨</a></li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的学习 📖</span>
+						<h2><a href="https://github.com/jlu005807/Cpp">Cpp</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card4">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card4.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">CPP</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									一套 C++ 学习笔记与电子书。<br>下载文件以了解更多。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>📘 项目简介</h3>
+								<p><span class="drop-cap"></span>C++ 是一种广泛用于游戏开发、系统编程和 Web 开发的高级编程语言。</p>
+								<h3>🔑 亮点特性</h3>
+								<ul>
+									<li>🛠️ <strong>多范式支持：</strong> 过程式、面向对象、函数式编程。</li>
+									<li>📄 <strong>代码示例：</strong> 提供实践性示例帮助学习。</li>
+									<li>🔗 <strong>PDF 下载：</strong> 可下载的学习资料。</li>
+									<li>💡 <strong>现代 C++ 特性：</strong> 覆盖最新语言特性。</li>
+								</ul>
+								<h3>📷 截图</h3>
+								<a class="image fit"><img src="images/home/card4_1.png" alt="" /></a>
+								<p>本仓库包含 C++ 的笔记与书籍。下载 PDF 以加深理解。</p>
+								<a class="image fit"><img src="images/home/card4_2.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/Cpp" target="_blank">https://github.com/jlu005807/Cpp</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+						<ul class="actions special">
+							<li><a href="https://github.com/jlu005807/Cpp" class="button">✨开始学习✨</a></li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的项目 🧑‍💻</span>
+						<h2><a href="https://github.com/jlu005807/CPU.git">CPU</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card5">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card5.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">CPU Design</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									一个 CPU 设计项目，包含 MIPS32 与 LA32R 实现。<br>下载文件以了解更多。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>🖥️ 项目简介</h3>
+								<p><span class="drop-cap"></span>该项目聚焦 CPU 设计，包含 MIPS32 与 LA32R 两种架构。</p>
+								<p><strong>注意：</strong> MIPS32 与 LA32R 的实现目前仅通过各自的 Lab1。
+								设计包含用于分支预测的 BTB（分支目标缓冲）与 BHT（分支历史表），
+								并使用旁路转发来解决数据冒险问题。</p>
+								<h3>🔑 亮点特性</h3>
+								<ul>
+									<li>📊 <strong>架构对比：</strong> MIPS32 与 LA32R 的实现。
+									</li>
+									<li>📄 <strong>设计文档：</strong> 各架构的详细文档。</li>
+									<li>🔗 <strong>PDF 下载：</strong> 可下载的深入学习资源。
+									</li>
+									<li>💡 <strong>教学价值：</strong> 适合学习 CPU 设计原理。</li>
+								</ul>
+								<h3>📷 截图</h3>
+								<a class="image fit"><img src="images/home/card5_1.png" alt="" /></a>
+								<p>MIPS32 与 LA32R 的实现位于不同的子目录中。</p>
+								<a class="image fit"><img src="images/home/card5_2.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/CPU.git" target="_blank">https://github.com/jlu005807/CPU.git</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+						<ul class="actions special">
+							<li><a href="https://github.com/jlu005807/CPU.git" class="button">✨开始项目✨</a></li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的项目 🧑‍💻</span>
+						<h2><a href="https://github.com/jlu005807/Text_Query.git">Text_Query</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card6">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card6.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">Text_Query</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									一个按关键字进行全文检索的项目。<br>下载文件了解更多细节。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>🔍 项目简介</h3>
+								<p><span class="drop-cap"></span>Text_Query 是一个简单的全文检索项目。输入关键字即可在文本中检索并即时返回结果。</p>
+								<h3>⚙️ 功能特性</h3>
+								<ul>
+									<li>🔍 <strong>关键字搜索：</strong> 快速在文本中定位信息。</li>
+									<li>🗂️ <strong>历史记录：</strong> 查看并管理搜索历史。</li>
+									<li>⚡ <strong>高效查询：</strong> 返回快速且准确的结果。</li>
+									<li>📄 <strong>操作指引：</strong> 清晰的使用说明。</li>
+								</ul>
+								<h3>📷 Screenshots</h3>
+								<a class="image fit"><img src="images/home/card6_1.png" alt="" /></a>
+								<p>在命令窗口中，你可以执行查询、退出程序、查看或清空历史记录。</p>
+								<a class="image fit"><img src="images/home/card6_2.png" alt="" /></a>
+								<p>在查询窗口，输入文本文件路径和关键字。你可以使用 &、|、~ 进行高级检索操作。</p>
+								<a class="image fit"><img src="images/home/card6_3.png" alt="" /></a>
+								<p>在历史窗口查看过往查询。输入 0 可显示全部历史记录。</p>
+								<a class="image fit"><img src="images/home/card6_4.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/Text_Query.git" target="_blank">https://github.com/jlu005807/Text_Query.git</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+						<ul class="actions special">
+							<li><a href="https://github.com/jlu005807/Text_Query.git" class="button">✨开始项目✨</a>
+						</li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的游戏 🕹️</span>
+						<h2><a href="https://github.com/jlu005807/Tetris">Tetris</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card7">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card7.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">Tetris</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									我的第一个完整游戏。<br>仍有一些小问题——欢迎体验并发现它们！
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>🧩 游戏简介</h3>
+								<p><span class="drop-cap"></span>俄罗斯方块是风靡全球的经典游戏。试试看看你能否发现其中的 bug！</p>
+								<h3>⚙️ 功能特性</h3>
+								<ul>
+									<li>🧩 <strong>经典玩法：</strong> 享受永不过时的方块消除体验。</li>
+									<li>🎨 <strong>多彩界面：</strong> 视觉设计更友好。</li>
+									<li>🏆 <strong>积分记录：</strong> 记录与挑战你的最佳成绩。</li>
+									<li>🐞 <strong>挑战 Bug：</strong> 发现并反馈潜在问题。</li>
+								</ul>
+								<h3>📷 Screenshots</h3>
+								<a class="image fit"><img src="images/home/card7_1.png" alt="" /></a>
+								<p>游戏结束界面会显示你的最终得分。</p>
+								<a class="image fit"><img src="images/home/card7_2.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/Tetris" target="_blank">https://github.com/jlu005807/Tetris</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+						<ul class="actions special">
+							<li><a href="https://github.com/jlu005807/Tetris" class="button">✨开始游戏✨</a></li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的项目 🧑‍💻</span>
+						<h2><a href="https://github.com/jlu005807/addressbook">Addressbook</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card8">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card8.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">Addressbook</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									一个用于学习的简单通讯录系统。<br>下载文件以探索更多。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>📇 项目简介</h3>
+								<p><span class="drop-cap"></span>AddressBook 是一套联系人管理系统。它存储姓名、电话、邮箱、地址等信息，
+								并可为每位联系人添加备注与标签。</p>
+								<h3>⚙️ 功能特性</h3>
+								<ul>
+									<li>📇 <strong>联系人管理：</strong> 轻松新增、编辑、删除联系人。
+									</li>
+									<li>🔍 <strong>快速搜索：</strong> 按姓名、电话或地址查找联系人。</li>
+									<li>📝 <strong>信息编辑：</strong> 随时更新联系人详情。</li>
+									<li>🗑️ <strong>一键清空：</strong> 一次操作清除全部联系人。
+									</li>
+								</ul>
+								<h3>📷 Screenshots</h3>
+								<a class="image fit"><img src="images/home/card8_1.png" alt="" /></a>
+								<p>首先，新增联系人并填写姓名、性别、电话、地址等信息。</p>
+								<a class="image fit"><img src="images/home/card8_2.png" alt="" /></a>
+								<p>随后，你可以查看通讯录中所有联系人。</p>
+								<a class="image fit"><img src="images/home/card8_3.png" alt="" /></a>
+								<p>通过搜索定位并删除联系人。</p>
+								<a class="image fit"><img src="images/home/card8_4.png" alt="" /></a>
+								<p>支持按姓名、电话或地址进行搜索。</p>
+								<a class="image fit"><img src="images/home/card8_5.png" alt="" /></a>
+								<p>按需编辑联系人的详细信息。</p>
+								<a class="image fit"><img src="images/home/card8_6.png" alt="" /></a>
+								<p>可一键清空通讯录中的所有联系人。</p>
+								<a class="image fit"><img src="images/home/card8_7.png" alt="" /></a>
+								<p>最后，你可以退出程序。</p>
+								<a class="image fit"><img src="images/home/card8_8.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/addressbook" target="_blank">https://github.com/jlu005807/addressbook</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+						<ul class="actions special">
+							<li><a href="https://github.com/jlu005807/addressbook" class="button">✨开始项目✨</a></li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的项目 🧑‍💻</span>
+						<h2><a href="https://github.com/jlu005807/the-reservation-of-computer-room.git">reservation</a>
+						</h2>
+					</header>
+					<div class="fullcard-wrapper" id="card9">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card9.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">Reservation</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									一个用于管理机房预约的项目。<br>下载文件以了解更多。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>💻 项目简介</h3>
+								<p><span class="drop-cap"></span>本项目模拟学校的机房预约系统，包含学生、教师与管理员三类用户。</p>
+								<h3>⚙️ 功能特性</h3>
+								<ul>
+									<li>💻 <strong>多用户支持：</strong> 学生、教师、管理员。</li>
+									<li>🕒 <strong>预约管理：</strong> 预约、查看与取消预约。</li>
+									<li>🔒 <strong>权限分级：</strong> 不同用户类型拥有不同权限。</li>
+									<li>📊 <strong>统计分析：</strong> 查看并分析预约数据。</li>
+								</ul>
+								<h3>📷 Screenshots</h3>
+								<a class="image fit"><img src="images/home/card9_1.png" alt="" /></a>
+								<p>在学生页面，使用学号和密码登录以预约机房。</p>
+								<a class="image fit"><img src="images/home/card9_2.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card9_3.png" alt="" /></a>
+								<p>学生也可以查看与取消自己的预约。</p>
+								<a class="image fit"><img src="images/home/card9_4.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card9_5.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card9_6.png" alt="" /></a>
+								<p>在教师页面，使用工号和密码登录。</p>
+								<a class="image fit"><img src="images/home/card9_7.png" alt="" /></a>
+								<p>教师可以查看全部预约并进行审核。</p>
+								<a class="image fit"><img src="images/home/card9_8.png" alt="" /></a>
+								<p>在管理员页面，使用管理员账号与密码登录以管理机房。</p>
+								<a class="image fit"><img src="images/home/card9_9.png" alt="" /></a>
+								<p>管理员可新增、删除、修改师生账号，并管理预约信息。</p>
+								<a class="image fit"><img src="images/home/card9_10.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/the-reservation-of-computer-room.git" target="_blank">https://github.com/jlu005807/the-reservation-of-computer-room.git</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+						<ul class="actions special">
+							<li><a href="https://github.com/jlu005807/the-reservation-of-computer-room.git"
+									class="button">✨开始项目✨</a></li>
+					</ul>
+				</article>
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的游戏 🕹️</span>
+						<h2><a href="https://github.com/jlu005807/GEWUQIYUJI">GEWUQIYUJI</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card10">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card10.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">GEWUQIYUJI</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									一款以中国古代“格物致知”为主题的科普游戏，聚焦利用传统知识解决现实问题。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>📜 游戏简介</h3>
+								<p><span class="drop-cap"></span>这是一款围绕古代“格物致知”理念的科普游戏，旨在用传统知识解决现实问题。
+								目前仅实现对话系统，尚未具备完整的交互玩法；但你仍可下载并解压 Game.zip 进行体验。
+								以下为部分实际截图：</p>
+								<a class="image fit"><img src="images/home/card10_1.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card10_2.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card10_3.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card10_4.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card10_5.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card10_6.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card10_7.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card10_8.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card10_9.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/GEWUQIYUJI" target="_blank">https://github.com/jlu005807/GEWUQIYUJI</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+						<ul class="actions special">
+							<li><a href="https://github.com/jlu005807/GEWUQIYUJI" class="button">✨开始游戏✨</a></li>
+					</ul>
+				</article>
+
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的项目 📚</span>
+						<h2><a href="https://github.com/jlu005807/BookSystem">BookSystem</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card11">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card11.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">BookSystem</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									基于 Java Swing 的现代图书馆管理系统，你可以尝试运行 \artifacts\bookSystem_jar\bookSystem.jar。
+								</p>
+							</div>
+							<div class="book__content">
+								<p><span class="drop-cap"></span>BookSystem 是基于 Java Swing 构建的综合型图书馆管理系统，采用三层架构设计。
+								支持图书查询、借阅、归还与用户管理等功能。系统具备现代化界面、实时搜索、卡片式展示与权限管理，适用于高校与图书馆等场景。</p>
+
+								<h3>核心功能</h3>
+								<ul>
+									<li>🔍 <strong>智能检索</strong>：按标题、作者与 ISBN 的模糊与实时搜索</li>
+									<li>📚 <strong>图书管理</strong>：卡片式展示，支持新增、删除、借阅、归还</li>
+									<li>👤 <strong>用户管理</strong>：基于角色的权限控制，实时借阅状态</li>
+									<li>🖥️ <strong>现代 UI</strong>：自定义组件，统一设计与响应式布局</li>
+									<li>🗃️ <strong>数据持久化</strong>：MySQL 数据库与 JDBC 连接池</li>
+								</ul>
+
+								<h3>技术架构</h3>
+								<p>采用经典的三层架构：表示层（Java Swing GUI）、业务逻辑层（Controller）、数据访问层（DAO），结构清晰、易维护、可扩展。</p>
+
+								<h3>系统特性</h3>
+								<ul>
+									<li>防重复借阅与借阅上限控制</li>
+									<li>自动库存管理与借阅记录统计</li>
+									<li>友好的错误处理与空状态设计</li>
+									<li>完善的日志与排障能力</li>
+								</ul>
+								<ul>
+									首先，你会看到系统主界面，包含登录、注册与帮助三个入口。
+								</ul>
+								<a class="image fit"><img src="images/home/card11_1.png" alt="" /></a>
+								<ui>
+									在帮助页面，你可以查看系统的使用说明，其中包含我的 QQ 与邮箱。
+								</ui>
+								<a class="image fit"><img src="images/home/card11_2.png" alt="" /></a>
+								<ui>
+									接着是注册页面，你可以注册新用户。需输入用户名、密码与确认密码，两次密码需一致，否则会提示警告；登录页也有相同校验。
+								</ui>
+								<a class="image fit"><img src="images/home/card11_3.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card11_4.png" alt="" /></a>
+								<ui>
+									注册成功后即可登录。
+								</ui>
+								<a class="image fit"><img src="images/home/card11_5.png" alt="" /></a>
+								<ui>
+									登录成功后进入用户界面，可按书名、作者与 ISBN 搜索图书，并在借阅历史页归还图书。
+									注意：同一本书不可重复借阅，最多同时借 3 本。
+								</ui>xiuxiu
+								<a class="image fit"><img src="images/home/card11_6.png" alt="" /></a>
+								<ui>
+									这里展示了退出登录功能，可返回主界面；也展示了管理员界面。
+								</ui>
+								<a class="image fit"><img src="images/home/card11_7.png" alt="" /></a>
+								<ui>
+									在管理员页面可以新增图书；当新增同名同作者的图书时，会提示合并或取消。
+								</ui>
+								<a class="image fit"><img src="images/home/card11_8.png" alt="" /></a>
+								<a class="image fit"><img src="images/home/card11_9.png" alt="" /></a>
+								<ui>
+									管理员页面也可删除图书，先通过点击或搜索选中图书；若图书处于借出状态仍可删除，但相关借阅记录也会被删除（即便未归还）。
+								</ui>
+								<a class="image fit"><img src="images/home/card11_10.png" alt="" /></a>
+								<ui>
+									任何时候都可通过右上角“X”关闭系统。
+								</ui>
+								<a class="image fit"><img src="images/home/card11_11.png" alt="" /></a>
+								<ui>
+									最后，你可以看到类似这样的日志文件。
+								</ui>
+								<a class="image fit"><img src="images/home/card11_12.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/BookSystem" target="_blank">https://github.com/jlu005807/BookSystem</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+						<ul class="actions special">
+							<li><a href="https://github.com/jlu005807/BookSystem" class="button">✨开始项目✨</a></li>
+					</ul>
+				</article>
+
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的学习 📖</span>
+						<h2><a href="https://github.com/jlu005807/Operating_System">Operating System</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card12">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card12.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">OS</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									汇总操作系统相关的笔记与实验。<br>主题包含进程管理、内存、文件系统等。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>📚 项目简介</h3>
+								<p><span class="drop-cap"></span>该项目总结了我的操作系统学习，包括理论与实践两部分，涵盖核心主题的笔记、代码与实验结果。</p>
+								<a class="image fit"><img src="images/home/card12_1.png" alt="" /></a>
+								<h3>🔑 关键主题</h3>
+								<ul>
+									<li>进程与线程管理</li>
+									<li>内存管理</li>
+									<li>文件系统</li>
+									<li>设备管理</li>
+								</ul>
+								<h3>📷 Screenshots</h3>
+
+								<a class="image fit"><img src="images/home/card12_2.png" alt="" /></a>
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/Operating_System" target="_blank">https://github.com/jlu005807/Operating_System</a></strong></p>
+							</div>
+						</div>
+					</div>
+						<ul class="actions special">
+							<li><a href="https://github.com/jlu005807/Operating_System" class="button"
+								target="_blank">✨开始学习✨</a></li>
+					</ul>
+				</article>
+			</section>
+
+
+			<!-- Footer -->
+			<footer>
+				<div class="pagination">
+					<a href="./introduction-zh-CN.html" class="next">下一页🔗</a>
+				</div>
+			</footer>
+
+		</div>
+
+		<div class="transparent-area medium"></div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<section>
+				<a href="#top" class="image fit scrolly"><img src="images/home/1.jpg" alt="" /></a>
+			</section>
+			<section class="split contact">
+				<section class="alt">
+					<h3>地址</h3>
+					<p><a
+							href="https://www.google.com/maps/place/Beijing+China/@39.904691,116.407173,11z/data=!3m1!4b1!4m5!3m4!1s0x35b0d031f6e01f2d:0x5e3a2a7c6c4c7f86!8m2!3d39.904214!4d116.407971">中国🚩</a>
+					</p>
+				</section>
+				<section>
+					<h3>QQ</h3>
+					<p><a>1289406660</a></p>
+				</section>
+				<section>
+					<h3>邮箱</h3>
+					<p><a>1289406660@qq.com</a></p>
+				</section>
+				<section>
+					<h3>社交</h3>
+					<ul class="icons alt">
+						<li><a href="https://github.com/jlu005807" class="icon brands alt fa-github"><span
+								class="label">GitHub</span></a></li>
+					</ul>
+
+				</section>
+			</section>
+		</footer>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul>
+				<li>&copy; Ozy</li>
+				<li>设计：<a href="#">OZY</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js" defer></script>
+	<script src="assets/js/jquery.scrolly.min.js" defer></script>
+	<script src="assets/js/browser.min.js" defer></script>
+	<script src="assets/js/breakpoints.min.js" defer></script>
+	<script src="assets/js/util.js" defer></script>
+	<script src="assets/js/main.js" defer></script>
+	<script src="assets/js/datetime.js" defer></script>
+	<script src="assets/js/book-expand.js" defer></script>
+	<script src="assets/js/shuffle-articles.js" defer></script>
+	<script src="assets/js/parallax-fix.js" defer></script>
+	<script src="assets/js/parallax-debug.js" defer></script>
+
+	<!-- 主题切换脚本 -->
+	<script src="assets/js/theme-switcher.js"></script>
+	<script src="assets/js/theme-toggle-position.js"></script>
+
+	<!-- 智能回到顶部按钮脚本 -->
+	<script src="assets/js/smart-back-to-top.js"></script>
+
+	<!-- 页面过渡效果脚本 -->
+	<script src="assets/js/page-transition.js"></script>
+
+</body>
+
+</html>
