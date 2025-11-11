@@ -1,0 +1,769 @@
+/* 音乐播放器按钮样式 */
+.music-player {
+  position: fixed;
+  top: 20px;
+  left: 180px; /* 主题按钮右侧：20px(左边距) + 150px(主题按钮宽度) + 10px(间距) */
+  z-index: 10003; /* 确保与播放器面板同级 */
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  clip-path: circle(45%); /* 圆形点击区域 */
+}
+
+.music-player:active .plate {
+  transform: scale(0.95);
+}
+
+.music-player .container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  transition: none;
+}
+
+.music-player .plate {
+  width: 70%;
+  height: 70%;
+  position: relative;
+  z-index: 1;
+}
+
+.music-player .black {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #1a1a1a; /* 黑色唱片 */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-player .border {
+  width: 70%;
+  height: 70%;
+  border: 0.12em solid #787878;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-player .white {
+  width: 40%;
+  height: 40%;
+  background-color: #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-player .center {
+  width: 35%;
+  height: 35%;
+  background-color: #0d0d0d;
+  border-radius: 50%;
+  transition: background-color 0.5s ease;
+}
+
+.music-player.playing .center {
+  background-color: #444;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5) inset;
+}
+
+.music-player .player {
+  position: absolute;
+  transform-origin: 10% center;
+  top: 25%;
+  left: 70%;
+  width: 30%;
+  height: 30%;
+  z-index: 3; /* 提高z-index确保在其他元素之上 */
+  transition: transform 0.4s ease;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5)); /* 添加阴影增强可见性 */
+}
+
+.music-player .player .rect {
+  width: 80%;
+  height: 15%;
+  background-color: #888; /* 改为浅灰色更明显 */
+  position: absolute;
+  top: 13%;
+  left: 0;
+  transform-origin: left;
+  transform: rotate(-25deg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 添加阴影 */
+}
+
+.music-player .player .circ {
+  width: 20%;
+  height: 35%;
+  border-radius: 50%;
+  background-color: #666; /* 改为灰色更明显 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* 添加阴影 */
+}
+
+/* 动画效果 */
+@keyframes rotate-plate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes rotate-arm {
+  0% { transform: rotate(-25deg); }
+  2% { transform: rotate(0deg); }
+  4% { transform: rotate(-5deg); }
+  6% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes border-shine {
+  0% { box-shadow: 0 0 0 rgba(255,255,255,0.3); }
+  50% { box-shadow: 0 0 5px rgba(255,255,255,0.7); }
+  100% { box-shadow: 0 0 0 rgba(255,255,255,0.3); }
+}
+
+@keyframes touch-feedback {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); }
+  50% { transform: scale(0.95); box-shadow: 0 0 0 5px rgba(255, 255, 255, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+.music-player.touch-active .container {
+  animation: touch-feedback 0.4s ease-out;
+}
+
+.music-player.playing .plate .black {
+  animation: rotate-plate 1.8s linear infinite;
+}
+
+.music-player.playing .player .rect {
+  animation: rotate-arm 2s ease-out forwards;
+  box-shadow: 0 0 2px rgba(255,255,255,0.4);
+}
+
+.music-player.playing .border {
+  animation: border-shine 3s ease-in-out infinite;
+}
+
+.music-player.playing .container {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* 播放器面板样式 - 支持深色/浅色主题 */
+.player-panel {
+  position: fixed !important; /* 必须是fixed定位 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 480px); /* 增加宽度 */
+  max-height: 380px; /* 减小最大高度 */
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 50px 25px 20px; /* 增加顶部padding为播放列表按钮留空间 */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  z-index: 10003 !important; /* 提高z-index确保在其他元素之上 */
+  overflow: hidden; /* 移除滚动条,改为隐藏溢出 */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  visibility: visible; /* 默认可见 */
+  box-sizing: border-box; /* 包含padding和border在宽度内 */
+}
+
+/* 浅色主题 */
+html[data-dark-mode="false"] .player-panel,
+html[data-theme="light"] .player-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  color: #000;
+}
+
+html[data-dark-mode="false"] .player-panel .player-track-title,
+html[data-theme="light"] .player-panel .player-track-title {
+  color: #000;
+}
+
+html[data-dark-mode="false"] .player-panel .player-track-artist,
+html[data-theme="light"] .player-panel .player-track-artist {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+html[data-dark-mode="false"] .player-panel .player-header h3,
+html[data-theme="light"] .player-panel .player-header h3 {
+  color: #000;
+}
+
+html[data-dark-mode="false"] .player-panel .player-info,
+html[data-theme="light"] .player-panel .player-info {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+html[data-dark-mode="false"] .player-progress,
+html[data-theme="light"] .player-progress {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+html[data-dark-mode="false"] .player-volume span,
+html[data-theme="light"] .player-volume span {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.player-panel.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+  visibility: hidden; /* 确保完全隐藏 */
+}
+
+.player-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* 减小间距 */
+  color: #fff;
+  width: 100%; /* 确保占满容器宽度 */
+  box-sizing: border-box; /* 包含padding在宽度内 */
+}
+
+.player-header h3 {
+  margin: 0;
+  text-align: center;
+  font-size: 1.05em;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* 移除封面部分 */
+.player-artwork {
+  display: none;
+}
+
+.player-info {
+  text-align: center;
+  padding: 8px 15px; /* 减小padding */
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.player-track-title {
+  font-size: 1.05em;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.player-track-artist {
+  font-size: 0.88em;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.2;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* 稍微减小按钮间距 */
+  padding: 8px 0; /* 减小上下padding */
+}
+
+.player-btn {
+  background: rgba(255, 255, 255, 1); /* 纯白色背景 */
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  color: #000; /* 黑色图标 */
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  min-width: 48px; /* 确保不会被压缩 */
+  min-height: 48px;
+  max-width: 48px; /* 确保不会被拉伸 */
+  max-height: 48px;
+  display: inline-flex; /* 改为inline-flex确保圆形 */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.4em;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0; /* 防止被压缩 */
+  padding: 0; /* 移除padding确保圆形 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+/* 深色主题按钮 - 深色背景+白色图标 */
+html[data-dark-mode="true"] .player-btn,
+html[data-theme="dark"] .player-btn {
+  background: rgba(40, 40, 40, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+html[data-dark-mode="true"] .player-btn span,
+html[data-theme="dark"] .player-btn span {
+  color: #fff !important;
+}
+
+.player-btn-play {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
+  max-width: 64px;
+  max-height: 64px;
+  font-size: 2em; /* 更大的图标 */
+  background: rgba(255, 255, 255, 1); /* 播放按钮纯白色 */
+  border-width: 3px;
+}
+
+/* 深色主题播放按钮 */
+html[data-dark-mode="true"] .player-btn-play,
+html[data-theme="dark"] .player-btn-play {
+  background: rgba(40, 40, 40, 0.95);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 让播放/暂停图标更清晰 */
+.player-btn-play span,
+.player-btn span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: none;
+  color: #000; /* 确保图标为黑色 */
+  line-height: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* 优化播放/暂停图标显示 */
+#play-icon {
+  font-size: 0.7em; /* 稍微减小尺寸 */
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  transform: translateX(3px); /* 播放图标(▶)默认右移4px使其视觉居中 */
+  transition: transform 0.2s ease; /* 添加过渡效果 */
+}
+
+/* 播放中(显示暂停图标⏸)时，不需要偏移 */
+.player-btn-play.playing #play-icon {
+  font-size: 1.0em; /* 稍微减小尺寸 */
+  transform: translateX(2px);
+}
+
+.player-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(175, 113, 40, 0.8); /* hover时显示主题色边框 */
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(175, 113, 40, 0.4);
+}
+
+/* 深色主题hover效果 */
+html[data-dark-mode="true"] .player-btn:hover,
+html[data-theme="dark"] .player-btn:hover {
+  background: rgba(60, 60, 60, 0.95);
+  border-color: rgba(175, 113, 40, 0.8);
+  box-shadow: 0 0 20px rgba(175, 113, 40, 0.4);
+}
+
+.player-btn:active {
+  transform: scale(0.95);
+}
+
+.player-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 减小间距 */
+  font-size: 0.82em;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 3px 0; /* 减小上下padding */
+  width: 100%; /* 确保占满宽度 */
+}
+
+.player-progress span {
+  min-width: 35px; /* 稍微减小时间显示空间 */
+  text-align: center;
+  flex-shrink: 0; /* 防止被压缩 */
+}
+
+#progress-bar {
+  flex: 1;
+  min-width: 0; /* 允许flexbox正确计算 */
+  height: 5px; /* 稍微增加一点高度 */
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* 浅色主题进度条 */
+html[data-dark-mode="false"] #progress-bar,
+html[data-theme="light"] #progress-bar {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+#progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: rgba(175, 113, 40, 1);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#progress-bar::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: rgba(175, 113, 40, 1);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.player-volume {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 减小间距 */
+  padding: 3px 0; /* 减小上下padding */
+  width: 100%; /* 确保占满宽度 */
+}
+
+.player-volume span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1em; /* 稍微减小图标尺寸 */
+  min-width: 20px; /* 减小图标空间 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* 防止被压缩 */
+}
+
+#volume-bar {
+  flex: 1;
+  min-width: 0; /* 允许flexbox正确计算 */
+  height: 5px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* 浅色主题音量条 */
+html[data-dark-mode="false"] #volume-bar,
+html[data-theme="light"] #volume-bar {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+#volume-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: rgba(175, 113, 40, 1);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#volume-bar::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: rgba(175, 113, 40, 1);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.player-playlist-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px; /* 放在播放器左上角 */
+  z-index: 1;
+}
+
+.player-playlist-toggle .player-btn {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  aspect-ratio: 1; /* 强制1:1比例 */
+  border-radius: 50%;
+  font-size: 1.1em;
+  background: rgba(255, 255, 255, 1); /* 纯白色背景 */
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0; /* 防止被压缩 */
+}
+
+/* 深色主题播放列表按钮 */
+html[data-dark-mode="true"] .player-playlist-toggle .player-btn,
+html[data-theme="dark"] .player-playlist-toggle .player-btn {
+  background: rgba(40, 40, 40, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* 三条横线图标样式 */
+.player-playlist-toggle .player-btn .list-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 16px;
+}
+
+.player-playlist-toggle .player-btn .list-icon span {
+  display: block;
+  height: 2px;
+  background: #000; /* 黑色图标 */
+  border-radius: 1px;
+}
+
+/* 深色主题播放列表图标 - 白色 */
+html[data-dark-mode="true"] .player-playlist-toggle .player-btn .list-icon span,
+html[data-theme="dark"] .player-playlist-toggle .player-btn .list-icon span {
+  background: #fff;
+}
+
+.player-playlist-toggle .player-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(175, 113, 40, 0.8);
+  box-shadow: 0 2px 10px rgba(175, 113, 40, 0.3);
+}
+
+/* 深色主题播放列表按钮hover */
+html[data-dark-mode="true"] .player-playlist-toggle .player-btn:hover,
+html[data-theme="dark"] .player-playlist-toggle .player-btn:hover {
+  background: rgba(60, 60, 60, 0.95);
+  border-color: rgba(175, 113, 40, 0.8);
+  box-shadow: 0 2px 10px rgba(175, 113, 40, 0.3);
+}
+
+.playlist-container {
+  position: fixed;
+  top: 50%;
+  left: 0; /* 从左侧展开 */
+  transform: translateY(-50%) translateX(0); /* 展开状态 */
+  width: 280px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: none;
+  border-radius: 0 15px 15px 0; /* 右侧圆角 */
+  padding: 15px;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 10004; /* 在播放器上方显示 */
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+/* 浅色主题播放列表 */
+html[data-dark-mode="false"] .playlist-container,
+html[data-theme="light"] .playlist-container {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-left: none;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+}
+
+html[data-dark-mode="false"] .playlist-container h4,
+html[data-theme="light"] .playlist-container h4 {
+  color: #000;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+}
+
+html[data-dark-mode="false"] #playlist li,
+html[data-theme="light"] #playlist li {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.playlist-container.hidden {
+  transform: translateY(-50%) translateX(-100%); /* 隐藏到左侧 */
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 自定义滚动条 - 深色主题 */
+.playlist-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.playlist-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+  background: rgba(175, 113, 40, 0.6);
+  border-radius: 3px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(175, 113, 40, 0.8);
+}
+
+/* 浅色主题滚动条 */
+html[data-dark-mode="false"] .playlist-container::-webkit-scrollbar-track,
+html[data-theme="light"] .playlist-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+html[data-dark-mode="false"] .playlist-container::-webkit-scrollbar-thumb,
+html[data-theme="light"] .playlist-container::-webkit-scrollbar-thumb {
+  background: rgba(175, 113, 40, 0.5);
+}
+
+html[data-dark-mode="false"] .playlist-container::-webkit-scrollbar-thumb:hover,
+html[data-theme="light"] .playlist-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(175, 113, 40, 0.7);
+}
+
+/* 播放列表标题 */
+.playlist-container h4 {
+  color: #fff;
+  font-size: 1em;
+  margin: 0 0 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+#playlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#playlist li {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9em;
+  margin-bottom: 5px;
+  border: 1px solid transparent;
+}
+
+#playlist li:hover {
+  background: rgba(175, 113, 40, 0.3);
+  border-color: rgba(175, 113, 40, 0.5);
+  color: #fff;
+  transform: translateX(5px);
+}
+
+/* 浅色主题 hover */
+html[data-dark-mode="false"] #playlist li:hover,
+html[data-theme="light"] #playlist li:hover {
+  background: rgba(175, 113, 40, 0.2);
+  color: #000;
+}
+
+#playlist li.active {
+  background: rgba(175, 113, 40, 0.6);
+  border-color: rgba(175, 113, 40, 0.8);
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(175, 113, 40, 0.3);
+}
+
+/* 浅色主题 active */
+html[data-dark-mode="false"] #playlist li.active,
+html[data-theme="light"] #playlist li.active {
+  background: rgba(175, 113, 40, 0.4);
+  color: #000;
+}
+
+/* 移动设备优化 - 仿照主题按钮 */
+@media (max-width: 768px) {
+  .music-player {
+    top: 10px; /* 与主题按钮一致 */
+    left: 135px; /* 主题按钮移动端: 10px + 120px + 5px */
+    width: 32px; /* 稍小的尺寸 */
+    height: 32px;
+  }
+  
+  /* 移动端播放器面板优化 */
+  .player-panel {
+    width: 95vw;
+    max-width: 380px;
+    padding: 40px 20px 15px;
+  }
+
+  .player-btn {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    aspect-ratio: 1; /* 移动端也保持正圆 */
+    font-size: 1em;
+  }
+
+  .player-btn-play {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    min-height: 52px;
+    aspect-ratio: 1; /* 移动端也保持正圆 */
+    font-size: 1.6em;
+  }
+  
+  /* 移动端播放列表 */
+  .playlist-container {
+    width: 85vw;
+    max-width: 280px;
+  }
+}
