@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="assets/css/music-player.css" />
+    <style>
+        /* iframe 专用样式 */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: transparent;
+            pointer-events: none; /* body 默认不拦截点击，让点击穿透到下层页面 */
+        }
+        
+        /* 确保按钮固定在iframe内且可点击 */
+        .music-player {
+            position: fixed;
+            top: 20px;
+            left: 180px;
+            pointer-events: auto; /* 播放器按钮可点击 */
+        }
+        
+        /* 确保面板和播放列表固定且可交互 */
+        .player-panel,
+        .playlist-container {
+            position: fixed;
+            pointer-events: auto; /* 面板和列表可交互 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 音乐播放器按钮 -->
+    <button id="open-player" class="music-player" aria-label="打开音乐播放器" aria-expanded="false" data-tooltip="音乐播放器">
+        <div class="container">
+            <div class="plate">
+                <div class="black">
+                    <div class="border">
+                        <div class="white">
+                            <div class="center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player">
+                <div class="rect"></div>
+                <div class="circ"></div>
+            </div>
+        </div>
+    </button>
+
+    <!-- 播放器面板 -->
+    <div id="player-panel" class="player-panel hidden">
+        <div class="player-playlist-toggle">
+            <button id="btn-playlist" class="player-btn" aria-label="播放列表">
+                <div class="list-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+        
+        <div class="player-panel-content">
+            <div class="player-info">
+                <div class="player-track-title" id="player-title">未播放</div>
+                <div class="player-track-artist" id="player-artist">选择一首歌曲开始</div>
+            </div>
+            <div class="player-controls">
+                <button id="btn-prev" class="player-btn" aria-label="上一曲">
+                    <span>⏮</span>
+                </button>
+                <button id="btn-play" class="player-btn player-btn-play" aria-label="播放/暂停">
+                    <span id="play-icon">▶</span>
+                </button>
+                <button id="btn-next" class="player-btn" aria-label="下一曲">
+                    <span>⏭</span>
+                </button>
+                <button id="btn-mode" class="player-btn" aria-label="播放模式" title="顺序播放">
+                    <span id="mode-icon">🔁</span>
+                </button>
+            </div>
+            <div class="player-progress">
+                <span id="current-time">0:00</span>
+                <input type="range" id="progress-bar" min="0" max="100" value="0" step="0.1" aria-label="播放进度">
+                <span id="duration">0:00</span>
+            </div>
+            <div class="player-volume">
+                <span>🔊</span>
+                <input type="range" id="volume-bar" min="0" max="100" value="70" aria-label="音量">
+            </div>
+        </div>
+    </div>
+
+    <!-- 播放列表 -->
+    <div id="playlist-container" class="playlist-container hidden">
+        <h4>播放列表</h4>
+        <ul id="playlist"></ul>
+    </div>
+
+    <!-- 持久化音频元素 -->
+    <audio id="persistent-audio" preload="metadata"></audio>
+
+    <!-- 播放器脚本 -->
+    <script src="assets/js/player.js"></script>
+</body>
+</html>

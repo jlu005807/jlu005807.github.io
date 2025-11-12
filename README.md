@@ -12,6 +12,7 @@ A modern personal website showcasing projects, skills, and interests. Built with
 - 💬 **Integrated Comments** - GitHub Discussions powered by Giscus
 - ⚡ **Smart Back-to-Top** - Context-aware navigation button
 - 🌗 **Theme Toggle** - Animated day/night mode switcher
+- 🎵 **Music Player** - Persistent cross-page playback with touch & drag optimized controls
 
 ## �️ Tech Stack
 
@@ -52,7 +53,8 @@ Visit `http://localhost:8000`
 │   ├── css/                   # Stylesheets
 │   ├── js/                    # JavaScript
 │   └── webfonts/             # Fonts
-└── images/                   # Assets
+│── images/                   # images_Assets
+└── music/                   # music_Assets
 ```
 
 ## 🎯 Key Enhancements
@@ -64,6 +66,14 @@ Visit `http://localhost:8000`
 - **Comment Integration**: Stable positioning with DOM mutation monitoring
 - **Fixed Background**: Optimized background images for all devices including Windows 100% scaling
 - **Responsive Foreground**: Adaptive foreground positioning for portrait orientation on mobile devices
+
+## 🎵 Built-in Music Player
+
+- Persistent playback across pages: an iframe-based player communicates with the parent page via postMessage to keep music playing during navigation.
+- Playlist-friendly behavior: switching tracks from the playlist does not auto-close the list or player — you can change tracks repeatedly until you manually close the playlist.
+- Touch and drag optimizations: improved mobile touch handling and smooth, requestAnimationFrame-backed dragging for progress and volume controls; sliders can be dragged freely across the page.
+- Lightweight and compatible: keyboard controls and broad browser support; UI is decoupled from page content to minimize side effects.
+
 
 ## 🔧 Development
 

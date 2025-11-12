@@ -1,0 +1,22 @@
+/* 全局播放器 iframe 容器样式 */
+#global-music-player-frame {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none; /* iframe 默认不拦截点击 */
+  z-index: 10000; /* 确保在最上层 */
+  background: transparent;
+}
+
+/* 
+  点击代理层由JavaScript动态创建和控制
+  
+  注意：iframe 内的元素需要设置 pointer-events: auto
+  这些样式在 music-player.css 中已定义：
+  - .music-player { pointer-events: auto; }
+  - .player-panel { pointer-events: auto; }
+  - .playlist-container { pointer-events: auto; }
+*/
