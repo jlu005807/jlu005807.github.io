@@ -29,6 +29,7 @@
 	<link rel="stylesheet" href="assets/css/windows-100-scaling-fix.css" />
 	<link rel="stylesheet" href="assets/css/fixed-bg-non-home.css" />
 	<link rel="stylesheet" href="assets/css/music-player.css" />
+	<link rel="stylesheet" href="assets/css/global-player.css" />
 </head>
 
 <a id="top"></a>
@@ -945,79 +946,6 @@
 
 	</div>
 
-	<!-- Music Player Button -->
-	<button id="open-player" class="music-player" aria-label="打开音乐播放器" aria-haspopup="dialog" aria-expanded="false">
-		<div class="container">
-			<div class="plate">
-				<div class="black">
-					<div class="border">
-						<div class="white">
-							<div class="center"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="player">
-				<div class="rect"></div>
-				<div class="circ"></div>
-			</div>
-		</div>
-	</button>
-
-	<!-- Music Player Panel -->
-	<div id="player-panel" class="player-panel hidden" role="dialog" aria-modal="true" aria-label="音乐播放器">
-		<div class="player-panel-content">
-			<div class="player-header">
-				<h3>🎵 Music</h3>
-			</div>
-			<div class="player-info">
-				<div id="player-title" class="player-track-title">未播放</div>
-				<div id="player-artist" class="player-track-artist">--</div>
-			</div>
-			<div class="player-controls">
-				<button id="btn-prev" class="player-btn" aria-label="上一首">
-					<span>⏮</span>
-				</button>
-				<button id="btn-play" class="player-btn player-btn-play" aria-label="播放/暂停">
-					<span id="play-icon">▶</span>
-				</button>
-				<button id="btn-next" class="player-btn" aria-label="下一首">
-					<span>⏭</span>
-				</button>
-				<button id="btn-mode" class="player-btn" aria-label="播放模式" title="顺序播放">
-					<span id="mode-icon">🔁</span>
-				</button>
-			</div>
-			<div class="player-progress">
-				<span id="current-time">0:00</span>
-				<input type="range" id="progress-bar" min="0" max="100" value="0" step="0.1" aria-label="播放进度">
-				<span id="duration">0:00</span>
-			</div>
-			<div class="player-volume">
-				<span>🔊</span>
-				<input type="range" id="volume-bar" min="0" max="100" value="70" aria-label="音量">
-			</div>
-			<div class="player-playlist-toggle">
-				<button id="btn-playlist" class="player-btn" aria-label="播放列表">
-					<div class="list-icon">
-						<span></span>
-						<span></span>
-						<span></span>
-					</div>
-				</button>
-			</div>
-		</div>
-	</div>
-
-	<!-- 播放列表容器 - 移到播放器面板外部 -->
-	<div id="playlist-container" class="playlist-container hidden">
-		<h4>播放列表 (37首)</h4>
-		<ul id="playlist"></ul>
-	</div>
-
-	<!-- Persistent Audio Element -->
-	<audio id="persistent-audio" preload="metadata"></audio>
-
 	<!-- Scripts -->
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrollex.min.js" defer></script>
@@ -1042,8 +970,8 @@
 	<!-- 页面过渡效果脚本 -->
 	<script src="assets/js/page-transition.js"></script>
 
-	<!-- 音乐播放器脚本 -->
-	<script src="assets/js/player.js" defer></script>
+	<!-- 全局音乐播放器加载器 - 通过iframe实现跨页面播放 -->
+	<script src="assets/js/global-player-loader.js"></script>
 
 </body>
 

@@ -1,23 +1,66 @@
-/* 音乐播放器按钮样式 */
+/* 音乐播放器按钮样式 - iframe环境下隐藏，使用父页面的按钮 */
 .music-player {
-  position: fixed;
-  top: 20px;
-  left: 180px; /* 主题按钮右侧：20px(左边距) + 150px(主题按钮宽度) + 10px(间距) */
-  z-index: 10003; /* 确保与播放器面板同级 */
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  clip-path: circle(45%); /* 圆形点击区域 */
+  display: none !important; /* iframe内的按钮不显示，使用父页面的按钮 */
+}
+
+/* 父页面按钮样式在 global-player-loader.js 中定义 */
+
+/* 悬停时显示提示 */
+.music-player:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 12px);
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  animation: tooltipFadeIn 0.2s ease forwards;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 10005;
+}
+
+/* 浅色主题下的提示样式 */
+html[data-dark-mode="false"] .music-player:hover::after,
+html[data-theme="light"] .music-player:hover::after {
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 提示箭头 */
+.music-player:hover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 4px);
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 8px 6px 0;
+  border-color: transparent rgba(0, 0, 0, 0.9) transparent transparent;
+  pointer-events: none;
+  opacity: 0;
+  animation: tooltipFadeIn 0.2s ease forwards;
+  z-index: 10005;
+}
+
+/* 浅色主题下的箭头 */
+html[data-dark-mode="false"] .music-player:hover::before,
+html[data-theme="light"] .music-player:hover::before {
+  border-color: transparent rgba(255, 255, 255, 0.95) transparent transparent;
+}
+
+@keyframes tooltipFadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 .music-player:active .plate {
@@ -197,6 +240,7 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   z-index: 10003 !important; /* 提高z-index确保在其他元素之上 */
   overflow: hidden; /* 移除滚动条,改为隐藏溢出 */
+  pointer-events: auto; /* iframe环境下确保可交互 */
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background 0.3s ease, border-color 0.3s ease;
   visibility: visible; /* 默认可见 */
   box-sizing: border-box; /* 包含padding和border在宽度内 */
@@ -605,6 +649,7 @@ html[data-theme="dark"] .player-playlist-toggle .player-btn:hover {
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
   z-index: 10004; /* 在播放器上方显示 */
   transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  pointer-events: auto; /* iframe环境下确保可交互 */
 }
 
 /* 浅色主题播放列表 */
@@ -731,9 +776,15 @@ html[data-theme="light"] #playlist li.active {
 @media (max-width: 768px) {
   .music-player {
     top: 10px; /* 与主题按钮一致 */
-    left: 135px; /* 主题按钮移动端: 10px + 120px + 5px */
-    width: 32px; /* 稍小的尺寸 */
+    left: 120px; /* 主题按钮移动端: 10px(左边距) + 120px(按钮宽度) + 5px(间距) */
+    width: 32px; /* 与主题按钮高度一致 */
     height: 32px;
+  }
+  
+  /* 移动端不显示悬停提示（触摸屏无悬停） */
+  .music-player:hover::after,
+  .music-player:hover::before {
+    display: none;
   }
   
   /* 移动端播放器面板优化 */
@@ -761,9 +812,21 @@ html[data-theme="light"] #playlist li.active {
     font-size: 1.6em;
   }
   
+  /* 移动端播放/暂停图标不需要水平偏移 */
+  #play-icon {
+    transform: translateX(0) !important;
+  }
+  
+  .player-btn-play.playing #play-icon {
+    transform: translateX(0) !important;
+  }
+  
   /* 移动端播放列表 */
   .playlist-container {
     width: 85vw;
     max-width: 280px;
+    /* 启用触摸滚动 */
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
   }
 }

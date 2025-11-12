@@ -29,6 +29,17 @@
   let isPlaying = false;
   let userInteracted = false;
 
+  // 通知父页面面板状态变化（用于iframe环境）
+  function notifyPanelState() {
+    if (window.parent !== window && panel) {
+      const isOpen = !panel.classList.contains('hidden');
+      window.parent.postMessage({
+        type: 'player-panel-state',
+        isOpen: isOpen
+      }, '*');
+    }
+  }
+
   // 初始化
   async function init() {
     // 检查必需的DOM元素
@@ -36,6 +47,9 @@
       console.error('音乐播放器: 缺少必需的DOM元素');
       return;
     }
+    
+    console.log('音乐播放器初始化开始...');
+    const initStart = Date.now();
     
     // 加载播放列表
     await loadPlaylist();
@@ -48,6 +62,25 @@
     
     // 初始化播放器并尝试自动播放
     await attemptAutoplay();
+    
+    const initTime = Date.now() - initStart;
+    console.log(`音乐播放器初始化完成，耗时 ${initTime}ms`);
+    
+    // 如果是页面切换过来的，确保音乐继续播放
+    const isTransitioning = sessionStorage.getItem('player_transitioning') === 'true';
+    if (isTransitioning && !isPlaying) {
+      console.log('检测到页面切换，尝试恢复播放状态');
+      // 清除切换标记
+      sessionStorage.removeItem('player_transitioning');
+      
+      // 如果之前在播放，继续播放
+      const wasPlaying = localStorage.getItem('player_was_playing') === 'true';
+      if (wasPlaying && currentIndex >= 0 && playlist.length > 0) {
+        setTimeout(() => {
+          playTrack(currentIndex, true, true);
+        }, 100);
+      }
+    }
   }
 
   // 从 music 文件夹加载播放列表
@@ -146,12 +179,25 @@
       togglePanel();
     });
 
-    // 点击面板外部关闭
-    document.addEventListener('click', (e) => {
-      if (!panel.classList.contains('hidden') && 
-          !panel.contains(e.target) && 
-          !openBtn.contains(e.target)) {
-        hidePanel();
+    // 监听来自父页面的关闭检查消息
+    window.addEventListener('message', (e) => {
+      if (e.data.type === 'checkClosePlayer') {
+        // 检查点击位置是否在播放器面板、按钮和播放列表外
+        const rect = panel.getBoundingClientRect();
+        const btnRect = openBtn.getBoundingClientRect();
+        const playlistRect = playlistContainer.getBoundingClientRect();
+        const x = e.data.clientX;
+        const y = e.data.clientY;
+        
+        const isOutsidePanel = x < rect.left || x > rect.right || y < rect.top || y > rect.bottom;
+        const isOutsideBtn = x < btnRect.left || x > btnRect.right || y < btnRect.top || y > btnRect.bottom;
+        const isOutsidePlaylist = playlistContainer.classList.contains('hidden') || 
+                                   x < playlistRect.left || x > playlistRect.right || 
+                                   y < playlistRect.top || y > playlistRect.bottom;
+        
+        if (!panel.classList.contains('hidden') && isOutsidePanel && isOutsideBtn && isOutsidePlaylist) {
+          hidePanel();
+        }
       }
     });
 
@@ -213,12 +259,28 @@
       playIcon.textContent = '⏸';
       openBtn.classList.add('playing');
       btnPlay.classList.add('playing'); // 添加playing class用于CSS样式控制
+      
+      // 通知父页面播放状态变化
+      if (window.parent !== window) {
+        window.parent.postMessage({
+          type: 'player-state',
+          isPlaying: true
+        }, '*');
+      }
     });
     audio.addEventListener('pause', () => {
       isPlaying = false;
       playIcon.textContent = '▶';
       openBtn.classList.remove('playing');
       btnPlay.classList.remove('playing'); // 移除playing class
+      
+      // 通知父页面播放状态变化
+      if (window.parent !== window) {
+        window.parent.postMessage({
+          type: 'player-state',
+          isPlaying: false
+        }, '*');
+      }
     });
   }
 
@@ -237,6 +299,7 @@
   function showPanel() {
     panel.classList.remove('hidden');
     openBtn.setAttribute('aria-expanded', 'true');
+    notifyPanelState(); // 通知父页面
   }
 
   // 隐藏面板
@@ -248,10 +311,11 @@
     if (playlistContainer && !playlistContainer.classList.contains('hidden')) {
       playlistContainer.classList.add('hidden');
     }
+    notifyPanelState(); // 通知父页面
   }
 
   // 播放指定曲目
-  function playTrack(index, autoPlay = true) {
+  function playTrack(index, autoPlay = true, restoreTime = false) {
     if (index < 0 || index >= playlist.length) return;
     
     currentIndex = index;
@@ -269,6 +333,29 @@
     // 加载音频
     audio.src = track.src;
     audio.load();
+    
+    // 如果需要恢复播放时间
+    if (restoreTime) {
+      const savedTime = localStorage.getItem('player_time');
+      if (savedTime !== null) {
+        // 等待音频元数据加载完成后再设置时间
+        const setTime = () => {
+          const time = parseFloat(savedTime);
+          if (!isNaN(time) && isFinite(time) && time >= 0 && time < audio.duration) {
+            audio.currentTime = time;
+          }
+          audio.removeEventListener('loadedmetadata', setTime);
+        };
+        
+        if (audio.readyState >= 1) {
+          // 元数据已加载
+          setTime();
+        } else {
+          // 等待元数据加载
+          audio.addEventListener('loadedmetadata', setTime);
+        }
+      }
+    }
     
     // 只在需要时尝试播放
     if (autoPlay) {
@@ -371,6 +458,12 @@
     const percent = (audio.currentTime / audio.duration) * 100;
     progressBar.value = percent;
     currentTimeEl.textContent = formatTime(audio.currentTime);
+    
+    // 定期保存播放时间（避免频繁写入，每秒保存一次）
+    if (!updateProgress.lastSave || Date.now() - updateProgress.lastSave > 1000) {
+      localStorage.setItem('player_time', audio.currentTime);
+      updateProgress.lastSave = Date.now();
+    }
   }
 
   // 更新时长显示
@@ -392,26 +485,24 @@
     
     // 检查是否之前有用户交互
     const hadInteraction = localStorage.getItem('ozy_user_interacted');
+    const savedTime = localStorage.getItem('player_time');
+    const shouldRestore = savedTime && parseFloat(savedTime) > 0;
     
     if (hadInteraction) {
-      // 如果之前有交互,加载并尝试自动播放
-      playTrack(currentIndex, true);
+      // 如果之前有交互,加载并尝试自动播放，恢复播放位置
+      playTrack(currentIndex, true, shouldRestore);
     } else {
-      // 首次访问,只加载不播放
-      playTrack(currentIndex, false);
-      // 尝试静音播放来触发用户交互检测
-      audio.muted = true;
+      // 首次访问，直接尝试自动播放（浏览器允许的话）
+      // 标记为已交互，这样下次访问也会自动播放
+      localStorage.setItem('ozy_user_interacted', '1');
+      
       try {
-        await audio.play();
-        audio.pause();
-        audio.muted = false;
-        audio.currentTime = 0;
-        // 如果成功,说明允许自动播放
-        playTrack(currentIndex, true);
-        localStorage.setItem('ozy_user_interacted', '1');
+        // 直接尝试播放
+        playTrack(currentIndex, true, shouldRestore);
       } catch (err) {
-        // 自动播放被阻止,保持静音状态
-        audio.muted = false;
+        // 如果自动播放被阻止，加载但不播放
+        console.log('自动播放被浏览器阻止，等待用户交互');
+        playTrack(currentIndex, false, shouldRestore);
       }
     }
   }
@@ -422,6 +513,7 @@
     localStorage.setItem('player_time', audio.currentTime);
     localStorage.setItem('player_volume', audio.volume);
     localStorage.setItem('player_mode', playMode);
+    localStorage.setItem('player_was_playing', isPlaying ? 'true' : 'false');
   }
 
   // 恢复状态
@@ -438,8 +530,9 @@
       audio.volume = parseFloat(savedVolume);
       volumeBar.value = audio.volume * 100;
     } else {
-      audio.volume = 0.7;
-      volumeBar.value = 70;
+      // 将默认音量设置为 10%（0.1），便于进入页面时音量较低
+      audio.volume = 0.1;
+      volumeBar.value = 10;
     }
     
     if (savedMode) {
@@ -470,6 +563,62 @@
 
   // 页面卸载前保存状态
   window.addEventListener('beforeunload', saveState);
+
+  // 监听来自父页面的消息（用于iframe环境）
+  window.addEventListener('message', (event) => {
+    // 主题同步
+    if (event.data.type === 'theme-change') {
+      const html = document.documentElement;
+      if (event.data.darkMode !== null) {
+        html.setAttribute('data-dark-mode', event.data.darkMode);
+      }
+      if (event.data.theme !== null) {
+        html.setAttribute('data-theme', event.data.theme);
+      }
+    }
+    
+    // 处理播放器切换请求（来自父页面的按钮）
+    if (event.data.type === 'togglePlayer') {
+      if (panel) {
+        const willBeHidden = !panel.classList.contains('hidden');
+        panel.classList.toggle('hidden');
+        
+        // 如果播放器要关闭，同时关闭播放列表
+        if (willBeHidden && playlistContainer && !playlistContainer.classList.contains('hidden')) {
+          playlistContainer.classList.add('hidden');
+        }
+        
+        notifyPanelState();
+      }
+    }
+    
+    // 接收点击代理的所有鼠标事件
+    if (event.data.type === 'proxy-mouse-event') {
+      const x = event.data.x;
+      const y = event.data.y;
+      const eventType = event.data.eventType;
+      
+      // 查找事件位置的元素
+      const element = document.elementFromPoint(x, y);
+      
+      if (element) {
+        // 模拟鼠标事件
+        const mouseEvent = new MouseEvent(eventType, {
+          bubbles: true,
+          cancelable: true,
+          clientX: x,
+          clientY: y,
+          button: event.data.button || 0,
+          buttons: event.data.buttons || 0,
+          ctrlKey: event.data.ctrlKey || false,
+          shiftKey: event.data.shiftKey || false,
+          altKey: event.data.altKey || false,
+          metaKey: event.data.metaKey || false
+        });
+        element.dispatchEvent(mouseEvent);
+      }
+    }
+  });
 
   // 页面加载完成后初始化
   if (document.readyState === 'loading') {
