@@ -155,7 +155,14 @@
 						</div>
 						<a href="#card9" class="scrolly">了解更多</a>
 					</article>
-					
+					<article>
+						<img src="images/home/card10.jpg" alt="KB-CLI" />
+						<h2>KB-CLI</h2>
+						<div>
+							<p>本地优先知识库与可插拔 Agent 记忆系统</p>
+						</div>
+						<a href="#card10" class="scrolly">了解更多</a>
+					</article>
 					<article>
 						<img src="images/home/card11.jpg" alt="BookSystem" />
 						<h2>Book System</h2>
@@ -163,6 +170,14 @@
 							<p>图书馆流通管理系统</p>
 						</div>
 						<a href="#card11" class="scrolly">了解更多</a>
+					</article>
+					<article>
+						<img src="images/home/card12.jpg" alt="CppPools" />
+						<h2>CppPools</h2>
+						<div>
+							<p>C++17 并发资源池化服务，支持 Socket HTTP 与 Mock/MySQL</p>
+						</div>
+						<a href="#card12" class="scrolly">了解更多</a>
 					</article>
 				</section>
 
@@ -633,6 +648,61 @@
 				<!--break-->
 				<article>
 					<header class="major">
+						<span>我的项目 🧠</span>
+						<h2><a href="https://github.com/jlu005807/Kb-cli">KB-CLI</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card10">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card10.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">KB-CLI</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									基于 Rust 的本地优先知识库 CLI，支持分层记忆与可插拔 Agent 集成。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>🧠 项目简介</h3>
+								<p><span class="drop-cap"></span>KB-CLI 是一个基于 Rust 的本地知识库命令行工具，提供 L0-L5 六层记忆架构与可插拔的 Agent 记忆系统。</p>
+
+								<h3>✨ 核心功能</h3>
+								<ul>
+									<li>🗂️ <strong>本地优先存储：</strong> 使用本地 JSON 或 SQLite 保存数据，隐私与数据可控。</li>
+									<li>🧠 <strong>分层记忆：</strong> 从原始时间线逐步组织到索引、检索、知识图谱与 Wiki 内容。</li>
+									<li>🔌 <strong>MCP 集成：</strong> 通过 Model Context Protocol 暴露 8 个 Agent 记忆工具。</li>
+									<li>🛡️ <strong>减少幻觉：</strong> 结合词法验证、用户纠错优先级与 provenance 链路增强检索可信度。</li>
+									<li>⚡ <strong>轻量运行：</strong> 单二进制运行，不依赖向量数据库。</li>
+								</ul>
+
+								<h3>🔌 MCP 集成</h3>
+								<p>运行 <code>kb serve --mcp</code>，即可将记忆服务提供给兼容的 Agent。可用工具包括：</p>
+								<p><code>recall</code>、<code>remember</code>、<code>correct</code>、<code>verify_citation</code>、<code>list_episodes</code>、<code>consolidate</code>、<code>read_summary</code> 与 <code>read_neighbors</code>。</p>
+
+								<h3>🚀 快速开始</h3>
+								<pre><code>kb init my-kb
+cd my-kb
+kb add test.md
+kb update
+kb ask "测试文档的内容是什么？"
+kb remember "这是一个测试项目"
+kb consolidate</code></pre>
+
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/Kb-cli" target="_blank">https://github.com/jlu005807/Kb-cli</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+					<ul class="actions special">
+						<li><a href="https://github.com/jlu005807/Kb-cli" class="button">✨开始项目✨</a></li>
+					</ul>
+				</article>
+
+				<!--break-->
+				<article>
+					<header class="major">
 						<span>我的项目 📚</span>
 						<h2><a href="https://github.com/jlu005807/BookSystem">BookSystem</a></h2>
 					</header>
@@ -720,8 +790,70 @@
 						</div>
 					</div>
 
-						<ul class="actions special">
-							<li><a href="https://github.com/jlu005807/BookSystem" class="button">✨开始项目✨</a></li>
+					<ul class="actions special">
+						<li><a href="https://github.com/jlu005807/BookSystem" class="button">✨开始项目✨</a></li>
+					</ul>
+				</article>
+
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>我的项目 🧑‍💻</span>
+						<h2><a href="https://github.com/jlu005807/CppPools">CppPools</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card12">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card12.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">CppPools</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									一个基于 C++17 的并发学习项目，通过 Socket HTTP 服务串联 ThreadPool、ObjectPool 与 DBConnectionPool。
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>🏗️ 项目简介</h3>
+								<p><span class="drop-cap"></span>CppPools 是一个用于并发学习与面试展示的最小可运行项目，结合 C++17、自研 Socket 层 HTTP/1.1 服务、MySQL 支持以及三种协作的资源池。</p>
+
+								<h3>🏊 池化架构</h3>
+								<ul>
+									<li>🧵 <strong>ThreadPool：</strong> 固定工作线程、生产者/消费者任务队列、future 与安全关闭。</li>
+									<li>🧰 <strong>ObjectPool：</strong> 预创建或按需扩容 <code>RequestContext</code>，通过 RAII 自动归还对象。</li>
+									<li>🗄️ <strong>DBConnectionPool：</strong> 支持带超时的有界连接获取，并通过 <code>DBConnGuard</code> 自动释放连接。</li>
+								</ul>
+								<p><code>HTTP 请求 -&gt; ThreadPool -&gt; ObjectPool -&gt; DBConnectionPool -&gt; JSON 响应</code></p>
+
+								<h3>🌐 网络与可观测性</h3>
+								<ul>
+									<li>🌍 <strong>Socket HTTP/1.1：</strong> 直接基于 BSD socket 或 Winsock 构建轻量、跨平台的 HTTP 服务。</li>
+									<li>📊 <strong>运行指标：</strong> 查看池状态快照、历史峰值，以及平均值、P50、P95 和 P99 延迟。</li>
+									<li>🩺 <strong>诊断接口：</strong> 使用 <code>/api/health</code>、<code>/api/stats</code> 与 <code>/api/process</code> 观察服务。</li>
+								</ul>
+
+								<h3>⚙️ 工程化实践</h3>
+								<ul>
+									<li>🛠️ <strong>CMake + CTest：</strong> 一条命令构建并运行线程池与资源池测试。</li>
+									<li>🔁 <strong>Mock/MySQL 双模式：</strong> 无外部依赖即可学习完整链路，也可以连接 MySQL 体验真实数据库路径。</li>
+									<li>🚀 <strong>一键启动：</strong> 使用 PowerShell 脚本在 Windows 下拉起 MySQL 模式服务。</li>
+								</ul>
+
+								<h3>🚀 快速开始</h3>
+								<pre><code>cmake -S . -B build
+cmake --build build
+ctest --test-dir build --output-on-failure
+./output/bin/demo_server</code></pre>
+								<p>默认 Mock 模式无需外部依赖。设置 <code>CPPPOOLS_DB_MODE=mysql</code> 即可切换到 MySQL 模式。</p>
+
+								<p><strong>更多详情请查看 GitHub 仓库：<a href="https://github.com/jlu005807/CppPools" target="_blank">https://github.com/jlu005807/CppPools</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+					<ul class="actions special">
+						<li><a href="https://github.com/jlu005807/CppPools" class="button">✨开始项目✨</a></li>
 					</ul>
 				</article>
 			</section>

@@ -158,7 +158,14 @@
 						</div>
 						<a href="#card9" class="scrolly">Learn More</a>
 					</article>
-					
+					<article>
+						<img src="images/home/card10.jpg" alt="KB-CLI" />
+						<h2>KB-CLI</h2>
+						<div>
+							<p>Local-first knowledge base and pluggable Agent memory system</p>
+						</div>
+						<a href="#card10" class="scrolly">Learn More</a>
+					</article>
 					<article>
 						<img src="images/home/card11.jpg" alt="BookSystem" />
 						<h2>Book System</h2>
@@ -166,6 +173,14 @@
 							<p>Library management system</p>
 						</div>
 						<a href="#card11" class="scrolly">Learn More</a>
+					</article>
+					<article>
+						<img src="images/home/card12.jpg" alt="CppPools" />
+						<h2>CppPools</h2>
+						<div>
+							<p>C++17 resource pools with Socket HTTP and Mock/MySQL modes</p>
+						</div>
+						<a href="#card12" class="scrolly">Learn More</a>
 					</article>
 					
 				</section>
@@ -398,7 +413,7 @@
 						<li><a href="https://jlu005807.github.io/photo.ozy" class="button">✨Visit photo.ozy✨</a></li>
 					</ul>
 				</article>
-				
+
 				<!--break-->
 				<article>
 					<header class="major">
@@ -677,6 +692,61 @@
 				<!--break-->
 				<article>
 					<header class="major">
+						<span>My Project🧠</span>
+						<h2><a href="https://github.com/jlu005807/Kb-cli">KB-CLI</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card10">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card10.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">KB-CLI</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									A Rust CLI for local-first knowledge bases, layered memory, and pluggable Agent integration.
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>🧠 Project Introduction</h3>
+								<p><span class="drop-cap"></span>KB-CLI is a Rust-based local knowledge base command-line tool with a six-layer memory architecture and a pluggable Agent memory system.</p>
+
+								<h3>✨ Core Features</h3>
+								<ul>
+									<li>🗂️ <strong>Local-first storage:</strong> Store data in JSON or SQLite locally for privacy and control.</li>
+									<li>🧠 <strong>Layered memory:</strong> Organize knowledge from the raw timeline through indexes, search, graphs, and wiki content.</li>
+									<li>🔌 <strong>MCP integration:</strong> Expose eight tools for Agent memory workflows through Model Context Protocol.</li>
+									<li>🛡️ <strong>Grounded recall:</strong> Combine lexical validation, user corrections, and provenance chains to reduce hallucinations.</li>
+									<li>⚡ <strong>Lightweight runtime:</strong> Run as a single binary without a vector database dependency.</li>
+								</ul>
+
+								<h3>🔌 MCP Integration</h3>
+								<p>Run <code>kb serve --mcp</code> to expose the memory service to compatible Agents. Available tools include:</p>
+								<p><code>recall</code>, <code>remember</code>, <code>correct</code>, <code>verify_citation</code>, <code>list_episodes</code>, <code>consolidate</code>, <code>read_summary</code>, and <code>read_neighbors</code>.</p>
+
+								<h3>🚀 Quick Start</h3>
+								<pre><code>kb init my-kb
+cd my-kb
+kb add test.md
+kb update
+kb ask "What is in the test document?"
+kb remember "This is a test project"
+kb consolidate</code></pre>
+
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/Kb-cli" target="_blank">https://github.com/jlu005807/Kb-cli</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+					<ul class="actions special">
+						<li><a href="https://github.com/jlu005807/Kb-cli" class="button">✨Start Project✨</a></li>
+					</ul>
+				</article>
+
+				<!--break-->
+				<article>
+					<header class="major">
 						<span>My Project📚</span>
 						<h2><a href="https://github.com/jlu005807/BookSystem">BookSystem</a></h2>
 					</header>
@@ -795,6 +865,68 @@
 
 					<ul class="actions special">
 						<li><a href="https://github.com/jlu005807/BookSystem" class="button">✨Start Project✨</a></li>
+					</ul>
+				</article>
+
+				<!--break-->
+				<article>
+					<header class="major">
+						<span>My Project🧑‍💻</span>
+						<h2><a href="https://github.com/jlu005807/CppPools">CppPools</a></h2>
+					</header>
+					<div class="fullcard-wrapper" id="card12">
+						<div class="book">
+							<div class="book__cover">
+								<div class="header-image" style="--bg-image: url(../../images/home/card12.jpg);">
+									<div class="overlay"></div>
+								</div>
+								<div class="title-wrap">
+									<h1 class="article-title">CppPools</h1>
+								</div>
+								<p class="book__cover-exerpt">
+									A C++17 concurrency project connecting ThreadPool, ObjectPool, and DBConnectionPool through a Socket HTTP service.
+								</p>
+							</div>
+							<div class="book__content">
+								<h3>🏗️ Project Introduction</h3>
+								<p><span class="drop-cap"></span>CppPools is a minimal runnable project for concurrency learning and interview demonstrations. It combines C++17, a self-built Socket-level HTTP/1.1 server, MySQL support, and three cooperating resource pools.</p>
+
+								<h3>🏊 Pooling Architecture</h3>
+								<ul>
+									<li>🧵 <strong>ThreadPool:</strong> Fixed workers, a producer-consumer queue, futures, and safe shutdown.</li>
+									<li>🧰 <strong>ObjectPool:</strong> Pre-created or on-demand <code>RequestContext</code> objects returned automatically through RAII.</li>
+									<li>🗄️ <strong>DBConnectionPool:</strong> Bounded connection acquisition with timeouts and <code>DBConnGuard</code> for automatic release.</li>
+								</ul>
+								<p><code>HTTP request -&gt; ThreadPool -&gt; ObjectPool -&gt; DBConnectionPool -&gt; JSON response</code></p>
+
+								<h3>🌐 Network &amp; Observability</h3>
+								<ul>
+									<li>🌍 <strong>Socket HTTP/1.1:</strong> A lightweight cross-platform server built directly on BSD sockets or Winsock.</li>
+									<li>📊 <strong>Runtime metrics:</strong> Inspect pool snapshots, historical peaks, and average, P50, P95, and P99 latency.</li>
+									<li>🩺 <strong>Diagnostic endpoints:</strong> Use <code>/api/health</code>, <code>/api/stats</code>, and <code>/api/process</code> to observe the service.</li>
+								</ul>
+
+								<h3>⚙️ Engineering Practice</h3>
+								<ul>
+									<li>🛠️ <strong>CMake + CTest:</strong> Build and run the thread-pool and pool tests with one command.</li>
+									<li>🔁 <strong>Mock/MySQL modes:</strong> Learn the complete flow without external dependencies, or connect to MySQL for a real database path.</li>
+									<li>🚀 <strong>One-click setup:</strong> Start the MySQL mode on Windows with the included PowerShell script.</li>
+								</ul>
+
+								<h3>🚀 Quick Start</h3>
+								<pre><code>cmake -S . -B build
+cmake --build build
+ctest --test-dir build --output-on-failure
+./output/bin/demo_server</code></pre>
+								<p>The default Mock mode runs without external dependencies. Set <code>CPPPOOLS_DB_MODE=mysql</code> to use the MySQL path.</p>
+
+								<p><strong>For detailed information, please check the GitHub repository: <a href="https://github.com/jlu005807/CppPools" target="_blank">https://github.com/jlu005807/CppPools</a></strong></p>
+							</div>
+						</div>
+					</div>
+
+					<ul class="actions special">
+						<li><a href="https://github.com/jlu005807/CppPools" class="button">✨Start Project✨</a></li>
 					</ul>
 				</article>
 				<!--break-->
