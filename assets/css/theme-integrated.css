@@ -498,3 +498,8 @@
     box-shadow: none !important;
   }
 }
+
+/* Keep the marquee distance in sync with the homepage card count. */
+.carousel {
+  --items: 12;
+}
